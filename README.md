@@ -1,2 +1,2 @@
 # 3Dreefs_toolbox
-Scripts for 3D reconstructions (Photoscan) and analysis of structural complexity
+General collection of scripts for 3D reconstructions (in Agisoft Photoscan) and data analyses for structural complexity. 

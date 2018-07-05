@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<batchjobs version="1.4.0" save_project="1">
+  <job name="RunScript" target="all">
+    <args>0.5 60</args>
+    <path>/Volumes/3d_ltmp/scripts/processing_scripts/qualitycontrol_scalling.py</path>
+  </job>
+  <job name="AlignPhotos" target="unprocessed">
+    <keypoint_limit>60000</keypoint_limit>
+    <mask_tiepoints>0</mask_tiepoints>
+    <network_distribute>1</network_distribute>
+    <tiepoint_limit>6000</tiepoint_limit>
+  </job>
+  <job name="OptimizeCameras" target="unprocessed"/>
+  <job name="BuildDenseCloud" target="unprocessed">
+    <downscale>2</downscale>
+    <filter_mode>1</filter_mode>
+    <network_distribute>1</network_distribute>
+    <point_colors>0</point_colors>
+    <reuse_depth>1</reuse_depth>
+    <store_depth>0</store_depth>
+  </job>
+  <job name="BuildModel" target="all">
+    <downscale>2</downscale>
+    <face_count>3</face_count>
+    <filter_mode>0</filter_mode>
+    <surface_type>1</surface_type>
+    <vertex_colors>0</vertex_colors>
+  </job>
+  <job name="ExportPoints" target="all">
+    <format>2</format>
+    <path>exports/pointsPLY/{projectname}_{chunklabel}.PLY</path>
+  </job>
+  <job name="ExportPoints" target="all">
+    <format>4</format>
+    <path>exports/pointsXYZ/{projectname}_{chunklabel}.txt</path>
+  </job>
+  <job name="ExportModel" target="all">
+    <format>4</format>
+    <path>exports/mesh/{projectname}_{chunklabel}.PLY</path>
+    <texture_format>0</texture_format>
+  </job>
+  <job name="ExportReport" target="all">
+    <path>exports/reports/{projectname}_{chunklabel}.pdf</path>
+    <title>Processing Report for {projectname}_{chunklabel}</title>
+  </job>
+</batchjobs>

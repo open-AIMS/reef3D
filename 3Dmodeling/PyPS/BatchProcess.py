@@ -11,17 +11,23 @@ import pandas as pd
 from datetime import datetime
 
 
-def getPhotoList(root_path, photoList):
+def getPhotoList(root_path, pattern = '.JPG$'):
     '''
-    get the photo (.JPG) list in specified folder
+    Get the photo list per transects in all reef syrveys within a campaign
+    root_path: path directory to campaign folder. This should contain the data organised per reef and site/transects for each reef
+    pattern: file extension for images to import
     '''
-	pattern = '.JPG$'
-	for root, dirs, files in os.walk(root_path):
-		for name in files:
+    #TODO add subdirectoeies <mgr>
+    photoList=[]
+    
+    for root, dirs, files in os.walk(root_path):
+        for name in files:
 			if re.search(pattern,name):
 				cur_path = os.path.join(root, name)
 				#print (cur_path)
 				photoList.append(cur_path)
+    
+    return photoList
                 
 
 def nearest(items, pivot):
@@ -128,7 +134,6 @@ def photoscanProcess(root_path, save_path, export_path, scaletxt):
 
 	## save project
 	#doc.open("M:/Photoscan/practise.psx")
-    docname=
 	psxfile = root_path + 'practise.psx'
 	doc.save( psxfile )
 	print ('>> Saved to: ' + psxfile)

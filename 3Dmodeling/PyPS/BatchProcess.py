@@ -12,42 +12,12 @@ import PhotoScan
 import os,re,sys
 import pandas as pd
 from datetime import datetime
+from 3Dreefs.PyToolbox.PStoos import getDict_LTMP, nearest
 
-
-def getDict(dirName):
-    # create a list of file and sub directories 
-    # names in the given directory 
-    photoList={}
-    listreefs=os.listdir(dirName)
-    # Iterate over all the reefs
-    for reef in listreefs:
-        if os.path.isdir(os.path.join(dirName,reef)):
-            listtrans=os.listdir(os.path.join(dirName,reef))
-            #iterate over all transects in a reef
-            for trans in listtrans:
-                if os.path.isdir(os.path.join(dirName,reef,trans)):
-                    listimg=os.listdir(os.path.join(dirName,reef,trans))
-                    #iterate over all the images in a transect
-                    imgs=[]
-                    for img in listimg:
-                        if re.search(pattern,img):
-                            imgs.append(os.path.join(dirName, reef, trans,img))
-                    photoList[reef]={trans:imgs}
-                            
-    return photoList
-             
-
-def nearest(items, pivot):
+          
+def preProcess(doc, chunk, scaletxt='scalebars.csv', qual=0.7,ttshld=60):
     '''
-    Search for the closest date in the scalebar file to the date images were collected
-    ''' 
-    items=items[items<pivot] #to consider only the dates previous to pivot
-    return min(items, key=lambda x: abs(x - pivot))
-                
-                
-def preProcess(chunk, scaletxt='scalebars.csv', qual=0.7,ttshld=60):
-    '''
-    Pre-processing the chunks by:
+    Pre-processing chunks by:
     1) detecting markers
     2) adding scale bars
     3) filtering images by quality
@@ -61,7 +31,6 @@ def preProcess(chunk, scaletxt='scalebars.csv', qual=0.7,ttshld=60):
     '''
     
     ### SET ENVIRONMENTAL VARIABLES 
-    docpath=doc.path
     c=docpath.split('/projects')[0]
     sbar = os.path.join(c,'reference_scales', scaletxt)
 

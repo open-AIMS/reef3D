@@ -1,3 +1,6 @@
+#!/usr/bin/python
+
+
 ##################################################################
 #### Batch process monitoring transects in Agisoft Photoscan #####
 ##################################################################
@@ -11,24 +14,28 @@ import pandas as pd
 from datetime import datetime
 
 
-def getPhotoList(root_path, pattern = '.JPG$'):
-    '''
-    Get the photo list per transects in all reef syrveys within a campaign
-    root_path: path directory to campaign folder. This should contain the data organised per reef and site/transects for each reef
-    pattern: file extension for images to import
-    '''
-    #TODO add subdirectoeies <mgr>
-    photoList=[]
-    
-    for root, dirs, files in os.walk(root_path):
-        for name in files:
-			if re.search(pattern,name):
-				cur_path = os.path.join(root, name)
-				#print (cur_path)
-				photoList.append(cur_path)
-    
+def getDict(dirName):
+    # create a list of file and sub directories 
+    # names in the given directory 
+    photoList={}
+    listreefs=os.listdir(dirName)
+    # Iterate over all the reefs
+    for reef in listreefs:
+        if os.path.isdir(os.path.join(dirName,reef)):
+            listtrans=os.listdir(os.path.join(dirName,reef))
+            #iterate over all transects in a reef
+            for trans in listtrans:
+                if os.path.isdir(os.path.join(dirName,reef,trans)):
+                    listimg=os.listdir(os.path.join(dirName,reef,trans))
+                    #iterate over all the images in a transect
+                    imgs=[]
+                    for img in listimg:
+                        if re.search(pattern,img):
+                            imgs.append(os.path.join(dirName, reef, trans,img))
+                    photoList[reef]={trans:imgs}
+                            
     return photoList
-                
+             
 
 def nearest(items, pivot):
     '''

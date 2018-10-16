@@ -60,7 +60,7 @@
 %   See also trisurf, trimesh, delaunay
 %
 
-%   Author:     Ariell Friedman (a.friedman@acfr.usyd.edu.au)
+%   Author:     Modified from Ariell Friedman (a.friedman@acfr.usyd.edu.au)
 %   Created:    15/09/2009
 %   Updated:    15/10/2012
 

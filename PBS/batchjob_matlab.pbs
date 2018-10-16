@@ -1,0 +1,25 @@
+#!/bin/bash -l
+#
+#### job name
+PBS -N TriD_analysis
+#
+#### select resources
+PBS -l ncpus=150
+# PBS -l mem=[amount of memory required]
+PBS -l walltime=48
+#
+#### redirect error & output files
+#PBS -e /home/[username]/[location]/[input (standard out) file name]
+#PBS -o /home/[username]/[location]/[output (standard out) file name]
+#
+#
+#### select queue
+#PBS -q [default or remove this line to use default]
+#
+#### load matlab module (setup environment)
+module load [matlab or matlab/2016b]
+#### change to current working directory
+cd /home/[username]/[current working directory]
+#### execute program
+matlab -nodisplay -nodesktop -nosplash < [Matlab Script FileName.m]
+

@@ -1,4 +1,4 @@
-function sc_wrapper(f, pdens, qsizes)
+function sc_wrapper(f, pdens, qsizes, outpath)
 results=[];
     fname=fullfile(f.folder,f.name);
     [tri,xyz,inPoints]=terrain_metrics(fname, pdens);
@@ -33,11 +33,11 @@ results=[];
             inPoints(:,2),rangez), shading interp, title('Range Heights (m)'),...
             view(0,90), axis equal tight, colorbar
         figname=strrep(char(f.name),'.txt',strcat('_q',num2str(qs,2),'.png'));
-        saveas(h,fullfile('/net/138.7.48.21/3d_ltmp/exports/figs',figname))
+        saveas(h,fullfile(outpath,'figs',camp(1),figname))
         close(h);
         results=vertcat(results,r);
     end
     
-    sprintf('Writing results for %s',f.name)
-    writetable(results,fullfile(outpath,f.name))
+    sprintf('Saving results for... %s',f.name)
+    writetable(results,fullfile(outpath,'structural_complexity', camp(1),f.name))
 end 

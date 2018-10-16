@@ -1,0 +1,47 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2018 The MathWorks, Inc.
+                   R2018a (9.4.0.813654) 64-bit (glnxa64)
+                             February 23, 2018
+
+
+	Non-Degree Granting Education License -- for use at non-degree granting, nonprofit,
+	educational organizations only.  Not for government, commercial, or other organizational use.
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> Starting parallel pool (parpool) using the 'local' profile ...
+License checkout failed.
+License Manager Error -4
+Maximum number of users for Distrib_Computing_Toolbox reached. 
+Try again later.
+
+Troubleshoot this issue by visiting: 
+https://www.mathworks.com/support/lme/R2018a/4
+
+Diagnostic Information:
+Feature: Distrib_Computing_Toolbox 
+License path: /export/home/l-p/mgonzale/.matlab/R2018a_licenses:/usr/local/MATLAB/R2018a/licenses/license.dat:/usr/local/MATLAB/R2018a/licenses/network.lic 
+Licensing error: -4,132.
+>> >> >> [Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function (line 476)] 
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran4.txt using 0.10m quadrat size on 50 points'
+
+455/455 (100%)[Warning: 177 iterations were dodgy.] 
+[> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function (line 476)] 
+
+ans =
+
+    'Creating plots for centipede_Site1Tran4.txt using 0.10m quadrat size on 50 points'
+
+>> 

@@ -1,4 +1,4 @@
-function sc_wrapper(f, pdens, qsizes, outpath)
+function sc_wrapper(f, pdens, qsizes, outpath, fName)
 results=[];
     fname=fullfile(f.folder,f.name);
     [tri,xyz,inPoints]=terrain_metrics(fname, pdens);
@@ -13,8 +13,7 @@ results=[];
         sitetran=sscanf(char(namevar(2)),'Site%dTran%d.txt');
         site=repmat(sitetran(1),n,1);
         transect=repmat(sitetran(2),n,1);
-        [~,camp]=fileparts(f.folder);
-        camp=repmat(camp,n,1);
+        camp=repmat(fName,n,1);
         r=table(camp,reefname,site,transect,qsize,rgsty, slope, aspect, rangez, sdevz, rgstyXY, concavity, meandevz); 
         %% PLOT RESULTS
         sprintf('Creating plots for %s using %3.2fm quadrat size on %d points',f.name,qs,pdens)
@@ -33,11 +32,11 @@ results=[];
             inPoints(:,2),rangez), shading interp, title('Range Heights (m)'),...
             view(0,90), axis equal tight, colorbar
         figname=strrep(char(f.name),'.txt',strcat('_q',num2str(qs,2),'.png'));
-        saveas(h,fullfile(outpath,'figs',camp(1),figname))
+        saveas(h,fullfile(outpath,'figs',fName,figname))
         close(h);
         results=vertcat(results,r);
     end
     
     sprintf('Saving results for... %s',f.name)
-    writetable(results,fullfile(outpath,'structural_complexity', camp(1),f.name))
+    writetable(results,fullfile(outpath,'structural_complexity', fName,f.name))
 end 

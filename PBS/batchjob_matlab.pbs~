@@ -10,7 +10,10 @@
 #PBS -m abe
 #
 #### redirect error & output files
-#PBS -e /export/home/l-p/mgonzale/matlab_logs/errorlog
+#PBS -e /home/[username]/[location]/[input (standard out) file name]
+#PBS -o /home/[username]/[location]/[output (standard out) file name]
+#
+#
 #
 #### load matlab module (setup environment)
 module load MATLAB/R2018a

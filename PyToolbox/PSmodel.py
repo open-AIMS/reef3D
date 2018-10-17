@@ -126,7 +126,10 @@ def photoscanProcess(proj_path='projects', desc, export_path, scaletxt, photoLis
 	# matchPhotos(accuracy=HighAccuracy, preselection=NoPreselection, filter_mask=False, keypoint_limit=40000, tiepoint_limit=4000[, progress])
 	# - Alignment accuracy in [HighestAccuracy, HighAccuracy, MediumAccuracy, LowAccuracy, LowestAccuracy]
 	# - Image pair preselection in [ReferencePreselection, GenericPreselection, NoPreselection]
-	chunk.matchPhotos(accuracy=PhotoScan.LowAccuracy, preselection=PhotoScan.ReferencePreselection, filter_mask=False, keypoint_limit=0, tiepoint_limit=0)
+	chunk.matchPhotos(accuracy=PhotoScan.HighAccuracy, 
+    preselection=PhotoScan.GenericPreselection, 
+    filter_mask=False, keypoint_limit=0, 
+    tiepoint_limit=50000)
 	chunk.alignCameras()
 	doc.save( psxfile )
     
@@ -140,11 +143,13 @@ def photoscanProcess(proj_path='projects', desc, export_path, scaletxt, photoLis
         i=i+1
         Nchunk=chunk.DuplicateChunk()
         Nchunk.label=[desc[2]+letters[i]]
-        for camera in chuck.cameras[5:-5]:
+        
+        for camera in Nchuck.cameras[5:-5]:
             if camera in ap:
                 camera.enabled=FALSE
         
-        chunk.alignCameras().reset_aligment()
+        chunk.Cameras.reset_aligment()
+        chunk.alignCameras()
         this_ap=checkalign(chunk)
         ap.append(this_ap)
         a= a + len(this_ap)/len(chunk.cameras)

@@ -13,7 +13,8 @@ import os,re,sys
 import pandas as pd
 from datetime import datetime
 from reef3D.PyToolbox.PStoos import getDict_LTMP, nearest
-
+import sys
+sys.path.append()
           
 def preProcess(doc, chunk, scaletxt='scalebars.csv', qual=0.7,ttshld=60):
     '''
@@ -81,11 +82,11 @@ def preProcess(doc, chunk, scaletxt='scalebars.csv', qual=0.7,ttshld=60):
         
 def checkalign(chunk):
     aligned_photos = []   # empty list
-        for camera in chunk.cameras:
-            if camera.label in photo_list and camera.transform:
-                aligned_photos.append(camera)           # creates list of photos that aligned
+    for camera in chunk.cameras:
+        if camera.transform:
+            aligned_photos.append(camera)           # creates list of photos that aligned
 
-        return(aligned_photos)
+    return(aligned_photos)
 
 			
 def photoscanProcess(proj_path='projects', desc, export_path, scaletxt, photoList):				
@@ -113,12 +114,15 @@ def photoscanProcess(proj_path='projects', desc, export_path, scaletxt, photoLis
 	# - PhotoScan.CoordinateSystem("EPSG::4612") -->  JGD2000
 	#chunk.crs = PhotoScan.CoordinateSystem("EPSG::4612")
 
-
 	################################################################################################
 	### add photos ###
 	# addPhotos(filenames[, progress])
 	# - filenames(list of string) – A list of file paths.
 	chunk.addPhotos(photoList)
+    
+    ################################################################################################
+    #Detect markers and filter bad images
+    preProcess(doc, chunk, scaletxt='scalebars.csv', qual=0.7,ttshld=60)
     
 	################################################################################################
 	### align photos ###
@@ -134,25 +138,25 @@ def photoscanProcess(proj_path='projects', desc, export_path, scaletxt, photoLis
 	doc.save( psxfile )
     
     #Check full aligment 
-    ap=checklalign(chunk)
+    ap=checkalign(chunk)
     ls=['a','b','c']
     a = len(ap)/len(chunk.cameras)
     i=0
 
     while a < 0.8 or i<3:
         i=i+1
-        Nchunk=chunk.DuplicateChunk()
-        Nchunk.label=[desc[2]+letters[i]]
+        NChunk=chunk.copy()
+        NChunk.label=desc[2]+ls[i]
         
-        for camera in Nchuck.cameras[5:-5]:
+        for camera in NChunk.cameras:
             if camera in ap:
                 camera.enabled=FALSE
+            camera.transform = None
         
-        chunk.Cameras.reset_aligment()
-        chunk.alignCameras()
-        this_ap=checkalign(chunk)
+        NChunk.alignCameras()
+        this_ap=checkalign(NChunk)
         ap.append(this_ap)
-        a= a + len(this_ap)/len(chunk.cameras)
+        a= a + len(this_ap)/len(NChunk.cameras)
         
 	doc.save( psxfile )
 	
@@ -175,8 +179,8 @@ def photoscanProcess(proj_path='projects', desc, export_path, scaletxt, photoLis
 	# - Interpolation mode in [EnabledInterpolation, DisabledInterpolation, Extrapolated]
 	# - Face count in [HighFaceCount, MediumFaceCount, LowFaceCount]
 	# - Data source in [PointCloudData, DenseCloudData, ModelData, ElevationData]
-	chunk.buildModel(surface=PhotoScan.HeightField, interpolation=PhotoScan.EnabledInterpolation, face_count=PhotoScan.HighFaceCount)
-	doc.save( psxfile )
+	# chunk.buildModel(surface=PhotoScan.HeightField, interpolation=PhotoScan.EnabledInterpolation, face_count=PhotoScan.HighFaceCount)
+#     doc.save( psxfile )
 	
 	################################################################################################
 	### build texture (optional) ###
@@ -198,30 +202,33 @@ def photoscanProcess(proj_path='projects', desc, export_path, scaletxt, photoLis
 	## Build elevation model for the chunk.
 	# buildDem(source=DenseCloudData, interpolation=EnabledInterpolation[, projection ][, region ][, classes][, progress])
 	# - Data source in [PointCloudData, DenseCloudData, ModelData, ElevationData]
-	chunk.buildDem(source=PhotoScan.DenseCloudData, interpolation=PhotoScan.EnabledInterpolation, projection=chunk.crs)
-	doc.save( psxfile )
+	# chunk.buildDem(source=PhotoScan.DenseCloudData, interpolation=PhotoScan.EnabledInterpolation, projection=chunk.crs)
+#     doc.save( psxfile )
 
 	################################################################################################
 	## Build orthomosaic for the chunk.
 	# buildOrthomosaic(surface=ElevationData, blending=MosaicBlending, color_correction=False[, projection ][, region ][, dx ][, dy ][, progress])
 	# - Data source in [PointCloudData, DenseCloudData, ModelData, ElevationData]
 	# - Blending mode in [AverageBlending, MosaicBlending, MinBlending, MaxBlending, DisabledBlending]
-	chunk.buildOrthomosaic(surface=PhotoScan.ModelData, blending=PhotoScan.MosaicBlending, color_correction=True, projection=chunk.crs)
-	doc.save( psxfile )
-	
+	# chunk.buildOrthomosaic(surface=PhotoScan.ModelData, blending=PhotoScan.MosaicBlending, color_correction=True, projection=chunk.crs)
+#     doc.save( psxfile )
+#
 	################################################################################################
 	## auto classify ground points (optional)
 	#chunk.dense_cloud.classifyGroundPoints()
 	#chunk.buildDem(source=PhotoScan.DenseCloudData, classes=[2])
 	
 	################################################################################################
-	doc.save()
+	# doc.save()
 
 # main
-qual = float(sys.argv[1]) # quality threshold for filtering images
-ttshld = int(sys.argv[2]) # Tolerance threshold for detecting markers
+# qual = float(sys.argv[1]) # quality threshold for filtering images
+# ttshld = int(sys.argv[2]) # Tolerance threshold for detecting markers
 
 folder = "M:/Photoscan/Photos/"
+desc=
+export_path=
+scaletxt, photoList
 photoscanProcess(folder)
 
 

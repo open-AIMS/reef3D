@@ -225,7 +225,6 @@ def photoscanProcess(proj_path='projects', desc, export_path, scaletxt, photoLis
 # qual = float(sys.argv[1]) # quality threshold for filtering images
 # ttshld = int(sys.argv[2]) # Tolerance threshold for detecting markers
 
-folder = "M:/Photoscan/Photos/"
 desc=
 export_path=
 scaletxt, photoList

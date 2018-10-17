@@ -5,7 +5,7 @@
 #
 #### select resources
 #PBS -l walltime=48:02:00
-#PBS -l nodes=hpc-compute4
+#PBS -l nodes=2:cores20:mem64gb
 #PBS -M m.gonzalezrivero@aims.gov.au
 #PBS -m abe
 #

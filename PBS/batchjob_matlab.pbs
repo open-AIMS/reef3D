@@ -4,8 +4,9 @@
 #PBS -N TriD_analysis
 #
 #### select resources
-#PBS -l walltime=48:02:00
-#PBS -l nodes=2:cores20:mem64gb
+#PBS -l walltime=56:02:00
+#PBS -l nodes=2:ppn=20
+##PBS -l mem=64gb
 #PBS -M m.gonzalezrivero@aims.gov.au
 #PBS -m abe
 #

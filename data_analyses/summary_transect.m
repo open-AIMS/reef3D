@@ -16,9 +16,11 @@ f = f(~[f.isdir]);
 %core_info = evalc('feature(''numcores'')');
 %% set parallel workers
 nc=feature('numcores');
-parpool(nc-2)
+mypool=parpool(40);
 
 %% Calculate Structural complexity metrics per transect at different window sizes
 parfor i=(2:length(f))
     sc_wrapper(f(i),pdens,qsizes, outpath, fName)
 end
+
+delete(mypool)

@@ -6,7 +6,7 @@
 #### select resources
 #PBS -l walltime=56:02:00
 #PBS -l nodes=2:ppn=20
-##PBS -l mem=64gb
+##PBS -l mem=128gb
 #PBS -M m.gonzalezrivero@aims.gov.au
 #PBS -m abe
 #

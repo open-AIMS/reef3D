@@ -4,16 +4,14 @@
 #PBS -N TriD_analysis
 #
 #### select resources
-#PBS -l walltime=48:02:00
-#PBS -l nodes=hpc-compute4
+#PBS -l walltime=56:02:00
+#PBS -l nodes=2:ppn=20
+##PBS -l mem=64gb
 #PBS -M m.gonzalezrivero@aims.gov.au
 #PBS -m abe
 #
 #### redirect error & output files
-#PBS -e /home/[username]/[location]/[input (standard out) file name]
-#PBS -o /home/[username]/[location]/[output (standard out) file name]
-#
-#
+#PBS -e /export/home/l-p/mgonzale/matlab_logs/errorlog
 #
 #### load matlab module (setup environment)
 module load MATLAB/R2018a

@@ -1,0 +1,644 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2018 The MathWorks, Inc.
+                   R2018a (9.4.0.813654) 64-bit (glnxa64)
+                             February 23, 2018
+
+
+	Non-Degree Granting Education License -- for use at non-degree granting, nonprofit,
+	educational organizations only.  Not for government, commercial, or other organizational use.
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> Starting parallel pool (parpool) using the 'local' profile ...
+>> >> >> Starting parallel pool (parpool) using the 'local' profile ...
+connected to 10 workers.
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran4.txt using 0.10m quadrat size on 50 points'
+
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site2Tran1.txt using 0.10m quadrat size on 50 points'
+
+455/455 (100%)Warning: 177 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for centipede_Site1Tran4.txt using 0.10m quadrat size on 50 points'
+
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran3.txt using 0.10m quadrat size on 50 points'
+
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for foreaft_Site1Tran3.txt using 0.10m quadrat size on 50 points'
+
+63/63 (100%)
+ans =
+
+    'Creating plots for centipede_Site1Tran3.txt using 0.10m quadrat size on 50 points'
+
+Warning: 4 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for foreaft_Site1Tran3.txt using 0.10m quadrat size on 50 points'
+
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for foreaft_Site2Tran5.txt using 0.10m quadrat size on 50 points'
+
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: 8 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for foreaft_Site2Tran5.txt using 0.10m quadrat size on 50 points'
+
+[Warning: A worker aborted during execution of the parfor loop. The parfor loop
+will now run again on the remaining workers.] 
+[> In parallel_function (line 599)] 
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+[Warning: A worker aborted during execution of the parfor loop. The parfor loop
+will now run again on the remaining workers.] 
+[> In parallel_function (line 599)] 
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site2Tran1.txt using 0.10m quadrat size on 50 points'
+
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for chicken_Site3Tran1.txt using 0.10m quadrat size on 50 points'
+
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: 2 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for chicken_Site3Tran1.txt using 0.10m quadrat size on 50 points'
+
+[Warning: A worker aborted during execution of the parfor loop. The parfor loop
+will now run again on the remaining workers.] 
+[> In parallel_function (line 599)] 
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site2Tran1.txt using 0.10m quadrat size on 50 points'
+
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran3.txt using 0.10m quadrat size on 50 points'
+
+63/63 (100%)
+ans =
+
+    'Creating plots for centipede_Site1Tran3.txt using 0.10m quadrat size on 50 points'
+
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site3Tran5.txt using 0.10m quadrat size on 50 points'
+
+333/333 (100%)Warning: 12 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for centipede_Site3Tran5.txt using 0.10m quadrat size on 50 points'
+
+[Warning: A worker aborted during execution of the parfor loop. The parfor loop
+will now run again on the remaining workers.] 
+[> In parallel_function (line 599)] 
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran4.txt using 0.10m quadrat size on 50 points'
+
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site2Tran1.txt using 0.10m quadrat size on 50 points'
+
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site3Tran1.txt using 0.10m quadrat size on 50 points'
+
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran2.txt using 0.10m quadrat size on 50 points'
+
+Warning: 20 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for centipede_Site3Tran1.txt using 0.10m quadrat size on 50 points'
+
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site2Tran3.txt using 0.10m quadrat size on 50 points'
+
+Warning: 18 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for centipede_Site1Tran2.txt using 0.10m quadrat size on 50 points'
+
+455/455 (100%)
+[Warning: A worker aborted during execution of the parfor loop. The parfor loop
+will now run again on the remaining workers.] 
+[> In parallel_function (line 599)] 
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site2Tran1.txt using 0.10m quadrat size on 50 points'
+
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran3.txt using 0.10m quadrat size on 50 points'
+
+63/63 (100%)
+ans =
+
+    'Creating plots for centipede_Site1Tran3.txt using 0.10m quadrat size on 50 points'
+
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site2Tran3.txt using 0.10m quadrat size on 50 points'
+
+Warning: 39 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for centipede_Site2Tran3.txt using 0.10m quadrat size on 50 points'
+
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran4.txt using 0.10m quadrat size on 50 points'
+
+455/455 (100%)Warning: 177 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for centipede_Site1Tran4.txt using 0.10m quadrat size on 50 points'
+
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran3.txt using 0.20m quadrat size on 50 points'
+
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran4.txt using 0.20m quadrat size on 50 points'
+
+63/63 (100%)
+ans =
+
+    'Creating plots for centipede_Site1Tran3.txt using 0.20m quadrat size on 50 points'
+
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran3.txt using 0.50m quadrat size on 50 points'
+
+455/455 (100%)Warning: 117 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for centipede_Site1Tran4.txt using 0.20m quadrat size on 50 points'
+
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran4.txt using 0.50m quadrat size on 50 points'
+
+Warning: 5009 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for centipede_Site2Tran1.txt using 0.10m quadrat size on 50 points'
+
+63/63 (100%)
+ans =
+
+    'Creating plots for centipede_Site1Tran3.txt using 0.50m quadrat size on 50 points'
+
+
+ans =
+
+    'Saving results for... centipede_Site1Tran3.txt'
+
+455/455 (100%)
+[Warning: A worker aborted during execution of the parfor loop. The parfor loop
+will now run again on the remaining workers.] 
+[> In parallel_function (line 599)] 
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran3.txt using 0.10m quadrat size on 50 points'
+
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran4.txt using 0.10m quadrat size on 50 points'
+
+63/63 (100%)
+ans =
+
+    'Creating plots for centipede_Site1Tran3.txt using 0.10m quadrat size on 50 points'
+
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran3.txt using 0.20m quadrat size on 50 points'
+
+455/455 (100%)Warning: 177 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for centipede_Site1Tran4.txt using 0.10m quadrat size on 50 points'
+
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran4.txt using 0.20m quadrat size on 50 points'
+
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site2Tran1.txt using 0.10m quadrat size on 50 points'
+
+63/63 (100%)
+ans =
+
+    'Creating plots for centipede_Site1Tran3.txt using 0.20m quadrat size on 50 points'
+
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran3.txt using 0.50m quadrat size on 50 points'
+
+455/455 (100%)Warning: 117 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for centipede_Site1Tran4.txt using 0.20m quadrat size on 50 points'
+
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran4.txt using 0.50m quadrat size on 50 points'
+
+63/63 (100%)
+ans =
+
+    'Creating plots for centipede_Site1Tran3.txt using 0.50m quadrat size on 50 points'
+
+
+ans =
+
+    'Saving results for... centipede_Site1Tran3.txt'
+
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site3Tran1.txt using 0.10m quadrat size on 50 points'
+
+Warning: 20 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+455/455 (100%)Warning: 29 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for centipede_Site1Tran4.txt using 0.50m quadrat size on 50 points'
+
+
+ans =
+
+    'Saving results for... centipede_Site1Tran4.txt'
+
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+[Warning: A worker aborted during execution of the parfor loop. The parfor loop
+will now run again on the remaining workers.] 
+[> In parallel_function (line 599)] 
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 19)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran4.txt using 0.10m quadrat size on 50 points'
+
+455/455 (100%)Warning: 177 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for centipede_Site1Tran4.txt using 0.10m quadrat size on 50 points'
+
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran3.txt using 0.10m quadrat size on 50 points'
+
+63/63 (100%)
+ans =
+
+    'Creating plots for centipede_Site1Tran3.txt using 0.10m quadrat size on 50 points'
+
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran4.txt using 0.20m quadrat size on 50 points'
+
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran3.txt using 0.20m quadrat size on 50 points'
+
+455/455 (100%)Warning: 117 iterations were dodgy.
+> In trisurfterrainfeats (line 177)
+  In sc_wrapper (line 8)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+
+ans =
+
+    'Creating plots for centipede_Site1Tran4.txt using 0.20m quadrat size on 50 points'
+
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran4.txt using 0.50m quadrat size on 50 points'
+
+63/63 (100%)
+ans =
+
+    'Creating plots for centipede_Site1Tran3.txt using 0.20m quadrat size on 50 points'
+
+
+ans =
+
+    'Calculating terrain features for centipede_Site1Tran3.txt using 0.50m quadrat size on 50 points'
+

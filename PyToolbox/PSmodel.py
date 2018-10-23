@@ -12,9 +12,11 @@ import PhotoScan
 import os,re,sys
 import pandas as pd
 from datetime import datetime
-from reef3D.PyToolbox.PStoos import getDict_LTMP, nearest
 import sys
-sys.path.append()
+sys.path.append('/Users/uqmgonz1/Documents/GitHub')
+from reef3D.PyToolbox import PStools as pst
+import glob
+
           
 def preProcess(doc, chunk, scaletxt='scalebars.csv', qual=0.7,ttshld=60):
     '''
@@ -89,7 +91,7 @@ def checkalign(chunk):
     return(aligned_photos)
 
 			
-def photoscanProcess(proj_path='projects', desc, export_path, scaletxt, photoList):				
+def photoscanProcess(proj_path='projects',data_path='data' desc, export_path, scaletxt, photoList):				
 	''''
     desc: string vector containing: campaign[0], reefname[1], transectid[2]
     
@@ -118,7 +120,7 @@ def photoscanProcess(proj_path='projects', desc, export_path, scaletxt, photoLis
 	### add photos ###
 	# addPhotos(filenames[, progress])
 	# - filenames(list of string) – A list of file paths.
-	chunk.addPhotos(photoList)
+	chunk.addPhotos(glob.glob(os.path.join(data_path,desc[0],desc[1],desc[2])+'/*.JPG'))
     
     ################################################################################################
     #Detect markers and filter bad images

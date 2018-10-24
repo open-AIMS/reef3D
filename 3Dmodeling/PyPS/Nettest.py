@@ -1,9 +1,12 @@
 import PhotoScan
 import sys
-sys.path.append('scripts/reef3D')
-from reef3D.PyToolbox import PSmodel as psm
+import os
 
 doc=PhotoScan.app.document
 chunk=doc.chunk
+dp=doc.path
+sys.path.append(os.path.join(dp.split('testCamp')[0],'scripts/reef3D'))
+from reef3D.PyToolbox import PSmodel as psm
+
 
 psm.preProcess(doc, chunk)

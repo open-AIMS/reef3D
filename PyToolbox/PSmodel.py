@@ -71,7 +71,6 @@ def preProcess(doc, chunk, qual=0.7,ttshld=60, scaletxt='scalebars.csv'):
             s=chunk.addScalebar(markers[t1], markers[t2])
             s.reference.distance=float(dist)
 
-    file.close()
         
     ############### Enabling rolling shutter compensation ################################ 
     print("---Rolling shutter compensation---")

@@ -36,7 +36,8 @@ def preProcess(doc, chunk, qual=0.7,ttshld=60, scaletxt='scalebars.csv'):
     ### SET ENVIRONMENTAL VARIABLES 
     docpath=doc.path
     c=docpath.split('/projects')[0]
-    sbar = os.path.join(c,'reference_scales', scaletxt)
+    print(c)
+    sbar = os.path.join('..','reference_scales', scaletxt)
 
     df=pd.read_csv(sbar,delimiter=',')
     df['DATE']=pd.to_datetime(df['DATE'],format='%d/%m/%y')

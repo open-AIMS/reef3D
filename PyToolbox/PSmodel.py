@@ -37,7 +37,7 @@ def preProcess(doc, chunk, qual=0.7,ttshld=60, scaletxt='scalebars.csv'):
     docpath=doc.path
     c=docpath.split('/projects')[0]
     print(c)
-    sbar = os.path.join('..','reference_scales', scaletxt)
+    sbar = os.path.join(c,'reference_scales', scaletxt)
     print(sbar)
     df=pd.read_csv(sbar,delimiter=',')
     df['DATE']=pd.to_datetime(df['DATE'],format='%d/%m/%y')

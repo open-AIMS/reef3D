@@ -18,7 +18,7 @@ from reef3D.PyToolbox import PStools as pst
 import glob
 
           
-def preProcess(doc, chunk, scaletxt='scalebars.csv', qual=0.7,ttshld=60):
+def preProcess(doc, chunk, qual=0.7,ttshld=60, scaletxt='scalebars.csv'):
     '''
     Pre-processing chunks by:
     1) detecting markers
@@ -56,13 +56,14 @@ def preProcess(doc, chunk, scaletxt='scalebars.csv', qual=0.7,ttshld=60):
     #TODO modify this to allow multiple camera metadata. A posible to solution is to add the cruise date as an argument
     #img_date=datetime.strptime(camera.photo.meta['Exif/DateTimeOriginal'], '%Y:%m:%d %H:%M:%S')
     img_date=datetime.strptime('2018:10:07 10:45:23', '%Y:%m:%d %H:%M:%S')
-    ref_date=nearest(df['DATE'],img_date)
-    file = open(sbar, "rt")
+    ref_date=pst.nearest(df['DATE'],img_date)
+
     markers = {}
     for marker in chunk.markers:
         markers[marker.label] = marker
 
-    lines = file.readlines()[1:]
+    with open(sbar, 'r', errors='replace') as f:
+        lines = f.readlines()[1:]
     for line in lines:
         #FIXME there is a problem with the date format time data 'A' does not match format '%d/%m/%y' <MGR>
         tdate,t1,t2, dist = datetime.strptime(line.split(',')[0],'%d/%m/%y'), line.split(',')[1],line.split(',')[2], line.split(',')[3]
@@ -91,53 +92,52 @@ def checkalign(chunk):
     return(aligned_photos)
 
 			
-def photoscanProcess(proj_path='projects',data_path='data' desc, export_path, scaletxt, photoList):				
-	''''
+def photoscanProcess(desc, export_path, scaletxt, photoList,proj_path='projects',data_path='data'):				
+    ''''
     desc: string vector containing: campaign[0], reefname[1], transectid[2]
     
     '''
-    
     ##Create folder structure
     os.makedirs(os.path.join(proj_path,desc[0],desc[1],desc[2]))
     #PhotoScan.app.messageBox('hello world! \n')
-	PhotoScan.app.console.clear()
-	## construct the document class
-	doc = PhotoScan.app.document
-	## save project
-	psxfile = os.path.join(proj_path,str(desc[0]),str(desc[1]),str(desc[2]),str(desc[2] + '.psx'))
-	doc.save( psxfile )
-	print ('>> Project saved to: ' + psxfile)
+    PhotoScan.app.console.clear()
+    ## construct the document class
+    doc = PhotoScan.app.document
+    ## save project
+    psxfile = os.path.join(proj_path,str(desc[0]),str(desc[1]),str(desc[2]),str(desc[2] + '.psx'))
+    doc.save( psxfile )
+    print ('>> Project saved to: ' + psxfile)
 
-	## add the first chunk
-	chunk = doc.addChunk()
+    ## add the first chunk
+    chunk = doc.addChunk()
     chunk.label=desc[2]
 
-	## set coordinate system
-	# - PhotoScan.CoordinateSystem("EPSG::4612") -->  JGD2000
-	#chunk.crs = PhotoScan.CoordinateSystem("EPSG::4612")
+    ## set coordinate system
+    # - PhotoScan.CoordinateSystem("EPSG::4612") -->  JGD2000
+    #chunk.crs = PhotoScan.CoordinateSystem("EPSG::4612")
 
-	################################################################################################
-	### add photos ###
-	# addPhotos(filenames[, progress])
-	# - filenames(list of string) – A list of file paths.
-	chunk.addPhotos(glob.glob(os.path.join(data_path,desc[0],desc[1],desc[2])+'/*.JPG'))
+    ################################################################################################
+    ### add photos ###
+    # addPhotos(filenames[, progress])
+    # - filenames(list of string) – A list of file paths.
+    chunk.addPhotos(glob.glob(os.path.join(data_path,desc[0],desc[1],desc[2])+'/*.JPG'))
     
     ################################################################################################
     #Detect markers and filter bad images
     preProcess(doc, chunk, scaletxt='scalebars.csv', qual=0.7,ttshld=60)
     
-	################################################################################################
-	### align photos ###
-	## Perform image matching for the chunk frame.
-	# matchPhotos(accuracy=HighAccuracy, preselection=NoPreselection, filter_mask=False, keypoint_limit=40000, tiepoint_limit=4000[, progress])
-	# - Alignment accuracy in [HighestAccuracy, HighAccuracy, MediumAccuracy, LowAccuracy, LowestAccuracy]
-	# - Image pair preselection in [ReferencePreselection, GenericPreselection, NoPreselection]
-	chunk.matchPhotos(accuracy=PhotoScan.HighAccuracy, 
+    ################################################################################################
+    ### align photos ###
+    ## Perform image matching for the chunk frame.
+    # matchPhotos(accuracy=HighAccuracy, preselection=NoPreselection, filter_mask=False, keypoint_limit=40000, tiepoint_limit=4000[, progress])
+    # - Alignment accuracy in [HighestAccuracy, HighAccuracy, MediumAccuracy, LowAccuracy, LowestAccuracy]
+    # - Image pair preselection in [ReferencePreselection, GenericPreselection, NoPreselection]
+    chunk.matchPhotos(accuracy=PhotoScan.HighAccuracy, 
     preselection=PhotoScan.GenericPreselection, 
     filter_mask=False, keypoint_limit=0, 
     tiepoint_limit=50000)
-	chunk.alignCameras()
-	doc.save( psxfile )
+    chunk.alignCameras()
+    doc.save( psxfile )
     
     #Check full aligment 
     ap=checkalign(chunk)
@@ -153,14 +153,14 @@ def photoscanProcess(proj_path='projects',data_path='data' desc, export_path, sc
         for camera in NChunk.cameras:
             if camera in ap:
                 camera.enabled=FALSE
-            camera.transform = None
+                camera.transform = None
         
         NChunk.alignCameras()
         this_ap=checkalign(NChunk)
         ap.append(this_ap)
         a= a + len(this_ap)/len(NChunk.cameras)
         
-	doc.save( psxfile )
+    doc.save( psxfile )
 	
 
 
@@ -170,8 +170,8 @@ def photoscanProcess(proj_path='projects',data_path='data' desc, export_path, sc
 	# buildDenseCloud(quality=MediumQuality, filter=AggressiveFiltering[, cameras], keep_depth=False, reuse_depth=False[, progress])
 	# - Dense point cloud quality in [UltraQuality, HighQuality, MediumQuality, LowQuality, LowestQuality]
 	# - Depth filtering mode in [AggressiveFiltering, ModerateFiltering, MildFiltering, NoFiltering]
-	chunk.buildDenseCloud(quality=PhotoScan.LowQuality, filter=PhotoScan.AggressiveFiltering)
-	doc.save( psxfile )
+    chunk.buildDenseCloud(quality=PhotoScan.LowQuality, filter=PhotoScan.AggressiveFiltering)
+    doc.save( psxfile )
 
 	################################################################################################
 	### build mesh ###
@@ -184,6 +184,8 @@ def photoscanProcess(proj_path='projects',data_path='data' desc, export_path, sc
 	# chunk.buildModel(surface=PhotoScan.HeightField, interpolation=PhotoScan.EnabledInterpolation, face_count=PhotoScan.HighFaceCount)
 #     doc.save( psxfile )
 	
+    #TODO extract and export camera pose <MGR>
+    #check this: chunk.transform.matrix
 	################################################################################################
 	### build texture (optional) ###
 	## Generate uv mapping for the model.
@@ -197,7 +199,7 @@ def photoscanProcess(proj_path='projects',data_path='data' desc, export_path, sc
 
 	################################################################################################
 	## save the project before build the DEM and Ortho images
-	doc.save()
+    doc.save()
 
 	################################################################################################
 	### build DEM (before build dem, you need to save the project into psx) ###
@@ -227,10 +229,10 @@ def photoscanProcess(proj_path='projects',data_path='data' desc, export_path, sc
 # qual = float(sys.argv[1]) # quality threshold for filtering images
 # ttshld = int(sys.argv[2]) # Tolerance threshold for detecting markers
 
-desc=
-export_path=
-scaletxt, photoList
-photoscanProcess(folder)
+# desc=
+# export_path=
+# scaletxt, photoList
+# photoscanProcess(folder)
 
 
 

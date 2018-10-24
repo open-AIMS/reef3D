@@ -16,11 +16,8 @@ def runNetwork(project_path, desc,chunk,  argstring, tname='RunScript', PSscript
     task1 = PhotoScan.NetworkTask()
     task1.chunks.append(chunk)
     task1.name = tname
-    if tname== 'RunScript':
-        task1.params['path'] = PSscript #path to the script to be executed
-        task1.params['args'] = argstring #string of the arguments with space as separator
-    else:
-        task1.params['accuracy']=PhotoScan.LowAccuracy
+    task1.params['path'] = PSscript #path to the script to be executed
+    task1.params['args'] = argstring #string of the arguments with space as separator
     path = os.path.join(proj_path,desc[0],desc[1],desc[2],str(desc[2] + '.psx'))
     client.connect('agisoft-qmgr.aims.gov.au') #server ip
     batch_id = client.createBatch(path, [task1])

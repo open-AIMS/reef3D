@@ -89,7 +89,7 @@ def checkalign(chunk):
     aligned_photos = []   # empty list
     for camera in chunk.cameras:
         if camera.transform:
-            aligned_photos.append(camera)           # creates list of photos that aligned
+            aligned_photos.append(camera.label)           # creates list of photos that aligned
 
     return(aligned_photos)
 
@@ -143,24 +143,38 @@ def photoscanProcess(desc, export_path, scaletxt, photoList,proj_path='projects'
     
     #Check full aligment 
     ap=checkalign(chunk)
-    ls=['a','b','c']
+    ls=['a','b','c','d']
     a = len(ap)/len(chunk.cameras)
     i=0
 
     while a < 0.8 or i<3:
-        i=i+1
         NChunk=chunk.copy()
         NChunk.label=desc[2]+ls[i]
-        
-        for camera in NChunk.cameras:
-            if camera in ap:
-                camera.enabled=FALSE
-                camera.transform = None
-        
+        for c in range(0,len(NChunk.cameras)):
+            if NChunk.cameras[c].label in ap:
+                NChunk.cameras[c].enabled=False
+                NChunk.cameras[c].transform = None
         NChunk.alignCameras()
         this_ap=checkalign(NChunk)
-        ap.append(this_ap)
+        ap.extend(this_ap)
         a= a + len(this_ap)/len(NChunk.cameras)
+        i=i+1
+        print(i)
+        
+    
+    while a < 0.8 or i < 3:
+        Nchunk = doc.addChunk()
+        Nchunk.label=desc[2]+ls[i]
+        for camera in chunk.cameras:
+            if camera.label not in ap:
+                camera.transform = None
+                todo.append(camera)
+                
+        chunk.alignCameras(cameras=todo, reset_alignment=True)
+        ap=checkalign(chunk)
+        a= len(this_ap)/len(NChunk.cameras)
+        i=i+1
+        print(a)
         
     doc.save( psxfile )
 	

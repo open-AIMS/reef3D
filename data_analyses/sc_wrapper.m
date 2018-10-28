@@ -8,12 +8,12 @@ results=[];
         [rgsty,slope, aspect, ~, rangez, sdevz, rgstyXY, ~,~, concavity, meandevz, ~, ~, ~] = trisurfterrainfeats(tri, xyz, qs, inPoints);
         n=length(rgsty);
         qsize=repmat(qs,n,1);
-        namevar=strsplit(f.name,'_');
-        reefname=repmat(namevar(1),n,1);
-        sitetran=sscanf(char(namevar(2)),'Site%dTran%d.txt');
+        namevar=strsplit(f.folder,'/');
+        reefname=repmat(char(namevar(length(namevar))),n,1);
+        sitetran=sscanf(char(f.name),'Site%dTran%d.txt');
         site=repmat(sitetran(1),n,1);
         transect=repmat(sitetran(2),n,1);
-        camp=repmat(fName,n,1);
+        camp=repmat(char(namevar(length(namevar)-1)),n,1);
         r=table(camp,reefname,site,transect,qsize,rgsty, slope, aspect, rangez, sdevz, rgstyXY, concavity, meandevz); 
         %% PLOT RESULTS
         sprintf('Creating plots for %s using %3.2fm quadrat size on %d points',f.name,qs,pdens)

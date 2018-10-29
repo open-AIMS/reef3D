@@ -1,5 +1,5 @@
 function sc_wrapper(f, pdens, qsizes, outpath, fName)
-    results=[];
+results=[];
     fname=fullfile(f.folder,f.name);
     [tri,xyz,inPoints]=terrain_metrics(fname, pdens);
     for x=(1:length(qsizes))
@@ -11,8 +11,8 @@ function sc_wrapper(f, pdens, qsizes, outpath, fName)
         namevar=strsplit(f.folder,'/');
         reeftran=strsplit(f.name,'_');
         sitetran=sscanf(char(reeftran(2)),'Site%dTran%d.txt');
-        reefname=repmat(char(reeftran(1)),n,1);
-        site=repmat(sitetran(1),n,1);
+        reefname=repmat(char(reeftr(1)),n,1);
+        site=repmat(sitetran(2),n,1);
         transect=repmat(sitetran(2),n,1);
         camp=repmat(char(namevar(length(namevar))),n,1);
         r=table(camp,reefname,site,transect,qsize,rgsty, slope, aspect, rangez, sdevz, rgstyXY, concavity, meandevz); 

@@ -18,5 +18,6 @@ module load MATLAB/R2018a
 #### change to current working directory
 cd /export/home/l-p/mgonzale/Desktop/gits/reef3D/data_analyses
 #### execute program
-matlab -nodisplay -nodesktop -nosplash < summary_transect.m
+
+matlab -nodisplay -nodesktop -nosplash -r "summary_transect '/net/138.7.48.21/3d_ltmp/exports/pointsXYZ/OM/' '/export/home/l-p/mgonzale/Desktop/gits/reef3D/' '/net/138.7.48.21/3d_ltmp/exports/'"
 

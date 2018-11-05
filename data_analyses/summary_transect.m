@@ -16,11 +16,11 @@ f = f(~[f.isdir]);
 %reef=struct('reefname',fName, 'qsize',qsizes);
 %core_info = evalc('feature(''numcores'')');
 %% set parallel workers
-% nc=feature('numcores');
-% mypool=parpool(40);
+%nc=feature('numcores');
+mypool=parpool(6);
 
 %% Calculate Structural complexity metrics per transect at different window sizes
-for i=(1)%:length(f))
+parfor i=(1:length(f))
     sc_wrapper(f(i),pdens,qsizes, outpath, campose)
 end
 

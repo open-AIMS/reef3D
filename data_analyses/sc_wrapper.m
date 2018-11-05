@@ -1,7 +1,7 @@
 function sc_wrapper(f, pdens, qsizes, outpath, campose)
     results=[];
     fname=fullfile(f.folder,f.name);
-    [tri,xyz,inPoints]=terrain_metrics(fname, pdens, campose);
+    [tri,xyz,inPoints]=terrain_metrics(fname, pdens, fullfile(campose,f.name));
     for x=(1:length(qsizes))
         qs=qsizes(x);
         sprintf('Calculating terrain features for %s using %3.2fm quadrat size on %d points',f.name,qs,pdens)

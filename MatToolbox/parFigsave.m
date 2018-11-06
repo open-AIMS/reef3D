@@ -1,3 +1,3 @@
 function parFigsave(fname, x)
-saveas(x,fname)
+saveas('x',fname)
 end

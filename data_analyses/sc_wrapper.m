@@ -4,7 +4,7 @@ function sc_wrapper(f, pdens, qsizes, outpath, campose)
     reeftran=strsplit(f.name,'_');
     sitetran=sscanf(char(reeftran(2)),'Site%dTran%d.txt');
 
-    if exists(fullfile(outpath,'structural_complexity', char(namevar(length(namevar)))),f.name, 'file')==0
+    if exist(fullfile(campose,f.name), 'file')==2
         fname=fullfile(f.folder,f.name);
         [tri,xyz,inPoints]=terrain_metrics(fname, pdens, fullfile(campose,f.name));
         for x=(1:length(qsizes))

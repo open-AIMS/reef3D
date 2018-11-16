@@ -45,7 +45,7 @@ function sc_wrapper(f, pdens, qsizes, outpath, campose)
         end
 
         sprintf('Saving results for... %s',f.name)
-        %writetable(results,fullfile(outpath,'structural_complexity', char(namevar(length(namevar))),f.name))
-        parTablesave(results,fullfile(outpath,'structural_complexity', char(namevar(length(namevar))),f.name))
+        writetable(results,fullfile(outpath,'structural_complexity', char(namevar(length(namevar))),f.name))
+        %parTablesave(results,fullfile(outpath,'structural_complexity', char(namevar(length(namevar))),f.name))
     end
 end 

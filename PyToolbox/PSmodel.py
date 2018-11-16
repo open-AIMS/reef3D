@@ -134,7 +134,7 @@ def photoscanProcess(desc, export_path, scaletxt, photoList,proj_path='projects'
     # matchPhotos(accuracy=HighAccuracy, preselection=NoPreselection, filter_mask=False, keypoint_limit=40000, tiepoint_limit=4000[, progress])
     # - Alignment accuracy in [HighestAccuracy, HighAccuracy, MediumAccuracy, LowAccuracy, LowestAccuracy]
     # - Image pair preselection in [ReferencePreselection, GenericPreselection, NoPreselection]
-    chunk.matchPhotos(accuracy=PhotoScan.HighAccuracy, 
+    chunk.matchPhotos(accuracy=PhotoScan.MediumAccuracy, 
     preselection=PhotoScan.GenericPreselection, 
     filter_mask=False, keypoint_limit=0, 
     tiepoint_limit=50000)

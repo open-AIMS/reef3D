@@ -16,6 +16,7 @@ import sys
 sys.path.append('/Users/uqmgonz1/Documents/GitHub')
 from reef3D.PyToolbox import PStools as pst
 import glob
+from PIL import Image
 
           
 def preProcess(doc, chunk, qual=0.7,ttshld=60, scaletxt='scalebars.csv'):
@@ -94,13 +95,14 @@ def checkalign(chunk):
     return(aligned_photos)
 
 			
-def photoscanProcess(desc, export_path, scaletxt, photoList,proj_path='projects',data_path='data'):				
+def photoscanProcess(desc, export_path, scaletxt, photoList,proj_path='projects',data_path='data/LTMP'):				
     ''''
     desc: string vector containing: campaign[0], reefname[1], transectid[2]
     
     '''
     ##Create folder structure
-    os.makedirs(os.path.join(proj_path,desc[0],desc[1],desc[2]))
+    if not os.path.exists(os.path.join(proj_path,desc[0],desc[1],desc[2])):
+        os.makedirs(os.path.join(proj_path,desc[0],desc[1],desc[2]))
     #PhotoScan.app.messageBox('hello world! \n')
     PhotoScan.app.console.clear()
     ## construct the document class
@@ -109,97 +111,70 @@ def photoscanProcess(desc, export_path, scaletxt, photoList,proj_path='projects'
     psxfile = os.path.join(proj_path,str(desc[0]),str(desc[1]),str(desc[2]),str(desc[2] + '.psx'))
     doc.save( psxfile )
     print ('>> Project saved to: ' + psxfile)
+    
+    #List images and split them into chuncks
+    imlist=glob.glob(os.path.join(data_path,desc[0],desc[1],desc[2])+'/*.JPG')
+    imdate=[]
+    for i in imlist:
+        d=Image.open(i)._getexif()[36867]
+        imdate.append(datetime.strptime(d, '%Y:%m:%d %H:%M:%S')) #get image date time
+    
+    im=pd.DataFrame({'im':imlist,'date':imdate})
+    im=im.sort_values('date', ascending=1)
+    imlist=im.im
+    n=200 #group size
+    m=20 #overlap
+    imlist=[imlist[i:i+n] for i in range(0, len(imlist), n-m)]
+    
+    ## create a chunk for every image group
+    for i in range(0,len(imlist)):
+        chunk = doc.addChunk()
+        chunk.label=desc[2]+'_'+str(i)
+        chunk.addPhotos(imlist[i])
+    
+    ################################################################################################
+    
+    for c in doc.chunks:
+        #Detect markers and filter bad images
+        preProcess(doc, c, scaletxt='scalebars.csv', qual=0.5,ttshld=80)
+        ################################################################################################
+        ### align photos ###
+        ## Perform image matching for the chunk frame.
+        # matchPhotos(accuracy=HighAccuracy, preselection=NoPreselection, filter_mask=False, keypoint_limit=40000, tiepoint_limit=4000[, progress])
+        # - Alignment accuracy in [HighestAccuracy, HighAccuracy, MediumAccuracy, LowAccuracy, LowestAccuracy]
+        # - Image pair preselection in [ReferencePreselection, GenericPreselection, NoPreselection]
+        chunk.matchPhotos(accuracy=PhotoScan.LowAccuracy, 
+        preselection=PhotoScan.GenericPreselection, 
+        filter_mask=False, keypoint_limit=0, 
+        tiepoint_limit=50000)
+        chunk.alignCameras()
+        doc.save( psxfile )
+    	################################################################################################
+    	### build dense cloud ###
+    	## Generate depth maps for the chunk.
+    	# buildDenseCloud(quality=MediumQuality, filter=AggressiveFiltering[, cameras], keep_depth=False, reuse_depth=False[, progress])
+    	# - Dense point cloud quality in [UltraQuality, HighQuality, MediumQuality, LowQuality, LowestQuality]
+    	# - Depth filtering mode in [AggressiveFiltering, ModerateFiltering, MildFiltering, NoFiltering]
+        chunk.buildDenseCloud(quality=PhotoScan.LowQuality, filter=PhotoScan.AggressiveFiltering)
+        doc.save( psxfile )
 
-    ## add the first chunk
+        ################################################################################################
+    	### build mesh ###
+    	## Generate model for the chunk frame.
+    	# buildModel(surface=Arbitrary, interpolation=EnabledInterpolation, face_count=MediumFaceCount[, source ][, classes][, progress])
+    	# - Surface type in [Arbitrary, HeightField]
+    	# - Interpolation mode in [EnabledInterpolation, DisabledInterpolation, Extrapolated]
+    	# - Face count in [HighFaceCount, MediumFaceCount, LowFaceCount]
+    	# - Data source in [PointCloudData, DenseCloudData, ModelData, ElevationData]
+    	# chunk.buildModel(surface=PhotoScan.HeightField, interpolation=PhotoScan.EnabledInterpolation, face_count=PhotoScan.HighFaceCount)
+        #     doc.save( psxfile )
+
+	## Merge chunks
     chunk = doc.addChunk()
     chunk.label=desc[2]
-
-    ## set coordinate system
-    # - PhotoScan.CoordinateSystem("EPSG::4612") -->  JGD2000
-    #chunk.crs = PhotoScan.CoordinateSystem("EPSG::4612")
-
-    ################################################################################################
-    ### add photos ###
-    # addPhotos(filenames[, progress])
-    # - filenames(list of string) – A list of file paths.
-    chunk.addPhotos(glob.glob(os.path.join(data_path,desc[0],desc[1],desc[2])+'/*.JPG'))
+    chunk.mergeChunks(doc.chunks, merge_dense_clouds=False, merge_markers=True)
     
-    ################################################################################################
-    #Detect markers and filter bad images
-    preProcess(doc, chunk, scaletxt='scalebars.csv', qual=0.7,ttshld=60)
-    
-    ################################################################################################
-    ### align photos ###
-    ## Perform image matching for the chunk frame.
-    # matchPhotos(accuracy=HighAccuracy, preselection=NoPreselection, filter_mask=False, keypoint_limit=40000, tiepoint_limit=4000[, progress])
-    # - Alignment accuracy in [HighestAccuracy, HighAccuracy, MediumAccuracy, LowAccuracy, LowestAccuracy]
-    # - Image pair preselection in [ReferencePreselection, GenericPreselection, NoPreselection]
-    chunk.matchPhotos(accuracy=PhotoScan.MediumAccuracy, 
-    preselection=PhotoScan.GenericPreselection, 
-    filter_mask=False, keypoint_limit=0, 
-    tiepoint_limit=50000)
-    chunk.alignCameras()
-    doc.save( psxfile )
-    
-    #Check full aligment 
-    ap=checkalign(chunk)
-    ls=['a','b','c','d']
-    a = len(ap)/len(chunk.cameras)
-    i=0
-
-    while a < 0.8 or i<3:
-        NChunk=chunk.copy()
-        NChunk.label=desc[2]+ls[i]
-        for c in range(0,len(NChunk.cameras)):
-            if NChunk.cameras[c].label in ap:
-                NChunk.cameras[c].enabled=False
-                NChunk.cameras[c].transform = None
-        NChunk.alignCameras()
-        this_ap=checkalign(NChunk)
-        ap.extend(this_ap)
-        a= a + len(this_ap)/len(NChunk.cameras)
-        i=i+1
-        print(i)
-        
-    
-    while a < 0.8 or i < 3:
-        Nchunk = doc.addChunk()
-        Nchunk.label=desc[2]+ls[i]
-        for camera in chunk.cameras:
-            if camera.label not in ap:
-                camera.transform = None
-                todo.append(camera)
-                
-        chunk.alignCameras(cameras=todo, reset_alignment=True)
-        ap=checkalign(chunk)
-        a= len(this_ap)/len(NChunk.cameras)
-        i=i+1
-        print(a)
-        
-    doc.save( psxfile )
-	
-
-
-	################################################################################################
-	### build dense cloud ###
-	## Generate depth maps for the chunk.
-	# buildDenseCloud(quality=MediumQuality, filter=AggressiveFiltering[, cameras], keep_depth=False, reuse_depth=False[, progress])
-	# - Dense point cloud quality in [UltraQuality, HighQuality, MediumQuality, LowQuality, LowestQuality]
-	# - Depth filtering mode in [AggressiveFiltering, ModerateFiltering, MildFiltering, NoFiltering]
-    chunk.buildDenseCloud(quality=PhotoScan.LowQuality, filter=PhotoScan.AggressiveFiltering)
-    doc.save( psxfile )
-
-	################################################################################################
-	### build mesh ###
-	## Generate model for the chunk frame.
-	# buildModel(surface=Arbitrary, interpolation=EnabledInterpolation, face_count=MediumFaceCount[, source ][, classes][, progress])
-	# - Surface type in [Arbitrary, HeightField]
-	# - Interpolation mode in [EnabledInterpolation, DisabledInterpolation, Extrapolated]
-	# - Face count in [HighFaceCount, MediumFaceCount, LowFaceCount]
-	# - Data source in [PointCloudData, DenseCloudData, ModelData, ElevationData]
-	# chunk.buildModel(surface=PhotoScan.HeightField, interpolation=PhotoScan.EnabledInterpolation, face_count=PhotoScan.HighFaceCount)
-#     doc.save( psxfile )
-	
+    ## Produce Report
     #TODO extract and export camera pose <MGR>
     #check this: chunk.transform.matrix
 	################################################################################################
@@ -241,14 +216,7 @@ def photoscanProcess(desc, export_path, scaletxt, photoList,proj_path='projects'
 	################################################################################################
 	# doc.save()
 
-# main
-# qual = float(sys.argv[1]) # quality threshold for filtering images
-# ttshld = int(sys.argv[2]) # Tolerance threshold for detecting markers
 
-# desc=
-# export_path=
-# scaletxt, photoList
-# photoscanProcess(folder)
 
 
 

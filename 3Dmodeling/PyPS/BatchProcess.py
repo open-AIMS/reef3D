@@ -14,7 +14,7 @@ def runNetwork(project_path, desc,chunk,  argstring, tname='RunScript', PSscript
     client = PhotoScan.NetworkClient()
 
     task1 = PhotoScan.NetworkTask()
-    task1.chunks.append(chunk)
+    task1.chunks.append(chunk.key)
     task1.name = tname
     task1.params['path'] = PSscript #path to the script to be executed
     task1.params['args'] = argstring #string of the arguments with space as separator

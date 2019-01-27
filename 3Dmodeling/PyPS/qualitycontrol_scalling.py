@@ -13,7 +13,7 @@ doc = PhotoScan.app.document
 docpath=doc.path
 c=docpath.split('/projects')[0]
 ### SET ENVIRONMENTAL VARIABLES 
-sbar = os.path.join(c,'reference_scales/scalebars_test.csv')
+sbar = os.path.join(c,'reference_scales/scalebars.csv')
 print(sbar) #sys.argv[1] #path to scale bar reference document
 # sbar= '/Volumes/3d_ltmp/reference_scales/scalebars_test.csv'
 qual = float(sys.argv[1]) # quality threshold for filtering images
@@ -24,7 +24,7 @@ def nearest(items, pivot):
     items=items[items<pivot] #toconsider only the dates previous to pivot
     return min(items, key=lambda x: abs(x - pivot))
     
-df=pd.read_csv(sbar,delimiter=',')
+df=pd.read_csv(sbar,delimiter='\t')
 df['DATE']=pd.to_datetime(df['DATE'],format='%d/%m/%y')
 
 ### PROCESS EACH CHUNK WITHIN THE PROJECT 

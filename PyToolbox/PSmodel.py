@@ -1,11 +1,10 @@
 #!/usr/bin/python
 
-
 ##################################################################
-#### Batch process monitoring transects in Agisoft Photoscan #####
+#### 3D recontruction from monitoring transects in Agisoft Photoscan #####
 ##################################################################
 #Author: M. Gonzalez-Rivero
-#Date: Octuber 2018
+#Date: November 2018
 #Purpose:
 
 import PhotoScan

@@ -4,8 +4,9 @@
 #### 3D recontruction from monitoring transects in Agisoft Photoscan #####
 ##################################################################
 #Author: M. Gonzalez-Rivero
-#Date: November 2018
-#Purpose:
+#Date: February 2019
+#Purpose: Given a path to images in a transect, this script will split images into chunks and process the reconstruction to produce:
+#   * 
 
 import PhotoScan
 import os,re,sys
@@ -16,8 +17,77 @@ sys.path.append('/Users/uqmgonz1/Documents/GitHub')
 from reef3D.PyToolbox import PStools as pst
 import glob
 from PIL import Image
+import numpy as np
+from reef3D.PyToolbox import CamOverlap as co
+from reef3D.PyToolbox import PSeval as pe
 
-          
+import csv
+import itertools
+import random
+
+#############################################
+### Find closest camera pair for scaling ####
+#############################################
+def closest_pair(lcam, rcams):
+    rcam = np.asarray(rcams)
+    deltas = rcams - lcam
+    dist_2 = np.einsum('ij,ij->i', deltas, deltas)
+    return np.argmin(dist_2)
+
+#############################################
+### Stereo scaling based on camera pairs  ###
+#############################################
+def scale_cams(chunk,thd=[0.5,0.7], lstring='_LC', d=0.4):
+    '''
+    thd: Min and Max overlaping desired to select camera pairs for scalebars
+    lstring: unique string that identify the name of the cameras as the ones on the left-hand side
+    d: Distance between the centre of the lens from each camera
+    '''
+    overlap=[]
+    camdict={'right':[], 'left':[]}
+    chunk.decimateModel(100000) ## this is to minimise memory load
+
+    for cam in chunk.cameras:
+        if cam.transform:
+            if cam.label.__contains__(lstring):
+                camdict['left'].append(np.r_[cam.key,np.asarray(cam.center)])
+            else:
+                camdict['right'].append(np.r_[cam.key,np.asarray(cam.center)])
+    
+    if chunk.crs == None:
+    	crs = PhotoScan.CoordinateSystem('LOCAL_CS["Local CS",LOCAL_DATUM["Local Datum",0],UNIT["metre",1]]')
+    	chunk.crs = crs
+    
+    #Find the closed camera pair and check that is a camera pair based on overlaping to set the scalebars 
+    for l in camdict['left'][5::10]:
+        lcam=l[1:]
+        lcam_index=np.int(l[0])
+        rcams=np.asarray(camdict['right'])
+        rcams=rcams[:,1:]
+        rcam_index=np.int(camdict['right'][closest_pair(lcam, rcams)][0])
+        scalebar = chunk.addScalebar(chunk.cameras[lcam_index], chunk.cameras[rcam_index])
+        scalebar.label = chunk.cameras[lcam_index].label + " - " + chunk.cameras[rcam_index].label
+        scalebar.reference.distance = d
+        PhotoScan.app.update()
+        chunk.updateTransform()
+        #fine-tune scalebars based on image-pair overlapping. 
+        #Remove those scalebars where images are not overlapping enough or too much.
+        #This avoid false pairs 
+        try:
+            thisIOI=co.IOI(lcam_index,rcam_index,chunk)
+            overlap=np.r_[overlap,thisIOI]
+            if (thisIOI < thd[0] or thisIOI > thd[1]):
+                chunk.remove(scalebar)
+        except Exception as e:
+            overlap=np.r_[overlap,0] #most likely, these are cameras which edge falls outside the
+            chunk.remove(scalebar)
+            pass
+            
+    return(overlap)
+
+###################################################################
+### Detection of markers, scalebars and image quality checks   ####
+###################################################################
 def preProcess(doc, chunk, qual,ttshld, scaletxt, calfile):
     '''
     Pre-processing chunks by:
@@ -100,23 +170,12 @@ def preProcess(doc, chunk, qual,ttshld, scaletxt, calfile):
         if t1 in markers.keys() and t2 in markers.keys() and ref_date==tdate:
             s=chunk.addScalebar(markers[t1], markers[t2])
             s.reference.distance=float(dist)
+       
 
-        
-
-
-        
-def checkalign(chunk):
-    aligned_photos = []   # empty list
-    for camera in chunk.cameras:
-        if camera.transform:
-            aligned_photos.append(camera.label)  # creates list of photos that aligned
-    return(aligned_photos)
-
-
-
-def photoscanProcess(path, export_path,
-scaletxt = "scalebars.csv",proj_path = "projects",
-data_path = "data/LTMP",calfile = "callibration_fisheye.xml"):				
+#########################
+### Process images   ####
+#########################
+def photoscanProcess(sampleid,camdict,path, export_path,scaletxt = "scalebars.csv",proj_path = "projects",data_path = "data/LTMP"):				
     ''''
     path: relative directory path to each transect. Eventually this will come from reefmon
     export_path: folder name where data will be exported to (not built in here yet)
@@ -124,7 +183,7 @@ data_path = "data/LTMP",calfile = "callibration_fisheye.xml"):
     proj_path: root folder where projects will be saved
     data_path: root directory where data is stored. This will help using the relative path in "path"
     calfile: califration parameter files from cameras. This should be stored in the calibration folder
-    
+    stereo=logical value for acitivating stereo scaling
     '''
     ### Set GPU environment ####
     PhotoScan.app.gpu_mask = 2 ** len(PhotoScan.app.enumGPUDevices()) - 1 #setting GPU mask
@@ -150,27 +209,10 @@ data_path = "data/LTMP",calfile = "callibration_fisheye.xml"):
     mapping = PhotoScan.MappingMode.GenericMapping #build texture mapping
     atlas_size = 4096
     TYPES = ["jpg", "jpeg", "tif", "tiff"]
-    
-	###end of processing parameters definition
+	
     print("Processing " + path)
-    ##Create folder structure
+    ## Load images into chunks
     desc=path.split('/')
-    ##desc should include campaign[0], reef anme[1] and sitetransect[2]
-
-    if not os.path.exists(os.path.join(proj_path,desc[0],desc[1])):
-        os.makedirs(os.path.join(proj_path,desc[0],desc[1]))
-        
-    #PhotoScan.app.messageBox('hello world! \n')
-    PhotoScan.app.console.clear()
-    ## construct the document class
-    doc = PhotoScan.app.document
-    ## save project
-    psxfile = os.path.join(proj_path,path + '.psx')
-    doc.save( psxfile )
-    print ('>> Project saved to: ' + psxfile)
-    
-    #List images and split them into chuncks
-    #imlist=glob.glob(os.path.join(data_path,desc[0],desc[1],desc[2])+'/*.JPG')
     docpath=doc.path
     c=docpath.split('/projects')[0]
     list_files = os.listdir(os.path.join(c,data_path,path))
@@ -181,7 +223,6 @@ data_path = "data/LTMP",calfile = "callibration_fisheye.xml"):
     		if file[-3:].lower() in TYPES:
     			imlist.append(file)
                 
-    
     if not(len(imlist)):
     	print("No images in " + path)
     	return False
@@ -189,103 +230,107 @@ data_path = "data/LTMP",calfile = "callibration_fisheye.xml"):
     imdate=[]
     for i in imlist:
         d=Image.open(os.path.join(path,i))._getexif()[36867]
-        imdate.append(datetime.strptime(d, '%Y:%m:%d %H:%M:%S')) #get image date time
+        imdate.append(datetime.strptime(d, camdict['dateformat'])) #get image date time
     
     im=pd.DataFrame({'im':imlist,'date':imdate})
     im=im.sort_values('date', ascending=1)
     imlist=im.im
-    n=200 #group size
-    m=10 #overlap
+    n=camdict['chunk_size'] #group size
+    m=camdict['overlap'] #overlap
     imlist=[imlist[i:i+n] for i in range(0, len(imlist), n-m)]
+    ## end on image listing 
     
-    ## create a chunk for every image group and process it
-    for i in range(0,len(imlist)):
-        chunk = doc.addChunk()
-        chunk.label=desc[2]+'_'+str(i)
-        chunk.addPhotos(imlist[i])
-        preProcess(doc, chunk, 0.5, 80, scaletxt, calfile)
+    
+    ## Process chunks
+    with open(os.path.join(export_path,'reports',sampleid+".csv"), "w") as csvFile:
+        fieldnames = ['SAMPLEID', 'NO_IMAGES','ALIGNED','pALIGNED','SCALED',
+        'NO_SCALEBARS','SCALE_ERROR','NO_MAKERS', 'MARKER_ERROR']
+        writer = csv.Writer(csvFile, fieldnames=fieldnames)
+        writer.writeheader()
 
-        ### align photos ###
-        ## Perform image matching for the chunk frame.
-        # matchPhotos(accuracy=HighAccuracy, preselection=NoPreselection, filter_mask=False, keypoint_limit=40000, tiepoint_limit=4000[, progress])
-        # - Alignment accuracy in [HighestAccuracy, HighAccuracy, MediumAccuracy, LowAccuracy, LowestAccuracy]
-        # - Image pair preselection in [ReferencePreselection, GenericPreselection, NoPreselection]
-        chunk.matchPhotos(accuracy = accuracy, 
-        generic_preselection = generic_preselection, 
-        reference_preselection = reference_preselection, 
-        filter_mask = False, 
-        keypoint_limit = keypoints, 
-        tiepoint_limit = tiepoints)
-        chunk.alignCameras()
-        chunk.optimizeCameras()
-        chunk.resetRegion()
-        doc.save()
+        for i in range(0,len(imlist)):
+            chunk = doc.addChunk()
+            chunk.label=sampleid+'_'+str(i)
+            chunk.addPhotos(imlist[i])
+            preProcess(doc, chunk, camdict['qual_threshold'], 
+            camdict['tol_threshold'], scaletxt, camdict['calfile'])
 
-    	### build dense cloud ###
-    	## Generate depth maps for the chunk.
-    	# buildDenseCloud(quality=MediumQuality, filter=AggressiveFiltering[, cameras], keep_depth=False, reuse_depth=False[, progress])
-    	# - Dense point cloud quality in [UltraQuality, HighQuality, MediumQuality, LowQuality, LowestQuality]
-    	# - Depth filtering mode in [AggressiveFiltering, ModerateFiltering, MildFiltering, NoFiltering]
+            ### align photos ###
+            chunk.matchPhotos(accuracy = accuracy, 
+            generic_preselection = generic_preselection, 
+            reference_preselection = reference_preselection, 
+            filter_mask = False, 
+            keypoint_limit = keypoints, 
+            tiepoint_limit = tiepoints)
+            chunk.alignCameras()
+            chunk.optimizeCameras()
+            chunk.resetRegion()
+            doc.save()
 
-    	### build mesh ###
-    	## Generate model for the chunk frame.
-        chunk.buildDepthMaps(quality = quality, filter = filtering)
-        chunk.buildDenseCloud(point_colors = True, keep_depth = False)
-        doc.save()
-        # - Surface type in [Arbitrary, HeightField]
-        #         - Interpolation mode in [EnabledInterpolation, DisabledInterpolation, Extrapolated]
-        #         - Face count in [HighFaceCount, MediumFaceCount, LowFaceCount
-        #         - Data source in [PointCloudData, DenseCloudData, ModelData, ElevationData]
-    	
-        ###building mesh
-        chunk.buildModel(surface = surface, source = source, interpolation = interpolation, face_count = face_num)
-        doc.save()
+        	### build dense cloud ###
+            chunk.buildDepthMaps(quality = quality, filter = filtering)
+            chunk.buildDenseCloud(point_colors = True, keep_depth = False)
+            doc.save()
 
-    	###build texture
-        chunk.buildUV(mapping = mapping, count = 2)
-        chunk.buildTexture(blending = blending, size = atlas_size)
-        doc.save()
+            ###building mesh and stereo scaling
+            if camdict['stereo']:
+                chunk.buildModel(surface = surface, source = source, interpolation = interpolation, face_count = PhotoScan.FaceCount.LowFaceCount)
+                doc.save()
+                scale_cams(chunk,thd=camdict['overlap_threshold'], lstring=camdict['lstring'], d=camdict['cam_dist'])
+                chunk.buildModel(surface = surface, source = source, interpolation = interpolation, face_count = face_num)
+            else:
+                chunk.buildModel(surface = surface, source = source, interpolation = interpolation, face_count = face_num)
 
-        print("Processed " + chunk.label)
+        	###build mesh texture
+            chunk.buildUV(mapping = mapping, count = 4)
+            chunk.buildTexture(blending = blending, size = atlas_size)
+            doc.save()
+        
+            ##Build orthomosaic
+            XYproj=Matrix([[1.0, 0.0, 0.0, 0.0],
+           [0.0, 1.0, 0.0, 0.0],
+           [0.0, 0.0, 1.0, 0.0],
+           [0.0, 0.0, 0.0, 1.0]])
+            chunk.buildOrthomosaic(surface=PhotoScan.DataSource.ModelData,
+            blending=PhotoScan.BlendingMode.MosaicBlending,
+            projection=XYproj)
+        
+            ### Write report
+            noimgs=len(chunk.cameras) #total numbr of images per chunk
+            aligned=len(pe.checkalign(chunk))#number of images aligned
+            paligned=len(checkalign(chunk))/len(chunk.cameras) #proportion of images aligned
+            serror=mean(pe.scale_error(chunk)) # measurement error
+            clength=chunk.orthomosaic.height*chunk.orthomosaic.resolution #length of recuntructed chunk
+            cwidth=chunk.orthomosaic.width*chunk.orthomosaic.resolution #width of reconstructed chunk
+            nomarkers=len(chunk.markers)
+            
+            if chunk.transform:
+                scaled=True
+            else:
+                scaled=False
+            noscalebars=len(chunk.scalebars)
+            nmarkers=len(chunk.markers)
+            
+            if nmarkers >0:
+                merror=np.mean(pe.markerProjError(chunk))
+            else:
+                merror=NULL
+            
+            csvData = [sampleid,noimgs,aligned,paligned,scaled,noscalebars,serror,
+            nmakers,merror]
+            writer.writerows(csvData)
+            
+            ##TODO: 1)export cameras, mosaics, models. 2) include check gate using model evaluation metics. <mgr>
+
+
+    csvFile.close()
+    print("Processed " + chunk.label)
 
 
 
-## Merge chunks
-# chunk = doc.addChunk()
-# chunk.label=desc[2]
-# chunk.mergeChunks(doc.chunks, merge_dense_clouds=False, merge_markers=True)
-
-## Produce Report
-#TODO extract and export camera pose <MGR>
-#check this: chunk.transform.matrix
-################################################################################################
-### build texture (optional) ###
-## Generate uv mapping for the model.
-# buildUV(mapping=GenericMapping, count=1[, camera ][, progress])
-# - UV mapping mode in [GenericMapping, OrthophotoMapping, AdaptiveOrthophotoMapping, SphericalMapping, CameraMapping]
-#chunk.buildUV(mapping=PhotoScan.AdaptiveOrthophotoMapping)
-## Generate texture for the chunk.
-# buildTexture(blending=MosaicBlending, color_correction=False, size=2048[, cameras][, progress])
-# - Blending mode in [AverageBlending, MosaicBlending, MinBlending, MaxBlending, DisabledBlending]
-#chunk.buildTexture(blending=PhotoScan.MosaicBlending, color_correction=True, size=30000)
-
-################################################################################################
-### build DEM (before build dem, you need to save the project into psx) ###
-## Build elevation model for the chunk.
-# buildDem(source=DenseCloudData, interpolation=EnabledInterpolation[, projection ][, region ][, classes][, progress])
-# - Data source in [PointCloudData, DenseCloudData, ModelData, ElevationData]
-# chunk.buildDem(source=PhotoScan.DenseCloudData, interpolation=PhotoScan.EnabledInterpolation, projection=chunk.crs)
-#     doc.save( psxfile )
 
 
-#
-################################################################################################
-## auto classify ground points (optional)
-#chunk.dense_cloud.classifyGroundPoints()
-#chunk.buildDem(source=PhotoScan.DenseCloudData, classes=[2])
 
-################################################################################################
-	
 
 
 

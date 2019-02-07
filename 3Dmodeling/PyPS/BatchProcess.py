@@ -6,10 +6,11 @@ import sys
 sys.path.append('/Users/uqmgonz1/Documents/GitHub')
 from reef3D.PyToolbox import PStools as pt
 from reef3D.PyToolbox import PSmodel as pm
+import pickle 
 
 
 
-def runNetwork(project_path, desc,chunk,  argstring, tname='RunScript', PSscript='scripts/reef3D/PyToolbox/PSmodel.py'):
+def runNetwork(project_path,  argstring, tname='RunScript', PSscript='scripts/reef3D/PyToolbox/PSmodel.py'):
     ''''
     Run a task over the network
     '''
@@ -17,18 +18,23 @@ def runNetwork(project_path, desc,chunk,  argstring, tname='RunScript', PSscript
     client = PhotoScan.NetworkClient()
 
     task1 = PhotoScan.NetworkTask()
-    task1.chunks.append(chunk.key)
     task1.name = tname
     task1.params['path'] = PSscript #path to the script to be executed
     task1.params['args'] = argstring #string of the arguments with space as separator
-    path = os.path.join(proj_path,desc[0],desc[1],desc[2],str(desc[2] + '.psx'))
     client.connect('agisoft-qmgr.aims.gov.au') #server ip
-    batch_id = client.createBatch(path, [task1])
+    batch_id = client.createBatch(proj_path, [task1])
     client.resumeBatch(batch_id)
     print("Job started...")
 
-
-def batchhNet(rootdir, summary_file, proj_dir):
+##TODO Tidy and test this function. check filepaths (/ vs \). Reorganise data?. <mgr>
+def batchNet(summary_file, camType, proj_dir='projects', export_path='exports'):
+    ''''
+    Having images registered in ReefMon from the field, the intention is to batch process
+    each transect in a campain and export the data products for QAQC and further analysis
+    summary_file: CSV file queried from ReefMon DB inidicating the sample id and path to
+    images for each transect in a given campain. proj_dir: directory where projects are
+    saved
+    '''
     with open(os.path.join(rootdir,summary_file), 'r', errors='replace') as f:
         lines = f.readlines()[1:]
     for line in lines:
@@ -37,27 +43,33 @@ def batchhNet(rootdir, summary_file, proj_dir):
         SAMPLE_ID=MASTER_SAMPLE_ID+'sc'+TRANSECT_NO
         
         #### create empty project file
-        if not os.path.exists(os.path.join(proj_dir,os.basedir(VIDEO_FILENAME)):
-            os.makedirs(os.path.join(proj_dir,os.basedir(VIDEO_FILENAME))
+        if not os.path.exists(os.path.join(proj_dir,os.basedir(VIDEO_FILENAME))):
+            os.makedirs(os.path.join(proj_dir,os.basedir(VIDEO_FILENAME)))
         
         PhotoScan.app.console.clear()
-        ## construct the document class
-        doc = PhotoScan.app.document
-        ## save project
-        psxfile = os.path.join(proj_path,VIDEO_FILENAME + '.psx')
+        doc = PhotoScan.app.document # construct the document class        
+        psxfile = os.path.join(proj_dir,VIDEO_FILENAME + '.psx') # save project
         doc.save(psxfile)
         print ('>> Processing file: ' + psxfile)
         
-        ### create task job
-        runNetwork
+        ##load camera parameters
+        ##TODO change this. It is only a placemarker as a reference
+        with open('obj/' + name + '.pkl', 'rb') as f:
+                camdict=pickle.load(f)
         
+        f.close()
+        camdict=camdict[camType]
         
-            pm.photoscanProcess(path, export_path,
-scaletxt = "scalebars.csv",proj_path = "projects",
-data_path = "data/LTMP",calfile = "callibration_fisheye.xml")
+        ##TODO create camera dictionay
+        ### create task job and distrubute to network
+        args=" ".join([SAMPLEID,camdict,path, export_path])
+        
+        runNetwork(project_path=psxfile, 
+        argstring=args, 
+        tname='RunScript', 
+        PSscript='scripts/reef3D/PyToolbox/PSmodel.py')
+    f.close()
+ 
             
-            runNetwork()
-            
-            #TODO create log file
             
     

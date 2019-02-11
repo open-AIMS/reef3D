@@ -9,9 +9,8 @@
 
 #NOTE: If this file is modified, you will need to run it again to update the pickle file 
 
-import pickle
+# import pickle
     
-##TODO complete these parameters and link to scripts.
 camdict={
     ## GoPro Hero5/6 stereo bar filming in 4k video
     'gopro4k':{
@@ -80,5 +79,5 @@ camdict={
         'qual_threshold':0.7},
     }
 
-with open('//Users/uqmgonz1/Documents/GitHub/reef3D/LTMP/'+ 'camdict' + '.pkl', 'wb') as f:
-    pickle.dump(camdict, f, pickle.HIGHEST_PROTOCOL)
+# with open('//Users/uqmgonz1/Documents/GitHub/reef3D/LTMP/'+ 'camdict' + '.pkl', 'wb') as f:
+    # pickle.dump(camdict, f, pickle.HIGHEST_PROTOCOL)

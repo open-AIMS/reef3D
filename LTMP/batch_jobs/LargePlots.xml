@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<batchjobs version="1.4.0">
+  <job name="AlignPhotos" target="list">
+    <downscale>4</downscale>
+    <mask_tiepoints>0</mask_tiepoints>
+  </job>
+  <job name="BuildDenseCloud" target="list">
+    <downscale>8</downscale>
+    <reuse_depth>1</reuse_depth>
+  </job>
+  <job name="BuildModel" target="list">
+    <filter_mode>0</filter_mode>
+    <interpolation>0</interpolation>
+    <surface_type>1</surface_type>
+  </job>
+  <job name="BuildOrthomosaic" target="list">
+    <fill_holes>0</fill_holes>
+  </job>
+  <job name="ExportReport" target="all">
+    <path>/media/manu/TOSHIBA EXT/TechDEv_Fieldtrip/exports/reports/{chunklabel}.pdf</path>
+    <title>{chunklabel}</title>
+  </job>
+</batchjobs>

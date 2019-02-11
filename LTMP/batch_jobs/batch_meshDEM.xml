@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<batchjobs version="1.4.0" save_project="1">
+  <job name="BuildTiledModel" target="all">
+    <network_distribute>1</network_distribute>
+  </job>
+  <job name="BuildModel" target="all">
+    <filter_mode>0</filter_mode>
+    <network_distribute>1</network_distribute>
+  </job>
+  <job name="RefineMesh" target="all"/>
+  <job name="BuildDem" target="all">
+    <network_distribute>1</network_distribute>
+  </job>
+  <job name="BuildOrthomosaic" target="all">
+    <network_distribute>1</network_distribute>
+  </job>
+</batchjobs>

@@ -4,17 +4,16 @@ import numpy as np
 '''
 Requires mesh model
 '''
-
+##########################################################
+### Interception of vector from the camera to the mesh ###
+##########################################################
 def cross(a, b):
 	result = PhotoScan.Vector([a.y*b.z - a.z*b.y, a.z*b.x - a.x*b.z, a.x*b.y - a.y *b.x])
 	return result
 
-#Intersection over Union (IoU) for object detectionPython
-
-
-
-
-
+##################################################################
+### Calculate the camera footprint (projected polygon on mesh) ###
+##################################################################
 def cam_poly(cam_index, chunk):
     
     model = chunk.model
@@ -57,6 +56,9 @@ def cam_poly(cam_index, chunk):
                 
     return(respoly)
 
+##################################################################
+### Intersection over Union (IoU) from object detectionPython  ###
+##################################################################
 def IOI(lcam_index,rcam_index,chunk):
     boxA=cam_poly(lcam_index, chunk)
     boxB=cam_poly(rcam_index,chunk)

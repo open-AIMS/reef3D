@@ -32,7 +32,7 @@ import csv
 import itertools
 import random
 from reef3D.LTMP.PyPS.camera_params import camdict
-sys.path.insert(0,"/usr/local/python/3.5.1/lib/python3.5/site-packages/")
+sys.path.insert(0,"/usr/local/lib/python3.5/dist-packages/")
 
 
 #############################################

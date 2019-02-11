@@ -18,7 +18,8 @@ import pandas as pd
 from datetime import datetime
 from datetime import timedelta
 import sys
-sys.path.append('/Users/uqmgonz1/Documents/GitHub') #Mainly to link to the reef3d repo
+#sys.path.append('/Users/uqmgonz1/Documents/GitHub') #Mainly to link to the reef3d repo
+sys.path.append('/media/pearl/3d_ltmp/scripts/')
 from reef3D.PyToolbox import PStools as pst
 import glob
 from PIL import Image
@@ -30,6 +31,8 @@ from reef3D.PyToolbox import misc
 import csv
 import itertools
 import random
+from reef3D.LTMP.PyPS.camera_params import camdict
+
 
 #############################################
 ### Find closest camera pair for scaling ####
@@ -177,7 +180,7 @@ def preProcess(doc, chunk, scaletxt, camdict):
 #########################
 ### Process images   ####
 #########################
-def photoscanProcess(sampleid,camdict,path, export_path,scaletxt = "scalebars.csv",proj_path = "projects",data_path = "data/LTMP"):				
+def photoscanProcess(sampleid,camType,path, export_path,scaletxt = "scalebars.csv",proj_path = "projects",data_path = "data/LTMP"):				
     ''''
     path: relative directory path to each transect. Eventually this will come from reefmon
     export_path: folder name where data will be exported to (not built in here yet)
@@ -195,7 +198,11 @@ def photoscanProcess(sampleid,camdict,path, export_path,scaletxt = "scalebars.cs
         PhotoScan.app.cpu_enable = True
     ## end of set GPU environment
     
-    ### processing parameters
+    ##Set parameter environment 
+    #load camera parameters
+    camdict=camdict[camType]
+    # processing parameters 
+    #TODO Move this to camdict <mgr>
     accuracy = PhotoScan.Accuracy.HighAccuracy  #align photos accuracy
     reference_preselection = False
     generic_preselection = True

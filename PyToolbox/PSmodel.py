@@ -35,149 +35,7 @@ from reef3D.LTMP.PyPS.camera_params import camdict
 sys.path.insert(0,"/usr/local/lib/python3.5/dist-packages/")
 
 
-#############################################
-### Find closest camera pair for scaling ####
-#############################################
-def closest_pair(lcam, rcams):
-    rcam = np.asarray(rcams)
-    deltas = rcams - lcam
-    dist_2 = np.einsum('ij,ij->i', deltas, deltas)
-    return np.argmin(dist_2)
-
-#############################################
-### Stereo scaling based on camera pairs  ###
-#############################################
-def scale_cams(chunk,camdict, thd=[0.5,0.7], lstring='_LC', d=0.4):
-    '''
-    thd: Min and Max overlaping desired to select camera pairs for scalebars
-    lstring: unique string that identify the name of the cameras as the ones on the left-hand side
-    d: Distance between the centre of the lens from each camera
-    '''
-    overlap=[]
-    cams={'right':[], 'left':[]}
-    chunk.decimateModel(100000) ## this is to minimise memory load
-
-    for cam in chunk.cameras:
-        if cam.transform:
-            if cam.label.__contains__(camdict['lstring']):
-                cams['left'].append(np.r_[cam.key,np.asarray(cam.center)])
-            else:
-                cams['right'].append(np.r_[cam.key,np.asarray(cam.center)])
-    
-    if chunk.crs == None:
-    	crs = PhotoScan.CoordinateSystem('LOCAL_CS["Local CS",LOCAL_DATUM["Local Datum",0],UNIT["metre",1]]')
-    	chunk.crs = crs
-    
-    #Find the closed camera pair and check that is a camera pair based on overlaping to set the scalebars 
-    for l in cams['left'][5::10]:
-        lcam=l[1:]
-        lcam_index=np.int(l[0])
-        rcams=np.asarray(cams['right'])
-        rcams=rcams[:,1:]
-        rcam_index=np.int(cams['right'][closest_pair(lcam, rcams)][0])
-        scalebar = chunk.addScalebar(chunk.cameras[lcam_index], chunk.cameras[rcam_index])
-        scalebar.label = chunk.cameras[lcam_index].label + " - " + chunk.cameras[rcam_index].label
-        scalebar.reference.distance = camdict['cam_dist']
-        PhotoScan.app.update()
-        chunk.updateTransform()
-        #fine-tune scalebars based on image-pair overlapping. 
-        #Remove those scalebars where images are not overlapping enough or too much.
-        #This avoid false pairs 
-        try:
-            thisIOI=co.IOI(lcam_index,rcam_index,chunk)
-            overlap=np.r_[overlap,thisIOI]
-            if (thisIOI < camdict['overlap_threshold'][0] or thisIOI > camdict['overlap_threshold'][1]):
-                chunk.remove(scalebar)
-        except Exception as e:
-            overlap=np.r_[overlap,0] #most likely, these are cameras which edge falls outside the
-            chunk.remove(scalebar)
-            pass
-            
-    return(overlap)
-
-###################################################################
-### Detection of markers, scalebars and image quality checks   ####
-###################################################################
-def preProcess(doc, chunk, scaletxt, camdict):
-    '''
-    Pre-processing chunks by:
-    1) detecting markers
-    2) adding scale bars
-    3) filtering images by quality
-    4) Roller shutter compensation
-    5) Add Camera callibration
-    
-    Inputs:
-    * doc: Photoscan document object(e.g., PhotoScan.app.document)
-    * scaletxt: name of the file containing the distance between markers and date of measurements (e.g., scalebars.csv)
-    * qual: quality threshold used to filter images
-    * ttshold:  tolerance threshold for marker detection
-    *calfile= calibration parameters in XML format. If no calibration exist type 'NONE'
-    '''
-    
-    ### SET ENVIRONMENTAL VARIABLES 
-    docpath=doc.path
-    c=docpath.split('/projects')[0] #this is just to know the root dir when working over the network
-    #load scalebar reference file 
-    sbar = os.path.join(c,'reference_scales', scaletxt)
-    df=pd.read_csv(sbar,delimiter='\t')
-    df['DATE']=pd.to_datetime(df['DATE'],format='%d/%m/%Y')
-    
-    ############### Enabling rolling shutter compensation ################################ 
-    print("---Rolling shutter compensation---")
-    
-    try:
-        for sensor in chunk.sensors:
-            sensor.rolling_shutter = True
-            if camdict['fisheye']:
-                sensor.type = PhotoScan.Sensor.Type.Fisheye         
-    except Exception as e:
-        print("Error:", e)
-        raise
-
-    ############## Import Camera calibration parameters ###############
-    if camdict['calfile']!='NONE':
-        print("---Importing calibration parameters---")
-        calib = PhotoScan.Calibration()
-        calib.load(os.path.join(c,'calibration', camdict['calfile']), format="xml")
-        sensor = chunk.sensors[0] #first calibration group in the active chunk
-
-        #sensor.calibration = calib # this will set the Adjusted values according to the XML
-        sensor.user_calib = calib #and this will load the XML values to the Initial values
-
-    
-    ############### Image quality control ###############################
-    print("---Estimating image quality---")
-    chunk.estimateImageQuality(chunk.cameras)
-    for camera in chunk.cameras:
-        if float(camera.meta["Image/Quality"]) < camdict['qual_threshold']:
-            camera.enabled = False
- 
-    ############### Marker detection ###############################
-    print("---Detecting Markers---")
-    chunk.detectMarkers(PhotoScan.TargetType.CircularTarget12bit, camdict['tol_threshold'])
-    
-    ############### Add ScaleBars and distande from file ###############################
-    print("---Adding ScaleBars---")
-    camera = chunk.cameras[0]
-    img_date=datetime.strptime(camera.photo.meta['Exif/DateTimeOriginal'], camdict['dateformat'])
-    ref_date=pst.nearest(df['DATE'],img_date)
-
-    markers = {}
-    for marker in chunk.markers:
-        markers[marker.label] = marker
-
-    with open(sbar, 'r', errors='replace') as f:
-        lines = f.readlines()[1:]
-    for line in lines:
-        #FIXME there is a problem with the date format time data 'A' does not match format '%d/%m/%y' <MGR>
-        tdate,t1,t2, dist = datetime.strptime(line.split('\t')[0],'%d/%m/%Y'), line.split('\t')[1],line.split('\t')[2], line.split('\t')[3]
-        
-        if t1 in markers.keys() and t2 in markers.keys() and ref_date==tdate:
-            s=chunk.addScalebar(markers[t1], markers[t2])
-            s.reference.distance=float(dist)
        
-
 #########################
 ### Process images   ####
 #########################
@@ -350,8 +208,156 @@ def photoscanProcess(sampleid,camType,path, export_path,scaletxt = "scalebars.cs
             
             ##TODO: 1)export cameras, mosaics, models. 2) include check gate using model evaluation metics. <mgr>
     print("Processed " + chunk.label)
+
+
+
+
+#############################################
+### Find closest camera pair for scaling ####
+#############################################
+def closest_pair(lcam, rcams):
+    rcam = np.asarray(rcams)
+    deltas = rcams - lcam
+    dist_2 = np.einsum('ij,ij->i', deltas, deltas)
+    return np.argmin(dist_2)
+
+#############################################
+### Stereo scaling based on camera pairs  ###
+#############################################
+def scale_cams(chunk,camdict, thd=[0.5,0.7], lstring='_LC', d=0.4):
+    '''
+    thd: Min and Max overlaping desired to select camera pairs for scalebars
+    lstring: unique string that identify the name of the cameras as the ones on the left-hand side
+    d: Distance between the centre of the lens from each camera
+    '''
+    overlap=[]
+    cams={'right':[], 'left':[]}
+    chunk.decimateModel(100000) ## this is to minimise memory load
+
+    for cam in chunk.cameras:
+        if cam.transform:
+            if cam.label.__contains__(camdict['lstring']):
+                cams['left'].append(np.r_[cam.key,np.asarray(cam.center)])
+            else:
+                cams['right'].append(np.r_[cam.key,np.asarray(cam.center)])
     
-##The following process will only be executed when running script  
+    if chunk.crs == None:
+    	crs = PhotoScan.CoordinateSystem('LOCAL_CS["Local CS",LOCAL_DATUM["Local Datum",0],UNIT["metre",1]]')
+    	chunk.crs = crs
+    
+    #Find the closed camera pair and check that is a camera pair based on overlaping to set the scalebars 
+    for l in cams['left'][5::10]:
+        lcam=l[1:]
+        lcam_index=np.int(l[0])
+        rcams=np.asarray(cams['right'])
+        rcams=rcams[:,1:]
+        rcam_index=np.int(cams['right'][closest_pair(lcam, rcams)][0])
+        scalebar = chunk.addScalebar(chunk.cameras[lcam_index], chunk.cameras[rcam_index])
+        scalebar.label = chunk.cameras[lcam_index].label + " - " + chunk.cameras[rcam_index].label
+        scalebar.reference.distance = camdict['cam_dist']
+        PhotoScan.app.update()
+        chunk.updateTransform()
+        #fine-tune scalebars based on image-pair overlapping. 
+        #Remove those scalebars where images are not overlapping enough or too much.
+        #This avoid false pairs 
+        try:
+            thisIOI=co.IOI(lcam_index,rcam_index,chunk)
+            overlap=np.r_[overlap,thisIOI]
+            if (thisIOI < camdict['overlap_threshold'][0] or thisIOI > camdict['overlap_threshold'][1]):
+                chunk.remove(scalebar)
+        except Exception as e:
+            overlap=np.r_[overlap,0] #most likely, these are cameras which edge falls outside the
+            chunk.remove(scalebar)
+            pass
+            
+    return(overlap)
+
+###################################################################
+### Detection of markers, scalebars and image quality checks   ####
+###################################################################
+def preProcess(doc, chunk, scaletxt, camdict):
+    '''
+    Pre-processing chunks by:
+    1) detecting markers
+    2) adding scale bars
+    3) filtering images by quality
+    4) Roller shutter compensation
+    5) Add Camera callibration
+    
+    Inputs:
+    * doc: Photoscan document object(e.g., PhotoScan.app.document)
+    * scaletxt: name of the file containing the distance between markers and date of measurements (e.g., scalebars.csv)
+    * qual: quality threshold used to filter images
+    * ttshold:  tolerance threshold for marker detection
+    *calfile= calibration parameters in XML format. If no calibration exist type 'NONE'
+    '''
+    
+    ### SET ENVIRONMENTAL VARIABLES 
+    docpath=doc.path
+    c=docpath.split('/projects')[0] #this is just to know the root dir when working over the network
+    #load scalebar reference file 
+    sbar = os.path.join(c,'reference_scales', scaletxt)
+    df=pd.read_csv(sbar,delimiter='\t')
+    df['DATE']=pd.to_datetime(df['DATE'],format='%d/%m/%Y')
+    
+    ############### Enabling rolling shutter compensation ################################ 
+    print("---Rolling shutter compensation---")
+    
+    try:
+        for sensor in chunk.sensors:
+            sensor.rolling_shutter = True
+            if camdict['fisheye']:
+                sensor.type = PhotoScan.Sensor.Type.Fisheye         
+    except Exception as e:
+        print("Error:", e)
+        raise
+
+    ############## Import Camera calibration parameters ###############
+    if camdict['calfile']!='NONE':
+        print("---Importing calibration parameters---")
+        calib = PhotoScan.Calibration()
+        calib.load(os.path.join(c,'calibration', camdict['calfile']), format="xml")
+        sensor = chunk.sensors[0] #first calibration group in the active chunk
+
+        #sensor.calibration = calib # this will set the Adjusted values according to the XML
+        sensor.user_calib = calib #and this will load the XML values to the Initial values
+
+    
+    ############### Image quality control ###############################
+    print("---Estimating image quality---")
+    chunk.estimateImageQuality(chunk.cameras)
+    for camera in chunk.cameras:
+        if float(camera.meta["Image/Quality"]) < camdict['qual_threshold']:
+            camera.enabled = False
+ 
+    ############### Marker detection ###############################
+    print("---Detecting Markers---")
+    chunk.detectMarkers(PhotoScan.TargetType.CircularTarget12bit, camdict['tol_threshold'])
+    
+    ############### Add ScaleBars and distande from file ###############################
+    print("---Adding ScaleBars---")
+    camera = chunk.cameras[0]
+    img_date=datetime.strptime(camera.photo.meta['Exif/DateTimeOriginal'], camdict['dateformat'])
+    ref_date=pst.nearest(df['DATE'],img_date)
+
+    markers = {}
+    for marker in chunk.markers:
+        markers[marker.label] = marker
+
+    with open(sbar, 'r', errors='replace') as f:
+        lines = f.readlines()[1:]
+    for line in lines:
+        #FIXME there is a problem with the date format time data 'A' does not match format '%d/%m/%y' <MGR>
+        tdate,t1,t2, dist = datetime.strptime(line.split('\t')[0],'%d/%m/%Y'), line.split('\t')[1],line.split('\t')[2], line.split('\t')[3]
+        
+        if t1 in markers.keys() and t2 in markers.keys() and ref_date==tdate:
+            s=chunk.addScalebar(markers[t1], markers[t2])
+            s.reference.distance=float(dist)
+            
+###############
+### Main   ####
+###############
+'''The following process will only be executed when running script '''
 sampleid= str(sys.argv[1]) # Sample ID from ReefMon
 camType= str(sys.argv[2]) # Camera setup from Camera_params.py
 path= str(sys.argv[3]) #path to images from ReefMon

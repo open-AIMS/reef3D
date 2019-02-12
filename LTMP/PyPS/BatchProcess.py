@@ -4,9 +4,9 @@ import os
 import PhotoScan
 import sys
 #sys.path.append('/Users/uqmgonz1/Documents/GitHub')
-sys.path.append('/media/pearl/3d_ltmp/scripts/')
-from reef3D.PyToolbox import PStools as pt
-from reef3D.PyToolbox import PSmodel as pm
+#sys.path.append('/media/pearl/3d_ltmp/scripts/')
+#from reef3D.PyToolbox import PStools as pt
+#from reef3D.PyToolbox import PSmodel as pm
 import pickle
 import csv
 #from importlib import reload  # Python 3.4+ only.

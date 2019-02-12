@@ -338,6 +338,9 @@ def preProcess(doc, chunk, scaletxt, camdict):
     print("---Adding ScaleBars---")
     camera = chunk.cameras[0]
     img_date=datetime.strptime(camera.photo.meta['Exif/DateTimeOriginal'], camdict['dateformat'])
+    if img_date<min(df['DATE']): ## FIXME this is a temporary fisx for when the camera time is not set properly
+        time_diff=datetime(2018,1,1,0,0,0)-img_date
+        img_date=img_date+time_diff
     ref_date=pst.nearest(df['DATE'],img_date)
 
     markers = {}

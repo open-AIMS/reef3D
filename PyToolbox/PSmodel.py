@@ -293,7 +293,7 @@ def preProcess(doc, chunk, scaletxt, camdict):
     '''
     
     ### SET ENVIRONMENTAL VARIABLES 
-    doc.read_only = False
+    #doc.read_only = False
     docpath=doc.path
     c=docpath.split('/projects')[0] #this is just to know the root dir when working over the network
     #load scalebar reference file 

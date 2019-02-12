@@ -12,7 +12,9 @@ import csv
 #from importlib import reload  # Python 3.4+ only.
 
 
-
+######################
+## Job scheduler #####
+######################
 def runNetwork(proj_path,  argstring, tname='RunScript', PSscript='scripts/reef3D/PyToolbox/PSmodel.py'):
     ''''
     Run a task over the network
@@ -29,6 +31,11 @@ def runNetwork(proj_path,  argstring, tname='RunScript', PSscript='scripts/reef3
     print("Job started...")
 
 ##TODO Tidy and test this function. check filepaths (/ vs \). Reorganise data?. <mgr>
+###########################################################
+## Schedule processing each transect over the network #####\
+###########################################################
+
+
 def batchNet(summary_file, camType, proj_dir='projects', export_path='exports'):
     ''''
     Having images registered in ReefMon from the field, the intention is to batch process
@@ -67,3 +74,11 @@ def batchNet(summary_file, camType, proj_dir='projects', export_path='exports'):
                 tname='RunScript', 
                 PSscript='scripts/reef3D/PyToolbox/PSmodel.py')
  
+###########
+## Main ###
+###########
+'''The following process will only be executed when running script '''
+summary_file= str(sys.argv[1]) # Summary query from ReefMon containing sample id and path to images in a transect
+camType= str(sys.argv[2]) # Camera setup from Camera_params.py
+proj_dir= str(sys.argv[3]) # folder name for where projects are stored  
+export_path=str(sys.argv[4]) # folder name for where data products are exported to.

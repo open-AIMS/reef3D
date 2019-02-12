@@ -354,8 +354,8 @@ def photoscanProcess(sampleid,camType,path, export_path,scaletxt = "scalebars.cs
     print("Processed " + chunk.label)
     
 ##The following process will only be executed when running script  
-sampleid= = str(sys.argv[1]) # Sample ID from ReefMon
-camType= = str(sys.argv[2]) # Camera setup from Camera_params.py
+sampleid= str(sys.argv[1]) # Sample ID from ReefMon
+camType= str(sys.argv[2]) # Camera setup from Camera_params.py
 path= str(sys.argv[3]) #path to images from ReefMon
 export_path=str(sys.argv[4]) # path to exports folder in 3D_ltmp
 photoscanProcess(sampleid,camType,path, export_path,scaletxt = "scalebars.csv",proj_path = "projects",data_path = "data/LTMP")

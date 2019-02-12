@@ -349,8 +349,6 @@ def photoscanProcess(sampleid,camType,path, export_path,scaletxt = "scalebars.cs
             writer.writerows(csvData)
             
             ##TODO: 1)export cameras, mosaics, models. 2) include check gate using model evaluation metics. <mgr>
-
-
     print("Processed " + chunk.label)
     
 ##The following process will only be executed when running script  

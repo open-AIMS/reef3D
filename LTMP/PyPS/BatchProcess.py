@@ -82,4 +82,4 @@ sf= str(sys.argv[1]) # Summary query from ReefMon containing sample id and path 
 cT= str(sys.argv[2]) # Camera setup from Camera_params.py
 pdir= str(sys.argv[3]) # folder name for where projects are stored  
 epath=str(sys.argv[4]) # folder name for where data products are exported to.
-batchNet(summary_file=sf, camType=cT, proj_dir=pdir, export_path=epath):
+batchNet(summary_file=sf, camType=cT, proj_dir=pdir, export_path=epath)

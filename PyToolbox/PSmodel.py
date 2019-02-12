@@ -118,7 +118,7 @@ def photoscanProcess(sampleid,camType,path, export_path,scaletxt = "scalebars.cs
     imlist=[imlist[i:i+n] for i in range(0, len(imlist), n-m)] 
     
     ## Process chunks
-    with open(os.path.join(export_path,'reports',sampleid+".csv"), "w") as csvFile:
+    with open(os.path.join(c,export_path,'reports',sampleid+".csv"), "w") as csvFile:
         fieldnames = ['SAMPLEID', 'NO_IMAGES','ALIGNED','pALIGNED','SCALED',
         'NO_SCALEBARS','SCALE_ERROR','NO_MAKERS', 'MARKER_ERROR']
         writer = csv.writer(csvFile, delimiter=',')

@@ -61,7 +61,7 @@ def batchNet(summary_file, camType, proj_dir='projects', export_path='exports'):
         
         
                 ### create task job and distrubute to network
-                args=" ".join([SAMPLE_ID,camType,VIDEO_FILENAME, export_path])
+                args=" ".join([SAMPLE_ID,camType,'"'+VIDEO_FILENAME+'"', export_path])
                 runNetwork(proj_path=psxfile, 
                 argstring=args, 
                 tname='RunScript', 

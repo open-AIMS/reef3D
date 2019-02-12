@@ -31,7 +31,7 @@ from reef3D.PyToolbox import misc
 import csv
 import itertools
 import random
-from reef3D.LTMP.PyPS.camera_params import camdict
+from reef3D.LTMP.PyPS.camera_params import camdict as cdict
 sys.path.insert(0,"/usr/local/lib/python3.5/dist-packages/")
 
 
@@ -59,7 +59,7 @@ def photoscanProcess(sampleid,camType,path, export_path,scaletxt = "scalebars.cs
     
     ##Set parameter environment 
     #load camera parameters
-    camdict=camdict[camType]
+    camdict=cdict[camType]
     # processing parameters 
     #TODO Move this to camdict <mgr>
     accuracy = PhotoScan.Accuracy.HighAccuracy  #align photos accuracy

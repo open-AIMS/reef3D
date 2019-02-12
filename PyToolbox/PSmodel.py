@@ -352,3 +352,6 @@ def photoscanProcess(sampleid,camType,path, export_path,scaletxt = "scalebars.cs
 
 
     print("Processed " + chunk.label)
+    
+##The following process will only be executed when running script   
+photoscanProcess(sampleid,camType,path, export_path,scaletxt = "scalebars.csv",proj_path = "projects",data_path = "data/LTMP")

@@ -82,12 +82,12 @@ def photoscanProcess(sampleid,camType,path, export_path,scaletxt = "scalebars.cs
     
     ## Load images
     doc=PhotoScan.app.document
-    docpath=doc.path
-    c=docpath.split('/projects')[0]
-    list_files = os.listdir(os.path.join(c,data_path,path))
+    # docpath=doc.path
+    # c=docpath.split('/projects')[0]
+    list_files = os.listdir(os.path.join('.',data_path,path))
     imlist = list()
     for entry in list_files: #finding image files
-    	file = os.path.join(c,data_path,path, entry)
+    	file = os.path.join('.',data_path,path, entry)
     	if os.path.isfile(file):
     		if file[-3:].lower() in TYPES:
     			imlist.append(file)
@@ -117,8 +117,11 @@ def photoscanProcess(sampleid,camType,path, export_path,scaletxt = "scalebars.cs
     m=camdict['overlap'] #overlap
     imlist=[imlist[i:i+n] for i in range(0, len(imlist), n-m)] 
     
+    ## SAVE AS project to reset editing permisions
+    doc.save('./'+proj_path+'/'+path+'.psx')
+    
     ## Process chunks
-    with open(os.path.join(c,export_path,'reports',sampleid+".csv"), "w") as csvFile:
+    with open(os.path.join('.',export_path,'reports',sampleid+".csv"), "w") as csvFile:
         fieldnames = ['SAMPLEID', 'NO_IMAGES','ALIGNED','pALIGNED','SCALED',
         'NO_SCALEBARS','SCALE_ERROR','NO_MAKERS', 'MARKER_ERROR']
         writer = csv.writer(csvFile, delimiter=',')
@@ -293,11 +296,11 @@ def preProcess(doc, chunk, scaletxt, camdict):
     '''
     
     ### SET ENVIRONMENTAL VARIABLES 
-    #doc.read_only = False
-    docpath=doc.path
-    c=docpath.split('/projects')[0] #this is just to know the root dir when working over the network
+    
+    # docpath=doc.path
+    #c=docpath.split('/projects')[0] #this is just to know the root dir when working over the network
     #load scalebar reference file 
-    sbar = os.path.join(c,'reference_scales', scaletxt)
+    sbar = os.path.join('.','reference_scales', scaletxt)
     df=pd.read_csv(sbar,delimiter='\t')
     df['DATE']=pd.to_datetime(df['DATE'],format='%d/%m/%Y')
     
@@ -317,7 +320,7 @@ def preProcess(doc, chunk, scaletxt, camdict):
     if camdict['calfile']!='NONE':
         print("---Importing calibration parameters---")
         calib = PhotoScan.Calibration()
-        calib.load(os.path.join(c,'calibration', camdict['calfile']), format="xml")
+        calib.load(os.path.join('.','calibration', camdict['calfile']), format="xml")
         sensor = chunk.sensors[0] #first calibration group in the active chunk
 
         #sensor.calibration = calib # this will set the Adjusted values according to the XML

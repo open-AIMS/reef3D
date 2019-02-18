@@ -21,6 +21,10 @@ def runNetwork(proj_path,  argstring, tname='RunScript', PSscript='scripts/reef3
     '''
 
     client = PhotoScan.NetworkClient()
+    # VIDEO_FILENAME=argstring.split(" ")[2]
+    # VIDEO_FILENAME=VIDEO_FILENAME.strip('"')
+    # doc = PhotoScan.Document(os.path.join(proj_dir,VIDEO_FILENAME + '.psx'))
+    # doc.open("...")
     task1 = PhotoScan.NetworkTask()
     task1.name = tname
     task1.params['path'] = PSscript #path to the script to be executed
@@ -28,6 +32,7 @@ def runNetwork(proj_path,  argstring, tname='RunScript', PSscript='scripts/reef3
     client.connect('agisoft-qmgr.aims.gov.au') #server ip
     batch_id = client.createBatch(proj_path, [task1])
     client.resumeBatch(batch_id)
+    client.disconnect()
     print("Job started...")
 
 ##TODO Tidy and test this function. check filepaths (/ vs \). Reorganise data?. <mgr>
@@ -63,12 +68,16 @@ def batchNet(summary_file, camType, proj_dir='projects', export_path='exports'):
                 PhotoScan.app.console.clear()
                 doc = PhotoScan.app.document # construct the document class        
                 psxfile = os.path.join(proj_dir,VIDEO_FILENAME + '.psx') # save project
-                doc.save(psxfile)
+                doc.read_only = False
+                doc.save('./'+psxfile)
                 print ('>> Processing file: ' + psxfile)
-        
-        
+                #
+                # VIDEO_FILENAME=VIDEO_FILENAME.replace(" ", "\ ")
+                # print(VIDEO_FILENAME)
+                
                 ### create task job and distrubute to network
                 args=" ".join([SAMPLE_ID,camType,'"'+VIDEO_FILENAME+'"', export_path])
+                print(args)
                 runNetwork(proj_path=psxfile, 
                 argstring=args, 
                 tname='RunScript', 

@@ -33,7 +33,7 @@
 	*  Hit OK.
 	*  Repeat for every chunk.
 
-5.	Run the following batch processing script to process the data:`batch_process_LTMPgopro.xml`. To do this:
+5.	Run the following batch processing script to process the data:`MS_process_batch.xml`. To do this:
 
 	*	Save project
 	*	Run batch process from workflow menu

@@ -3,38 +3,25 @@ import sys,os
 
 
 
-### SET DATA PATH
-doc=Metashape.app.document
+import pandas as pd 
+
+
+### Load files
+doc=ps.app.document
 docpath=doc.path
-c=docpath.split('/projects')[0]
-#data_path="/Volumes/3d_ltmp/data/LTMP/RM/201819/OR/11-049/Site1Tran1"
-data_path=str(sys.argv[1])
+#df=pd.read_csv(r"C:\Users\mgonzale\Documents\temp\20190527_Rugo\20190527_D1.csv", sep=';')
+df=pd.read_csv(str(sys.argv[1]), sep=';')
+dirpath=df.fpath[0]
+df['fpath'] = df['fname'].apply(lambda x: x.replace(x, os.path.join(dirpath,x)))
 
 
-##LIST IMAGES
-TYPES = ["jpg", "jpeg", "tif", "tiff"]
-list_files = os.listdir(os.path.join(c,'data',data_path))
-imlist = list()
-for entry in list_files: #finding image files
-	file = os.path.join(c,'data',data_path, entry)
-	if os.path.isfile(file):
-		if file[-3:].lower() in TYPES:
-			imlist.append(file)
-            
-if not(len(imlist)):
-	print("No images in " + data_path)
-else:
-    ##SPLIT IMAGES INTO GROUPS
-    n=int(sys.argv[2]) #group size
-    m=int(sys.argv[3]) #number of images overlapping between groups
-    imlist.sort()
-    imlist=[imlist[i:i+n] for i in range(0,len(imlist),n-m)]
+##IMPORT IMAGES in CLUSTERS
+ 
 
-    
-    sec=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-    for i in range(0,len(imlist)):
-        chunk=doc.addChunk()
-        chunk.label=data_path.split('/')[4]+'_'+data_path.split('/')[5]+'_'+sec[i]
-        chunk.addPhotos(imlist[i])
-    
-    
+for i in df.cluster_id.unique()[1:-1]:
+	chunk=doc.addChunk()
+	chunk.label= os.path.splitext(os.path.basename(sys.argv[1]))[0]+'_C'+str(i)
+	chunk.addPhotos(df.fpath.loc[df.cluster_id==i].tolist())
+	for cam in chunk.cameras:
+		
+	

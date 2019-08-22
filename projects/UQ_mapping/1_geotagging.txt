@@ -1,0 +1,5 @@
+## 1 -Join images from left and right cameras
+## 2 - Geotag Left and Right images. Here is an example
+"exiftool(-k).exe" -geotag="\Users\mgonzale\Documents\temp\20190527_Rugo\20190527_SouthernGBR_21117_Dive.gpx" -geosync=-00:13 "\Users\mgonzale\Documents\temp\20190527_Rugo\20190527_RugoD\*_L*.JPG"
+## 3- Print csv summary. Example:
+"exiftool(-k).exe" -filename -directory -gpslatitude -gpslongitude -T -n \Users\mgonzale\Documents\temp\20190527_Rugo\20190527_RugoD\*.jpg > \Users\mgonzale\Documents\temp\20190527_Rugo\imlist.txt

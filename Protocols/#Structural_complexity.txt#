@@ -1,0 +1,28 @@
+### CALCULATE STRUCTURAL COMPLEXITY FROM 3D MODELS USING AIMS HPC 
+
+1. Launch HPC interactive: https://hpc-interactive.aims.gov.au:3443/
+2. Launch GNOME session
+3. Open Terminal 
+4. Load Matlab module: 
+	module load MATLAB/R2018a
+5. Change directory to script folder:
+	cd /export/home/l-p/mgonzale/Desktop/gits/reef3D/data_analyses
+6. Run function to calaculte Structural complexity:
+	matlab -nodisplay -nodesktop -nosplash -r "summary_transect 
+	[PATH_TO_POINTS] [PATH_TO_CAMERAS] [PATH_TO_SCRIPTS] [PATH_TO_EXPORT_FOLDER]" 
+	
+	WHERE:
+	[PATH_TO_POINTS] is the directory path to the point clouds folder for the specific campaign
+		(e.g., '/net/138.7.48.21/3d_ltmp/exports/pointsXYZ/RM/201819/OR/')
+	
+	[PATH_TO_CAMERAS] is the directory path containing the camera pose for the specific campaign
+		(e.g., '/net/138.7.48.21/3d_ltmp/exports/cameras/RM/201819/OR/')
+	
+	[PATH_TO_SCRIPTS] is the directory path where the scripts are contained
+		(e.g., '/export/home/l-p/mgonzale/Desktop/gits/reef3D/')
+	
+	[PATH_TO_EXPORT_FOLDER] is the folder where to export the results. 
+		(e.g., '/net/138.7.48.21/3d_ltmp/exports')
+
+Example:
+matlab -nodisplay -nodesktop -nosplash -r "summary_transect '/net/138.7.48.21/3d_ltmp/exports/pointsXYZ/RM/201819/OR/'  '/net/138.7.48.21/3d_ltmp/exports/cameras/RM/201819/OR/' '/export/home/l-p/mgonzale/Desktop/gits/reef3D/'  '/net/138.7.48.21/3d_ltmp/exports'"

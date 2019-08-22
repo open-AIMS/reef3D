@@ -1,0 +1,1403 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2018 The MathWorks, Inc.
+                   R2018a (9.4.0.813654) 64-bit (glnxa64)
+                             February 23, 2018
+
+
+	Non-Degree Granting Education License -- for use at non-degree granting, nonprofit,
+	educational organizations only.  Not for government, commercial, or other organizational use.
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+2019-04-15 15:47:45.165s | S : POINTCLOUD > IMPORT
+                 +0.014s | I : POINTCLOUD > IMPORT : Point cloud label = '20348S_Site1Tran1.txt'
+2019-04-15 15:47:45.623s | S : POINTCLOUD > IMPORT > READ DATA
+                +49.321s | E : POINTCLOUD > IMPORT > READ DATA
+                +50.073s | E : POINTCLOUD > IMPORT
+2019-04-15 15:48:35.713s | S : POINTCLOUD > INFO
+                 +0.004s | I : POINTCLOUD > INFO : Point cloud label = '20348S_Site1Tran1.txt'
+                         | V :   41119291           = number of             points
+                         | V :   41119291           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.747       = min / x
+                         | V :          0.738       = max / x
+                         | V :         -0.791       = min / y
+                         | V :          2.944       = max / y
+                         | V :         -2.363       = min / z
+                         | V :          0.370       = max / z
+                 +0.331s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-15 15:51:59.725s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20348S_Site1Tran1.txt'
+                         | V :   41119291           = number of activated points before filtering
+                         | V :   26708077           = number of activated points after filtering
+              +3506.726s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-15 16:50:26.455s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.002s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20348S_Site1Tran1.txt'
+                         | V :   26708077           = number of activated points before filtering
+                         | V :        245           = number of activated points after filtering
+                +16.898s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20348S_Site1Tran1.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Calculating terrain features for 20348S_Site1Tran1.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Calculating terrain features for 20348S_Site1Tran1.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Saving results for... 20348S_Site1Tran1.txt'
+
+2019-04-15 17:13:52.510s | S : POINTCLOUD > IMPORT
+                 +0.007s | I : POINTCLOUD > IMPORT : Point cloud label = '20348S_Site1Tran2.txt'
+2019-04-15 17:13:52.549s | S : POINTCLOUD > IMPORT > READ DATA
+                +15.216s | E : POINTCLOUD > IMPORT > READ DATA
+                +15.441s | E : POINTCLOUD > IMPORT
+2019-04-15 17:14:07.977s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20348S_Site1Tran2.txt'
+                         | V :   16393976           = number of             points
+                         | V :   16393976           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.797       = min / x
+                         | V :          0.452       = max / x
+                         | V :         -0.754       = min / y
+                         | V :          1.342       = max / y
+                         | V :         -0.811       = min / z
+                         | V :         -0.212       = max / z
+                 +0.132s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-15 17:15:24.550s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20348S_Site1Tran2.txt'
+                         | V :   16393976           = number of activated points before filtering
+                         | V :   11824450           = number of activated points after filtering
+               +577.482s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-15 17:25:02.036s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20348S_Site1Tran2.txt'
+                         | V :   11824450           = number of activated points before filtering
+                         | V :         66           = number of activated points after filtering
+                 +4.495s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20348S_Site1Tran2.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+66/66 (100%)
+ans =
+
+    'Calculating terrain features for 20348S_Site1Tran2.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+66/66 (100%)
+ans =
+
+    'Calculating terrain features for 20348S_Site1Tran2.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+66/66 (100%)
+ans =
+
+    'Saving results for... 20348S_Site1Tran2.txt'
+
+2019-04-15 17:28:15.438s | S : POINTCLOUD > IMPORT
+                 +0.001s | I : POINTCLOUD > IMPORT : Point cloud label = '20348S_Site1Tran3.txt'
+2019-04-15 17:28:15.440s | S : POINTCLOUD > IMPORT > READ DATA
+                +26.924s | E : POINTCLOUD > IMPORT > READ DATA
+                +27.264s | E : POINTCLOUD > IMPORT
+2019-04-15 17:28:42.703s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20348S_Site1Tran3.txt'
+                         | V :   28394875           = number of             points
+                         | V :   28394875           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.335       = min / x
+                         | V :          1.669       = max / x
+                         | V :         -3.427       = min / y
+                         | V :          0.321       = max / y
+                         | V :         -0.315       = min / z
+                         | V :          0.532       = max / z
+                 +0.224s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-15 17:31:05.410s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.002s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20348S_Site1Tran3.txt'
+                         | V :   28394875           = number of activated points before filtering
+                         | V :   17572673           = number of activated points after filtering
+              +1643.786s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-15 17:58:29.200s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20348S_Site1Tran3.txt'
+                         | V :   17572673           = number of activated points before filtering
+                         | V :        138           = number of activated points after filtering
+                 +6.841s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20348S_Site1Tran3.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+138/138 (100%)
+ans =
+
+    'Calculating terrain features for 20348S_Site1Tran3.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+138/138 (100%)
+ans =
+
+    'Calculating terrain features for 20348S_Site1Tran3.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+138/138 (100%)
+ans =
+
+    'Saving results for... 20348S_Site1Tran3.txt'
+
+2019-04-15 18:06:16.176s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '20348S_Site1Tran4.txt'
+2019-04-15 18:06:16.184s | S : POINTCLOUD > IMPORT > READ DATA
+                +38.211s | E : POINTCLOUD > IMPORT > READ DATA
+                +38.650s | E : POINTCLOUD > IMPORT
+2019-04-15 18:06:54.830s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20348S_Site1Tran4.txt'
+                         | V :   37423363           = number of             points
+                         | V :   37423363           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.795       = min / x
+                         | V :          1.117       = max / x
+                         | V :         -1.602       = min / y
+                         | V :          2.314       = max / y
+                         | V :         -1.956       = min / z
+                         | V :          0.025       = max / z
+                 +0.285s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-15 18:09:57.776s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20348S_Site1Tran4.txt'
+                         | V :   37423363           = number of activated points before filtering
+                         | V :   21875301           = number of activated points after filtering
+              +2402.101s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-15 18:49:59.880s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20348S_Site1Tran4.txt'
+                         | V :   21875301           = number of activated points before filtering
+                         | V :        168           = number of activated points after filtering
+                 +8.540s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20348S_Site1Tran4.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+168/168 (100%)
+ans =
+
+    'Calculating terrain features for 20348S_Site1Tran4.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+168/168 (100%)
+ans =
+
+    'Calculating terrain features for 20348S_Site1Tran4.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+168/168 (100%)
+ans =
+
+    'Saving results for... 20348S_Site1Tran4.txt'
+
+2019-04-15 19:04:00.370s | S : POINTCLOUD > IMPORT
+                 +0.004s | I : POINTCLOUD > IMPORT : Point cloud label = '20348S_Site1Tran5.txt'
+2019-04-15 19:04:00.379s | S : POINTCLOUD > IMPORT > READ DATA
+                +45.199s | E : POINTCLOUD > IMPORT > READ DATA
+                +45.744s | E : POINTCLOUD > IMPORT
+2019-04-15 19:04:46.119s | S : POINTCLOUD > INFO
+                 +0.002s | I : POINTCLOUD > INFO : Point cloud label = '20348S_Site1Tran5.txt'
+                         | V :   45872110           = number of             points
+                         | V :   45872110           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -2.716       = min / x
+                         | V :         -1.623       = max / x
+                         | V :         -6.935       = min / y
+                         | V :         -3.042       = max / y
+                         | V :         -0.923       = min / z
+                         | V :          3.029       = max / z
+                 +0.344s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-15 19:08:27.202s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20348S_Site1Tran5.txt'
+                         | V :   45872110           = number of activated points before filtering
+                         | V :   24006650           = number of activated points after filtering
+              +3011.278s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-15 19:58:38.483s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20348S_Site1Tran5.txt'
+                         | V :   24006650           = number of activated points before filtering
+                         | V :        124           = number of activated points after filtering
+                 +9.607s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20348S_Site1Tran5.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+124/124 (100%)
+ans =
+
+    'Calculating terrain features for 20348S_Site1Tran5.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+124/124 (100%)
+ans =
+
+    'Calculating terrain features for 20348S_Site1Tran5.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+124/124 (100%)
+ans =
+
+    'Saving results for... 20348S_Site1Tran5.txt'
+
+2019-04-15 20:12:31.536s | S : POINTCLOUD > IMPORT
+                 +0.001s | I : POINTCLOUD > IMPORT : Point cloud label = '20353S_Site1Tran1.txt'
+2019-04-15 20:12:31.539s | S : POINTCLOUD > IMPORT > READ DATA
+                +12.741s | E : POINTCLOUD > IMPORT > READ DATA
+                +12.895s | E : POINTCLOUD > IMPORT
+2019-04-15 20:12:44.434s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20353S_Site1Tran1.txt'
+                         | V :   12792672           = number of             points
+                         | V :   12792672           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -1.322       = min / x
+                         | V :          0.938       = max / x
+                         | V :         -1.738       = min / y
+                         | V :          3.606       = max / y
+                         | V :         -1.232       = min / z
+                         | V :          0.590       = max / z
+                 +0.107s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-15 20:13:43.677s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20353S_Site1Tran1.txt'
+                         | V :   12792672           = number of activated points before filtering
+                         | V :    7377879           = number of activated points after filtering
+              +1140.400s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-15 20:32:44.079s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20353S_Site1Tran1.txt'
+                         | V :    7377879           = number of activated points before filtering
+                         | V :        216           = number of activated points after filtering
+                 +3.136s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20353S_Site1Tran1.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+216/216 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site1Tran1.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+216/216 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site1Tran1.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+216/216 (100%)
+ans =
+
+    'Saving results for... 20353S_Site1Tran1.txt'
+
+2019-04-15 20:36:58.756s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '20353S_Site1Tran2.txt'
+2019-04-15 20:36:58.764s | S : POINTCLOUD > IMPORT > READ DATA
+                +10.582s | E : POINTCLOUD > IMPORT > READ DATA
+                +10.715s | E : POINTCLOUD > IMPORT
+2019-04-15 20:37:09.475s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20353S_Site1Tran2.txt'
+                         | V :   10578914           = number of             points
+                         | V :   10578914           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -2.154       = min / x
+                         | V :          0.934       = max / x
+                         | V :         -1.507       = min / y
+                         | V :          3.732       = max / y
+                         | V :         -1.734       = min / z
+                         | V :          0.452       = max / z
+                 +0.090s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-15 20:37:54.699s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20353S_Site1Tran2.txt'
+                         | V :   10578914           = number of activated points before filtering
+                         | V :    5580978           = number of activated points after filtering
+              +1082.856s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-15 20:55:57.557s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20353S_Site1Tran2.txt'
+                         | V :    5580978           = number of activated points before filtering
+                         | V :        302           = number of activated points after filtering
+                 +2.641s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20353S_Site1Tran2.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Calculating terrain features for 20353S_Site1Tran2.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Calculating terrain features for 20353S_Site1Tran2.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Saving results for... 20353S_Site1Tran2.txt'
+
+2019-04-15 21:01:05.646s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '20353S_Site1Tran3.txt'
+2019-04-15 21:01:05.654s | S : POINTCLOUD > IMPORT > READ DATA
+                +10.852s | E : POINTCLOUD > IMPORT > READ DATA
+                +10.982s | E : POINTCLOUD > IMPORT
+2019-04-15 21:01:16.632s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20353S_Site1Tran3.txt'
+                         | V :   10384956           = number of             points
+                         | V :   10384956           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -1.755       = min / x
+                         | V :          1.047       = max / x
+                         | V :         -2.257       = min / y
+                         | V :          3.041       = max / y
+                         | V :         -2.915       = min / z
+                         | V :         -0.134       = max / z
+                 +0.088s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-15 21:02:00.396s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20353S_Site1Tran3.txt'
+                         | V :   10384956           = number of activated points before filtering
+                         | V :    5671892           = number of activated points after filtering
+               +949.162s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-15 21:17:49.560s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20353S_Site1Tran3.txt'
+                         | V :    5671892           = number of activated points before filtering
+                         | V :        330           = number of activated points after filtering
+                 +2.537s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20353S_Site1Tran3.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+330/330 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site1Tran3.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+330/330 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site1Tran3.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+330/330 (100%)
+ans =
+
+    'Saving results for... 20353S_Site1Tran3.txt'
+
+2019-04-15 21:23:49.604s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '20353S_Site1Tran4.txt'
+2019-04-15 21:23:49.611s | S : POINTCLOUD > IMPORT > READ DATA
+                +12.385s | E : POINTCLOUD > IMPORT > READ DATA
+                +12.543s | E : POINTCLOUD > IMPORT
+2019-04-15 21:24:02.150s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20353S_Site1Tran4.txt'
+                         | V :   12800772           = number of             points
+                         | V :   12800772           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.530       = min / x
+                         | V :          0.910       = max / x
+                         | V :         -2.475       = min / y
+                         | V :          1.882       = max / y
+                         | V :         -1.676       = min / z
+                         | V :         -0.139       = max / z
+                 +0.103s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-15 21:24:59.535s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20353S_Site1Tran4.txt'
+                         | V :   12800772           = number of activated points before filtering
+                         | V :    9362493           = number of activated points after filtering
+              +1213.447s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-15 21:45:12.986s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.003s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20353S_Site1Tran4.txt'
+                         | V :    9362493           = number of activated points before filtering
+                         | V :        174           = number of activated points after filtering
+                 +3.621s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20353S_Site1Tran4.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+174/174 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site1Tran4.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+174/174 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site1Tran4.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+174/174 (100%)
+ans =
+
+    'Saving results for... 20353S_Site1Tran4.txt'
+
+2019-04-15 21:49:39.089s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '20353S_Site1Tran5.txt'
+2019-04-15 21:49:39.096s | S : POINTCLOUD > IMPORT > READ DATA
+                +12.099s | E : POINTCLOUD > IMPORT > READ DATA
+                +12.261s | E : POINTCLOUD > IMPORT
+2019-04-15 21:49:51.353s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20353S_Site1Tran5.txt'
+                         | V :   12651600           = number of             points
+                         | V :   12651600           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.853       = min / x
+                         | V :          0.636       = max / x
+                         | V :         -2.425       = min / y
+                         | V :          2.359       = max / y
+                         | V :         -2.760       = min / z
+                         | V :          0.647       = max / z
+                 +0.102s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-15 21:50:46.312s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20353S_Site1Tran5.txt'
+                         | V :   12651600           = number of activated points before filtering
+                         | V :    7715958           = number of activated points after filtering
+              +1209.329s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-15 22:10:55.643s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20353S_Site1Tran5.txt'
+                         | V :    7715958           = number of activated points before filtering
+                         | V :        190           = number of activated points after filtering
+                 +3.956s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20353S_Site1Tran5.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+190/190 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site1Tran5.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+190/190 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site1Tran5.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+190/190 (100%)
+ans =
+
+    'Saving results for... 20353S_Site1Tran5.txt'
+
+2019-04-15 22:15:41.687s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '20353S_Site2Tran1.txt'
+2019-04-15 22:15:41.694s | S : POINTCLOUD > IMPORT > READ DATA
+                +12.915s | E : POINTCLOUD > IMPORT > READ DATA
+                +13.069s | E : POINTCLOUD > IMPORT
+2019-04-15 22:15:54.760s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20353S_Site2Tran1.txt'
+                         | V :   12356997           = number of             points
+                         | V :   12356997           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -1.629       = min / x
+                         | V :          1.148       = max / x
+                         | V :         -0.969       = min / y
+                         | V :          5.030       = max / y
+                         | V :         -1.996       = min / z
+                         | V :         -0.139       = max / z
+                 +0.103s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-15 22:16:50.266s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20353S_Site2Tran1.txt'
+                         | V :   12356997           = number of activated points before filtering
+                         | V :    5732816           = number of activated points after filtering
+               +886.867s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-15 22:31:37.135s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20353S_Site2Tran1.txt'
+                         | V :    5732816           = number of activated points before filtering
+                         | V :        235           = number of activated points after filtering
+                 +2.229s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20353S_Site2Tran1.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Calculating terrain features for 20353S_Site2Tran1.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Calculating terrain features for 20353S_Site2Tran1.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Saving results for... 20353S_Site2Tran1.txt'
+
+2019-04-15 22:35:51.551s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '20353S_Site2Tran2.txt'
+2019-04-15 22:35:51.559s | S : POINTCLOUD > IMPORT > READ DATA
+                +11.909s | E : POINTCLOUD > IMPORT > READ DATA
+                +12.065s | E : POINTCLOUD > IMPORT
+2019-04-15 22:36:03.620s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20353S_Site2Tran2.txt'
+                         | V :   12645263           = number of             points
+                         | V :   12645263           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -1.011       = min / x
+                         | V :          0.848       = max / x
+                         | V :         -2.213       = min / y
+                         | V :          3.049       = max / y
+                         | V :         -1.551       = min / z
+                         | V :         -0.081       = max / z
+                 +0.103s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-15 22:36:59.384s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20353S_Site2Tran2.txt'
+                         | V :   12645263           = number of activated points before filtering
+                         | V :    8216218           = number of activated points after filtering
+              +1292.284s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-15 22:58:31.670s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20353S_Site2Tran2.txt'
+                         | V :    8216218           = number of activated points before filtering
+                         | V :        226           = number of activated points after filtering
+                 +3.629s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20353S_Site2Tran2.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+226/226 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site2Tran2.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+226/226 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site2Tran2.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+226/226 (100%)
+ans =
+
+    'Saving results for... 20353S_Site2Tran2.txt'
+
+2019-04-15 23:03:24.223s | S : POINTCLOUD > IMPORT
+                 +0.001s | I : POINTCLOUD > IMPORT : Point cloud label = '20353S_Site2Tran3.txt'
+2019-04-15 23:03:24.226s | S : POINTCLOUD > IMPORT > READ DATA
+                +10.292s | E : POINTCLOUD > IMPORT > READ DATA
+                +10.416s | E : POINTCLOUD > IMPORT
+2019-04-15 23:03:34.641s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20353S_Site2Tran3.txt'
+                         | V :   10322066           = number of             points
+                         | V :   10322066           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -1.406       = min / x
+                         | V :          0.884       = max / x
+                         | V :         -1.941       = min / y
+                         | V :          3.164       = max / y
+                         | V :         -2.130       = min / z
+                         | V :         -0.449       = max / z
+                 +0.088s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-15 23:04:20.356s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20353S_Site2Tran3.txt'
+                         | V :   10322066           = number of activated points before filtering
+                         | V :    4839593           = number of activated points after filtering
+               +934.727s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-15 23:19:55.087s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.003s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20353S_Site2Tran3.txt'
+                         | V :    4839593           = number of activated points before filtering
+                         | V :        217           = number of activated points after filtering
+                 +2.016s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20353S_Site2Tran3.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Calculating terrain features for 20353S_Site2Tran3.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Calculating terrain features for 20353S_Site2Tran3.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Saving results for... 20353S_Site2Tran3.txt'
+
+2019-04-15 23:23:45.200s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '20353S_Site2Tran4.txt'
+2019-04-15 23:23:45.207s | S : POINTCLOUD > IMPORT > READ DATA
+                +11.629s | E : POINTCLOUD > IMPORT > READ DATA
+                +11.778s | E : POINTCLOUD > IMPORT
+2019-04-15 23:23:56.981s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20353S_Site2Tran4.txt'
+                         | V :   12137987           = number of             points
+                         | V :   12137987           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -1.314       = min / x
+                         | V :          0.884       = max / x
+                         | V :         -2.091       = min / y
+                         | V :          2.496       = max / y
+                         | V :         -2.122       = min / z
+                         | V :          1.133       = max / z
+                 +0.100s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-15 23:24:49.224s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20353S_Site2Tran4.txt'
+                         | V :   12137987           = number of activated points before filtering
+                         | V :    6214910           = number of activated points after filtering
+              +1092.507s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-15 23:43:01.733s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20353S_Site2Tran4.txt'
+                         | V :    6214910           = number of activated points before filtering
+                         | V :        184           = number of activated points after filtering
+                 +2.742s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20353S_Site2Tran4.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+184/184 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site2Tran4.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+184/184 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site2Tran4.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+184/184 (100%)
+ans =
+
+    'Saving results for... 20353S_Site2Tran4.txt'
+
+2019-04-15 23:47:13.373s | S : POINTCLOUD > IMPORT
+                 +0.001s | I : POINTCLOUD > IMPORT : Point cloud label = '20353S_Site2Tran5.txt'
+2019-04-15 23:47:13.376s | S : POINTCLOUD > IMPORT > READ DATA
+                 +9.318s | E : POINTCLOUD > IMPORT > READ DATA
+                 +9.439s | E : POINTCLOUD > IMPORT
+2019-04-15 23:47:22.814s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20353S_Site2Tran5.txt'
+                         | V :   10130449           = number of             points
+                         | V :   10130449           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.859       = min / x
+                         | V :          0.690       = max / x
+                         | V :         -1.715       = min / y
+                         | V :          3.204       = max / y
+                         | V :         -1.400       = min / z
+                         | V :         -0.202       = max / z
+                 +0.086s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-15 23:48:08.333s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20353S_Site2Tran5.txt'
+                         | V :   10130449           = number of activated points before filtering
+                         | V :    6382903           = number of activated points after filtering
+               +742.300s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-16 00:00:30.635s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20353S_Site2Tran5.txt'
+                         | V :    6382903           = number of activated points before filtering
+                         | V :        150           = number of activated points after filtering
+                 +2.752s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20353S_Site2Tran5.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+150/150 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site2Tran5.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+150/150 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site2Tran5.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+150/150 (100%)
+ans =
+
+    'Saving results for... 20353S_Site2Tran5.txt'
+
+2019-04-16 00:03:27.670s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '20353S_Site3Tran1.txt'
+2019-04-16 00:03:27.677s | S : POINTCLOUD > IMPORT > READ DATA
+                +19.415s | E : POINTCLOUD > IMPORT > READ DATA
+                +19.574s | E : POINTCLOUD > IMPORT
+2019-04-16 00:03:47.248s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20353S_Site3Tran1.txt'
+                         | V :   12855509           = number of             points
+                         | V :   12855509           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -1.523       = min / x
+                         | V :          1.500       = max / x
+                         | V :         -3.022       = min / y
+                         | V :          3.644       = max / y
+                         | V :         -2.232       = min / z
+                         | V :          0.036       = max / z
+                 +0.121s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-16 00:04:46.487s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20353S_Site3Tran1.txt'
+                         | V :   12855509           = number of activated points before filtering
+                         | V :    6103784           = number of activated points after filtering
+              +1113.191s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-16 00:23:19.680s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20353S_Site3Tran1.txt'
+                         | V :    6103784           = number of activated points before filtering
+                         | V :        334           = number of activated points after filtering
+                 +2.865s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20353S_Site3Tran1.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Calculating terrain features for 20353S_Site3Tran1.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Calculating terrain features for 20353S_Site3Tran1.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Saving results for... 20353S_Site3Tran1.txt'
+
+2019-04-16 00:30:11.446s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '20353S_Site3Tran2.txt'
+2019-04-16 00:30:11.454s | S : POINTCLOUD > IMPORT > READ DATA
+                +16.760s | E : POINTCLOUD > IMPORT > READ DATA
+                +16.928s | E : POINTCLOUD > IMPORT
+2019-04-16 00:30:28.378s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20353S_Site3Tran2.txt'
+                         | V :   12827554           = number of             points
+                         | V :   12827554           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.692       = min / x
+                         | V :          1.094       = max / x
+                         | V :         -2.674       = min / y
+                         | V :          2.239       = max / y
+                         | V :         -1.322       = min / z
+                         | V :          0.746       = max / z
+                 +0.104s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-16 00:31:23.341s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20353S_Site3Tran2.txt'
+                         | V :   12827554           = number of activated points before filtering
+                         | V :    6780500           = number of activated points after filtering
+              +1093.815s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-16 00:49:37.158s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20353S_Site3Tran2.txt'
+                         | V :    6780500           = number of activated points before filtering
+                         | V :        178           = number of activated points after filtering
+                 +3.044s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20353S_Site3Tran2.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+178/178 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site3Tran2.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+178/178 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site3Tran2.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+178/178 (100%)
+ans =
+
+    'Saving results for... 20353S_Site3Tran2.txt'
+
+2019-04-16 00:53:33.154s | S : POINTCLOUD > IMPORT
+                 +0.001s | I : POINTCLOUD > IMPORT : Point cloud label = '20353S_Site3Tran3.txt'
+2019-04-16 00:53:33.157s | S : POINTCLOUD > IMPORT > READ DATA
+                +16.421s | E : POINTCLOUD > IMPORT > READ DATA
+                +16.579s | E : POINTCLOUD > IMPORT
+2019-04-16 00:53:49.735s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20353S_Site3Tran3.txt'
+                         | V :   13419789           = number of             points
+                         | V :   13419789           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -2.601       = min / x
+                         | V :          1.355       = max / x
+                         | V :         -2.498       = min / y
+                         | V :          3.832       = max / y
+                         | V :         -1.858       = min / z
+                         | V :         -0.114       = max / z
+                 +0.109s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-16 00:54:47.907s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20353S_Site3Tran3.txt'
+                         | V :   13419789           = number of activated points before filtering
+                         | V :    6520460           = number of activated points after filtering
+              +1329.318s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-16 01:16:57.228s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20353S_Site3Tran3.txt'
+                         | V :    6520460           = number of activated points before filtering
+                         | V :        233           = number of activated points after filtering
+                 +2.941s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20353S_Site3Tran3.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Calculating terrain features for 20353S_Site3Tran3.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Calculating terrain features for 20353S_Site3Tran3.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Saving results for... 20353S_Site3Tran3.txt'
+
+2019-04-16 01:21:48.964s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '20353S_Site3Tran4.txt'
+2019-04-16 01:21:48.972s | S : POINTCLOUD > IMPORT > READ DATA
+                 +8.900s | E : POINTCLOUD > IMPORT > READ DATA
+                 +9.017s | E : POINTCLOUD > IMPORT
+2019-04-16 01:21:57.985s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20353S_Site3Tran4.txt'
+                         | V :    9312722           = number of             points
+                         | V :    9312722           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.815       = min / x
+                         | V :          0.427       = max / x
+                         | V :         -1.680       = min / y
+                         | V :          2.192       = max / y
+                         | V :         -1.136       = min / z
+                         | V :         -0.199       = max / z
+                 +0.082s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-16 01:22:39.786s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20353S_Site3Tran4.txt'
+                         | V :    9312722           = number of activated points before filtering
+                         | V :    6313821           = number of activated points after filtering
+               +786.468s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-16 01:35:46.256s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20353S_Site3Tran4.txt'
+                         | V :    6313821           = number of activated points before filtering
+                         | V :        136           = number of activated points after filtering
+                 +2.692s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20353S_Site3Tran4.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+136/136 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site3Tran4.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+136/136 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site3Tran4.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+136/136 (100%)
+ans =
+
+    'Saving results for... 20353S_Site3Tran4.txt'
+
+2019-04-16 01:38:21.743s | S : POINTCLOUD > IMPORT
+                 +0.001s | I : POINTCLOUD > IMPORT : Point cloud label = '20353S_Site3Tran5.txt'
+2019-04-16 01:38:21.746s | S : POINTCLOUD > IMPORT > READ DATA
+                +10.868s | E : POINTCLOUD > IMPORT > READ DATA
+                +10.991s | E : POINTCLOUD > IMPORT
+2019-04-16 01:38:32.736s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '20353S_Site3Tran5.txt'
+                         | V :   10167529           = number of             points
+                         | V :   10167529           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.774       = min / x
+                         | V :          1.140       = max / x
+                         | V :         -1.862       = min / y
+                         | V :          2.903       = max / y
+                         | V :         -2.480       = min / z
+                         | V :         -0.392       = max / z
+                 +0.087s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-16 01:39:16.765s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '20353S_Site3Tran5.txt'
+                         | V :   10167529           = number of activated points before filtering
+                         | V :    6277809           = number of activated points after filtering
+              +1028.341s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-16 01:56:25.110s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.003s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '20353S_Site3Tran5.txt'
+                         | V :    6277809           = number of activated points before filtering
+                         | V :        228           = number of activated points after filtering
+                 +2.985s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 20353S_Site3Tran5.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+228/228 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site3Tran5.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+228/228 (100%)
+ans =
+
+    'Calculating terrain features for 20353S_Site3Tran5.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+228/228 (100%)
+ans =
+
+    'Saving results for... 20353S_Site3Tran5.txt'
+
+2019-04-16 02:00:53.898s | S : POINTCLOUD > IMPORT
+                 +0.001s | I : POINTCLOUD > IMPORT : Point cloud label = '21062S_Site1Tran1.txt'
+2019-04-16 02:00:53.900s | S : POINTCLOUD > IMPORT > READ DATA
+                +36.972s | E : POINTCLOUD > IMPORT > READ DATA
+                +37.396s | E : POINTCLOUD > IMPORT
+2019-04-16 02:01:31.296s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '21062S_Site1Tran1.txt'
+                         | V :   36696540           = number of             points
+                         | V :   36696540           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -1.565       = min / x
+                         | V :          1.194       = max / x
+                         | V :         -2.380       = min / y
+                         | V :          3.052       = max / y
+                         | V :         -1.901       = min / z
+                         | V :          0.372       = max / z
+                 +0.276s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-16 02:04:30.601s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '21062S_Site1Tran1.txt'
+                         | V :   36696540           = number of activated points before filtering
+                         | V :   20748902           = number of activated points after filtering
+              +3026.634s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-16 02:54:57.238s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '21062S_Site1Tran1.txt'
+                         | V :   20748902           = number of activated points before filtering
+                         | V :        214           = number of activated points after filtering
+                 +7.864s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 21062S_Site1Tran1.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+214/214 (100%)
+ans =
+
+    'Calculating terrain features for 21062S_Site1Tran1.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+214/214 (100%)
+ans =
+
+    'Calculating terrain features for 21062S_Site1Tran1.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+214/214 (100%)
+ans =
+
+    'Saving results for... 21062S_Site1Tran1.txt'
+
+2019-04-16 03:08:38.718s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '21062S_Site1Tran3.txt'
+2019-04-16 03:08:38.726s | S : POINTCLOUD > IMPORT > READ DATA
+                +20.361s | E : POINTCLOUD > IMPORT > READ DATA
+                +20.611s | E : POINTCLOUD > IMPORT
+2019-04-16 03:08:59.333s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '21062S_Site1Tran3.txt'
+                         | V :   20878232           = number of             points
+                         | V :   20878232           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :          0.471       = min / x
+                         | V :          2.481       = max / x
+                         | V :         -3.608       = min / y
+                         | V :         -0.754       = max / y
+                         | V :         -2.209       = min / z
+                         | V :         -1.007       = max / z
+                 +0.163s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-16 03:10:34.259s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '21062S_Site1Tran3.txt'
+                         | V :   20878232           = number of activated points before filtering
+                         | V :    9568290           = number of activated points after filtering
+              +1198.702s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-16 03:30:32.964s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '21062S_Site1Tran3.txt'
+                         | V :    9568290           = number of activated points before filtering
+                         | V :        101           = number of activated points after filtering
+                 +3.697s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 21062S_Site1Tran3.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+101/101 (100%)
+ans =
+
+    'Calculating terrain features for 21062S_Site1Tran3.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+101/101 (100%)
+ans =
+
+    'Calculating terrain features for 21062S_Site1Tran3.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+101/101 (100%)
+ans =
+
+    'Saving results for... 21062S_Site1Tran3.txt'
+
+2019-04-16 03:34:43.999s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '21062S_Site2Tran1.txt'
+2019-04-16 03:34:44.007s | S : POINTCLOUD > IMPORT > READ DATA
+                +23.897s | E : POINTCLOUD > IMPORT > READ DATA
+                +24.172s | E : POINTCLOUD > IMPORT
+2019-04-16 03:35:08.175s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '21062S_Site2Tran1.txt'
+                         | V :   23048037           = number of             points
+                         | V :   23048037           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.621       = min / x
+                         | V :          0.707       = max / x
+                         | V :         -1.699       = min / y
+                         | V :          0.371       = max / y
+                         | V :         -1.333       = min / z
+                         | V :         -0.098       = max / z
+                 +0.175s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-16 03:36:55.676s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '21062S_Site2Tran1.txt'
+                         | V :   23048037           = number of activated points before filtering
+                         | V :   14985099           = number of activated points after filtering
+              +1155.325s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-16 03:56:11.004s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '21062S_Site2Tran1.txt'
+                         | V :   14985099           = number of activated points before filtering
+                         | V :        113           = number of activated points after filtering
+                 +5.939s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 21062S_Site2Tran1.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+113/113 (100%)
+ans =
+
+    'Calculating terrain features for 21062S_Site2Tran1.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+113/113 (100%)
+ans =
+
+    'Calculating terrain features for 21062S_Site2Tran1.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+113/113 (100%)
+ans =
+
+    'Saving results for... 21062S_Site2Tran1.txt'
+
+2019-04-16 04:04:08.362s | S : POINTCLOUD > IMPORT
+                 +0.001s | I : POINTCLOUD > IMPORT : Point cloud label = '21062S_Site2Tran3.txt'
+2019-04-16 04:04:08.365s | S : POINTCLOUD > IMPORT > READ DATA
+                +47.495s | E : POINTCLOUD > IMPORT > READ DATA
+                +47.888s | E : POINTCLOUD > IMPORT
+2019-04-16 04:04:56.253s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '21062S_Site2Tran3.txt'
+                         | V :   34080546           = number of             points
+                         | V :   34080546           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.832       = min / x
+                         | V :          0.690       = max / x
+                         | V :         -0.875       = min / y
+                         | V :          1.258       = max / y
+                         | V :         -3.141       = min / z
+                         | V :         -0.514       = max / z
+                 +0.256s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-16 04:07:36.941s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '21062S_Site2Tran3.txt'
+                         | V :   34080546           = number of activated points before filtering
+                         | V :   23098243           = number of activated points after filtering
+              +2012.745s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-16 04:41:09.688s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '21062S_Site2Tran3.txt'
+                         | V :   23098243           = number of activated points before filtering
+                         | V :        170           = number of activated points after filtering
+                 +9.362s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 21062S_Site2Tran3.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+170/170 (100%)
+ans =
+
+    'Calculating terrain features for 21062S_Site2Tran3.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+170/170 (100%)
+ans =
+
+    'Calculating terrain features for 21062S_Site2Tran3.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+170/170 (100%)
+ans =
+
+    'Saving results for... 21062S_Site2Tran3.txt'
+
+2019-04-16 04:58:02.812s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '21062S_Site3Tran1.txt'
+2019-04-16 04:58:02.820s | S : POINTCLOUD > IMPORT > READ DATA
+                +57.415s | E : POINTCLOUD > IMPORT > READ DATA
+                +58.009s | E : POINTCLOUD > IMPORT
+2019-04-16 04:59:00.825s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '21062S_Site3Tran1.txt'
+                         | V :   51287064           = number of             points
+                         | V :   51287064           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.750       = min / x
+                         | V :          0.985       = max / x
+                         | V :         -2.878       = min / y
+                         | V :          2.685       = max / y
+                         | V :         -0.961       = min / z
+                         | V :          0.108       = max / z
+                 +0.365s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-16 05:03:26.421s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '21062S_Site3Tran1.txt'
+                         | V :   51287064           = number of activated points before filtering
+                         | V :   33996976           = number of activated points after filtering
+              +5365.575s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-16 06:32:51.999s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '21062S_Site3Tran1.txt'
+                         | V :   33996976           = number of activated points before filtering
+                         | V :        248           = number of activated points after filtering
+                +13.244s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 21062S_Site3Tran1.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+248/248 (100%)
+ans =
+
+    'Calculating terrain features for 21062S_Site3Tran1.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+248/248 (100%)
+ans =
+
+    'Calculating terrain features for 21062S_Site3Tran1.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+248/248 (100%)
+ans =
+
+    'Saving results for... 21062S_Site3Tran1.txt'
+
+2019-04-16 06:55:13.473s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '21062S_Site3Tran3.txt'
+2019-04-16 06:55:13.481s | S : POINTCLOUD > IMPORT > READ DATA
+                +10.990s | E : POINTCLOUD > IMPORT > READ DATA
+                +11.126s | E : POINTCLOUD > IMPORT
+2019-04-16 06:55:24.603s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '21062S_Site3Tran3.txt'
+                         | V :   10838631           = number of             points
+                         | V :   10838631           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.569       = min / x
+                         | V :          0.367       = max / x
+                         | V :         -2.313       = min / y
+                         | V :         -1.226       = max / y
+                         | V :         -2.262       = min / z
+                         | V :         -0.960       = max / z
+                 +0.094s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-16 06:56:11.607s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '21062S_Site3Tran3.txt'
+                         | V :   10838631           = number of activated points before filtering
+                         | V :    5885554           = number of activated points after filtering
+               +384.241s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-16 07:02:35.853s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.003s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '21062S_Site3Tran3.txt'
+                         | V :    5885554           = number of activated points before filtering
+                         | V :         40           = number of activated points after filtering
+                 +2.254s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 21062S_Site3Tran3.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Calculating terrain features for 21062S_Site3Tran3.txt using 0.20m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Calculating terrain features for 21062S_Site3Tran3.txt using 0.50m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Saving results for... 21062S_Site3Tran3.txt'
+
+2019-04-16 07:04:51.085s | S : POINTCLOUD > IMPORT
+                 +0.003s | I : POINTCLOUD > IMPORT : Point cloud label = '21064S_ Site2Tran2.txt'
+2019-04-16 07:04:51.093s | S : POINTCLOUD > IMPORT > READ DATA
+                 +8.209s | E : POINTCLOUD > IMPORT > READ DATA
+                 +8.314s | E : POINTCLOUD > IMPORT
+2019-04-16 07:04:59.403s | S : POINTCLOUD > INFO
+                 +0.001s | I : POINTCLOUD > INFO : Point cloud label = '21064S_ Site2Tran2.txt'
+                         | V :    7852034           = number of             points
+                         | V :    7852034           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -1.308       = min / x
+                         | V :         -0.064       = max / x
+                         | V :         -1.596       = min / y
+                         | V :         -0.166       = max / y
+                         | V :         -1.365       = min / z
+                         | V :          0.059       = max / z
+                 +0.071s | E : POINTCLOUD > INFO
+[Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.] 
+[> In terrain_metrics (line 26)
+  In sc_wrapper (line 9)
+  In summary_transect (line 24)] 
+2019-04-16 07:05:32.599s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.001s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = '21064S_ Site2Tran2.txt'
+                         | V :    7852034           = number of activated points before filtering
+                         | V :    2436442           = number of activated points after filtering
+               +105.949s | E : POINTCLOUD > SELECT > INPOLYGON
+2019-04-16 07:07:18.551s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.003s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = '21064S_ Site2Tran2.txt'
+                         | V :    2436442           = number of activated points before filtering
+                         | V :         47           = number of activated points after filtering
+                 +1.154s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for 21064S_ Site2Tran2.txt using 0.10m quadrat size on 2.000000e-01 points'
+

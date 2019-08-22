@@ -1,0 +1,352 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2018 The MathWorks, Inc.
+                   R2018a (9.4.0.813654) 64-bit (glnxa64)
+                             February 23, 2018
+
+
+	Non-Degree Granting Education License -- for use at non-degree granting, nonprofit,
+	educational organizations only.  Not for government, commercial, or other organizational use.
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'local' profile ...
+connected to 6 workers.
+2018-11-05 13:05:26.926s | S : POINTCLOUD > IMPORT
+2018-11-05 13:05:26.926s | S : POINTCLOUD > IMPORT
+2018-11-05 13:05:26.926s | S : POINTCLOUD > IMPORT
+2018-11-05 13:05:26.970s | S : POINTCLOUD > IMPORT
+2018-11-05 13:05:26.926s | S : POINTCLOUD > IMPORT
+2018-11-05 13:05:26.947s | S : POINTCLOUD > IMPORT
+                 +0.021s | I : POINTCLOUD > IMPORT : Point cloud label = 'farquharson_Site1Tran2.txt'
+2018-11-05 13:05:27.172s | S : POINTCLOUD > IMPORT > READ DATA
+                +74.384s | E : POINTCLOUD > IMPORT > READ DATA
+                +75.335s | E : POINTCLOUD > IMPORT
+2018-11-05 13:06:42.509s | S : POINTCLOUD > INFO
+                 +0.005s | I : POINTCLOUD > INFO : Point cloud label = 'farquharson_Site1Tran2.txt'
+                         | V :   41718802           = number of             points
+                         | V :   41718802           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -1.002       = min / x
+                         | V :          1.121       = max / x
+                         | V :         -2.838       = min / y
+                         | V :          0.838       = max / y
+                         | V :         -1.466       = min / z
+                         | V :          1.546       = max / z
+                 +0.024s | I : POINTCLOUD > IMPORT : Point cloud label = 'farquharson_Site1Tran1.txt'
+2018-11-05 13:05:27.177s | S : POINTCLOUD > IMPORT > READ DATA
+                +92.558s | E : POINTCLOUD > IMPORT > READ DATA
+                +93.463s | E : POINTCLOUD > IMPORT
+2018-11-05 13:07:00.628s | S : POINTCLOUD > INFO
+                 +0.004s | I : POINTCLOUD > INFO : Point cloud label = 'farquharson_Site1Tran1.txt'
+                         | V :   42269125           = number of             points
+                         | V :   42269125           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.947       = min / x
+                         | V :          1.053       = max / x
+                         | V :         -3.551       = min / y
+                         | V :          1.544       = max / y
+                         | V :         -1.742       = min / z
+                         | V :          0.289       = max / z
+                 +0.023s | I : POINTCLOUD > IMPORT : Point cloud label = 'farquharson_Site1Tran4.txt'
+2018-11-05 13:05:27.175s | S : POINTCLOUD > IMPORT > READ DATA
+                +97.066s | E : POINTCLOUD > IMPORT > READ DATA
+                +98.046s | E : POINTCLOUD > IMPORT
+2018-11-05 13:07:05.211s | S : POINTCLOUD > INFO
+                 +0.004s | I : POINTCLOUD > INFO : Point cloud label = 'farquharson_Site1Tran4.txt'
+                         | V :   46298288           = number of             points
+                         | V :   46298288           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -1.129       = min / x
+                         | V :          0.755       = max / x
+                         | V :         -3.932       = min / y
+                         | V :          0.581       = max / y
+                         | V :         -1.491       = min / z
+                 +0.023s | I : POINTCLOUD > IMPORT : Point cloud label = 'farquharson_Site3Tran3.txt'
+2018-11-05 13:05:27.176s | S : POINTCLOUD > IMPORT > READ DATA
+               +120.870s | E : POINTCLOUD > IMPORT > READ DATA
+               +121.888s | E : POINTCLOUD > IMPORT
+2018-11-05 13:07:29.054s | S : POINTCLOUD > INFO
+                 +0.004s | I : POINTCLOUD > INFO : Point cloud label = 'farquharson_Site3Tran3.txt'
+                         | V :   48196654           = number of             points
+                         | V :   48196654           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -1.302       = min / x
+                         | V :          1.408       = max / x
+                         | V :         -2.195       = min / y
+                         | V :          2.608       = max / y
+                 +0.020s | I : POINTCLOUD > IMPORT : Point cloud label = 'farquharson_Site2Tran2.txt'
+2018-11-05 13:05:27.173s | S : POINTCLOUD > IMPORT > READ DATA
+               +131.695s | E : POINTCLOUD > IMPORT > READ DATA
+               +132.803s | E : POINTCLOUD > IMPORT
+2018-11-05 13:07:39.968s | S : POINTCLOUD > INFO
+                 +0.005s | I : POINTCLOUD > INFO : Point cloud label = 'farquharson_Site2Tran2.txt'
+                         | V :   50365925           = number of             points
+                         | V :   50365925           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.713       = min / x
+                         | V :          0.740       = max / x
+                         | V :         -0.495       = min / y
+                         | V :          4.545       = max / y
+                         | V :         -1.366       = min / z
+                         | V :         -0.233       = max / z
+                 +0.020s | I : POINTCLOUD > IMPORT : Point cloud label = 'farquharson_Site2Tran5.txt'
+2018-11-05 13:05:27.172s | S : POINTCLOUD > IMPORT > READ DATA
+               +154.515s | E : POINTCLOUD > IMPORT > READ DATA
+               +155.668s | E : POINTCLOUD > IMPORT
+2018-11-05 13:08:02.833s | S : POINTCLOUD > INFO
+                 +0.004s | I : POINTCLOUD > INFO : Point cloud label = 'farquharson_Site2Tran5.txt'
+                         | V :   55256920           = number of             points
+                         | V :   55256920           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.983       = min / x
+                         | V :          0.652       = max / x
+                         | V :         -2.890       = min / y
+                 +1.597s | E : POINTCLOUD > INFO
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 26)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+2018-11-05 13:10:12.504s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +1.413s | E : POINTCLOUD > INFO
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 26)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+2018-11-05 13:10:36.486s | S : POINTCLOUD > SELECT > INPOLYGON
+                         | V :          0.065       = max / z
+                 +1.567s | E : POINTCLOUD > INFO
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 26)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+2018-11-05 13:10:56.210s | S : POINTCLOUD > SELECT > INPOLYGON
+                         | V :         -1.585       = min / z
+                         | V :          0.012       = max / z
+                 +1.689s | E : POINTCLOUD > INFO
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 26)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+2018-11-05 13:11:16.528s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +2.316s | E : POINTCLOUD > INFO
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 26)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+2018-11-05 13:11:46.980s | S : POINTCLOUD > SELECT > INPOLYGON
+                         | V :          2.272       = max / y
+                         | V :         -1.082       = min / z
+                         | V :          0.343       = max / z
+                 +1.976s | E : POINTCLOUD > INFO
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 26)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+2018-11-05 13:12:49.280s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.002s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = 'farquharson_Site1Tran2.txt'
+                         | V :   41718802           = number of activated points before filtering
+                         | V :   26720890           = number of activated points after filtering
+              +1658.673s | E : POINTCLOUD > SELECT > INPOLYGON
+2018-11-05 13:37:51.182s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.002s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = 'farquharson_Site1Tran2.txt'
+                         | V :   26720890           = number of activated points before filtering
+                         | V :        145           = number of activated points after filtering
+                 +0.002s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = 'farquharson_Site1Tran4.txt'
+                         | V :   46298288           = number of activated points before filtering
+                         | V :   21215475           = number of activated points after filtering
+              +2071.510s | E : POINTCLOUD > SELECT > INPOLYGON
+2018-11-05 13:45:27.726s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.002s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = 'farquharson_Site1Tran4.txt'
+                         | V :   21215475           = number of activated points before filtering
+                         | V :        172           = number of activated points after filtering
+                +14.436s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for farquharson_Site1Tran2.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+145/145 (100%)
+ans =
+
+    'Creating plots for farquharson_Site1Tran2.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+                 +0.002s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = 'farquharson_Site1Tran1.txt'
+                         | V :   42269125           = number of activated points before filtering
+                         | V :   26643585           = number of activated points after filtering
+              +2308.497s | E : POINTCLOUD > SELECT > INPOLYGON
+2018-11-05 13:49:04.988s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.002s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = 'farquharson_Site1Tran1.txt'
+                         | V :   26643585           = number of activated points before filtering
+                         | V :        229           = number of activated points after filtering
+                +11.108s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for farquharson_Site1Tran4.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+172/172 (100%)
+ans =
+
+    'Creating plots for farquharson_Site1Tran4.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+                 +0.003s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = 'farquharson_Site2Tran5.txt'
+                         | V :   55256920           = number of activated points before filtering
+                         | V :   26370002           = number of activated points after filtering
+              +2761.795s | E : POINTCLOUD > SELECT > INPOLYGON
+2018-11-05 13:58:51.381s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.312s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = 'farquharson_Site2Tran5.txt'
+                         | V :   26370002           = number of activated points before filtering
+                 +0.002s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = 'farquharson_Site2Tran2.txt'
+                         | V :   50365925           = number of activated points before filtering
+                         | V :   35484177           = number of activated points after filtering
+                         | V :        133           = number of activated points after filtering
+                 +0.002s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = 'farquharson_Site3Tran3.txt'
+                         | V :   48196654           = number of activated points before filtering
+                         | V :   31924174           = number of activated points after filtering
+              +2946.269s | E : POINTCLOUD > SELECT > INPOLYGON
+2018-11-05 14:00:23.415s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.515s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = 'farquharson_Site3Tran3.txt'
+                         | V :   31924174           = number of activated points before filtering
+              +2834.900s | E : POINTCLOUD > SELECT > INPOLYGON
+2018-11-05 13:59:02.097s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.045s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = 'farquharson_Site2Tran2.txt'
+                         | V :   35484177           = number of activated points before filtering
+                         | V :        226           = number of activated points after filtering
+               +238.629s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for farquharson_Site2Tran2.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+                         | V :        249           = number of activated points after filtering
+                +26.974s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for farquharson_Site1Tran1.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+
+ans =
+
+    'Creating plots for farquharson_Site1Tran1.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+                +26.107s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for farquharson_Site2Tran5.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+133/133 (100%)
+ans =
+
+    'Creating plots for farquharson_Site2Tran5.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+[Warning: A worker aborted during execution of the parfor loop. The parfor loop
+will now run again on the remaining workers.] 
+[> In parallel_function (line 599)
+  In summary_transect (line 23)] 
+2018-11-05 14:23:52.341s | S : POINTCLOUD > IMPORT
+2018-11-05 14:23:52.547s | S : POINTCLOUD > IMPORT
+                 +0.030s | I : POINTCLOUD > IMPORT : Point cloud label = 'farquharson_Site2Tran2.txt'
+2018-11-05 14:23:52.458s | S : POINTCLOUD > IMPORT > READ DATA
+               +171.161s | E : POINTCLOUD > IMPORT > READ DATA
+               +172.343s | E : POINTCLOUD > IMPORT
+2018-11-05 14:26:44.727s | S : POINTCLOUD > INFO
+                 +0.017s | I : POINTCLOUD > INFO : Point cloud label = 'farquharson_Site2Tran2.txt'
+                         | V :   50365925           = number of             points
+                         | V :   50365925           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.713       = min / x
+                         | V :          0.740       = max / x
+                         | V :         -0.495       = min / y
+                         | V :          4.545       = max / y
+                 +0.028s | I : POINTCLOUD > IMPORT : Point cloud label = 'farquharson_Site2Tran5.txt'
+2018-11-05 14:23:52.655s | S : POINTCLOUD > IMPORT > READ DATA
+               +186.905s | E : POINTCLOUD > IMPORT > READ DATA
+               +188.184s | E : POINTCLOUD > IMPORT
+2018-11-05 14:27:00.785s | S : POINTCLOUD > INFO
+                 +0.003s | I : POINTCLOUD > INFO : Point cloud label = 'farquharson_Site2Tran5.txt'
+                         | V :   55256920           = number of             points
+                         | V :   55256920           = number of   activated points
+                         | V :          0           = number of deactivated points
+                         | V :         -0.983       = min / x
+                         | V :          0.652       = max / x
+                         | V :         -2.890       = min / y
+                         | V :          2.272       = max / y
+                         | V :         -1.366       = min / z
+                         | V :         -0.233       = max / z
+                 +1.731s | E : POINTCLOUD > INFO
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 26)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+2018-11-05 14:35:09.056s | S : POINTCLOUD > SELECT > INPOLYGON
+                         | V :         -1.082       = min / z
+                         | V :          0.343       = max / z
+                 +3.221s | E : POINTCLOUD > INFO
+Warning: Duplicate data points have been detected and removed.
+ Some point indices will not be referenced by the triangulation.
+> In terrain_metrics (line 26)
+  In sc_wrapper (line 4)
+  In parallel_function>make_general_channel/channel_general (line 932)
+  In remoteParallelFunction (line 46)
+2018-11-05 14:36:05.262s | S : POINTCLOUD > SELECT > INPOLYGON
+                 +0.005s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = 'farquharson_Site2Tran5.txt'
+                         | V :   55256920           = number of activated points before filtering
+                         | V :   26370002           = number of activated points after filtering
+              +2493.256s | E : POINTCLOUD > SELECT > INPOLYGON
+2018-11-05 15:17:38.522s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.007s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = 'farquharson_Site2Tran5.txt'
+                         | V :   26370002           = number of activated points before filtering
+                         | V :        133           = number of activated points after filtering
+                 +0.002s | I : POINTCLOUD > SELECT > INPOLYGON : Point cloud label = 'farquharson_Site2Tran2.txt'
+                         | V :   50365925           = number of activated points before filtering
+                         | V :   35484177           = number of activated points after filtering
+              +2734.125s | E : POINTCLOUD > SELECT > INPOLYGON
+2018-11-05 15:20:43.186s | S : POINTCLOUD > SELECT > UNIFORMSAMPLING
+                 +0.001s | I : POINTCLOUD > SELECT > UNIFORMSAMPLING : Point cloud label = 'farquharson_Site2Tran2.txt'
+                         | V :   35484177           = number of activated points before filtering
+                         | V :        226           = number of activated points after filtering
+                +15.181s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for farquharson_Site2Tran5.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+133/133 (100%)
+ans =
+
+    'Creating plots for farquharson_Site2Tran5.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+                +20.039s | E : POINTCLOUD > SELECT > UNIFORMSAMPLING
+
+ans =
+
+    'Calculating terrain features for farquharson_Site2Tran2.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+226/226 (100%)
+ans =
+
+    'Creating plots for farquharson_Site2Tran2.txt using 0.10m quadrat size on 2.000000e-01 points'
+
+[Warning: A worker aborted during execution of the parfor loop. The parfor loop
+will now run again on the remaining workers.] 
+[> In parallel_function (line 599)
+  In summary_transect (line 23)] 

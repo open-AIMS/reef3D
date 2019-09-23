@@ -1,15 +1,17 @@
 ### Add ScaleBars and distande from file
 
-import PhotoScan
+import Metashape as ps
+import sys 
+import os
 
-doc = PhotoScan.app.document
-
+doc = ps.app.document
+docpath=doc.path
+c=docpath.split('/projects')[0]
+scale_file = str(sys.argv[1])
 
 for chunk in doc.chunks:
     print("Adding ScaleBars...")
-
-    path = '/Volumes/3d_ltmp/reference_scales/scalebars.txt'
-    file = open(path, "rt")
+    file = open(os.path.join(c,'reference_scales', scale_file), "rt")
 
     markers = {}
     for marker in chunk.markers:

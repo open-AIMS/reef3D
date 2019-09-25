@@ -26,7 +26,7 @@ NOTE2: Run this locallly.
 5. Change directory to script folder:
 	cd /export/home/l-p/mgonzale/Desktop/gits/reef3D/data_analyses
 6. Run function to calaculte Structural complexity:
-	matlab -nodisplay -nodesktop -nosplash -r "summary_transect 
+	matlab -nodisplay -nodesktop -nosplash -r "summary_transect_demogr 
 	[PATH_TO_POINTS] [PATH_TO_CAMERAS] [PATH_TO_SCRIPTS] [PATH_TO_EXPORT_FOLDER]" 
 	
 	WHERE:

@@ -1,8 +1,0 @@
-
-aligned = []   # empty list
-notaligned = []   # empty list
-for camera in chunk.cameras:
-    if camera.transform:
-        aligned.append(camera)  # creates list of photos that aligned
-	else:
-		notaligned.append(camera)

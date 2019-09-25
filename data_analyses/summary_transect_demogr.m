@@ -1,4 +1,4 @@
-function summary_transect(fpath,campose,script_path,outpath)
+function summary_transect_demogr(fpath,campose,script_path,outpath)
 %%% Generate metrics of strucutral complex per transect
 
 %% PARAMETERS (to modify)

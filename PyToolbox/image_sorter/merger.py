@@ -4,17 +4,16 @@ import argparse
 import cv2, os, datetime
 import exifread
 import pandas as pd, numpy as np
-import shutil
-from tqdm import tqdm, notebook
+import shutil, tqdm
 from time import sleep
 
 def merger(rootpath):
     cameras=['RC','LC']
-    for c in notebook.tnrange(len(cameras), desc='Moving camera files'):
+    for c in tqdm.trange(len(cameras), desc='Moving camera files'):
         camera=cameras[c]
         mypath=os.path.join(rootpath,camera)
         gdir = [dI for dI in os.listdir(mypath) if os.path.isdir(os.path.join(mypath,dI))]
-        for tidx in notebook.tnrange(len(gdir), desc='Working within transects', leave=True):
+        for tidx in tqdm.trange(len(gdir), desc='Working within transects', leave=True):
             t=gdir[tidx]
             newfolder= os.path.join(rootpath,t)
             if not os.path.exists(newfolder):

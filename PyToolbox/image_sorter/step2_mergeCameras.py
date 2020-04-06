@@ -1,9 +1,9 @@
 #! python3
 ## STEP 1: Sort images and rename them based on QR codes
-import  merger
+from merger import  merger
 import sys
 
-def main(rootpath=sys.argv[0]):
+def main(rootpath=sys.argv[1]):
     merger(rootpath)
     print('All done')
     print('[IMPORTANT]: Please double check the work is done properly. If so, remove RC and LC folders.')

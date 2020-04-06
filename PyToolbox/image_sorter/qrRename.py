@@ -22,7 +22,7 @@ def qrRename(rootpath, QRmap_path):
             if os.path.isdir(os.path.join(mypath,g)):
                 check=0
                 im=0
-                while (check <1) & (im in range(5)):
+                while (check <1) & (im in range(20)):
                     if len(os.listdir(os.path.join(mypath,g)))>10:
                         imgname=os.listdir(os.path.join(mypath,g))[im]
                         if imgname.endswith(tuple((".jpg",".JPG"))):

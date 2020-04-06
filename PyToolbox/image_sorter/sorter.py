@@ -9,7 +9,7 @@ import shutil
 import tqdm
 from time import sleep
 
-def sorter(rootpath, img_rename):
+def sorter(rootpath, img_rename,time_gap):
     cameras=['RC','LC']
     for c in tqdm.trange(2, desc='Sorting images per camera'):
         camera=cameras[c]
@@ -28,7 +28,7 @@ def sorter(rootpath, img_rename):
                 imdf=imdf.append(iminfo)
         # Move image cluster into subfolders
         imdf = imdf.sort_values("DateTime")
-        cluster = (imdf["DateTime"].diff() > pd.Timedelta(minutes=3)).cumsum()
+        cluster = (imdf["DateTime"].diff() > pd.Timedelta(minutes=time_gap)).cumsum()
         dfs = [v for k,v in imdf.groupby(cluster)]
         i=0
         prefix=img_rename+'_'+camera+'_'

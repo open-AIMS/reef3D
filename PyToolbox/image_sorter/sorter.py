@@ -1,6 +1,5 @@
 #! python3
 import sys
-from pyzbar import pyzbar
 import argparse
 import cv2, os, datetime
 import exifread

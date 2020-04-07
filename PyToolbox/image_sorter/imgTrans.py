@@ -1,12 +1,11 @@
 #!/usr/bin/python
 
-from pyzbar import pyzbar
+
 import argparse
 import cv2, os, datetime
 import exifread
 import pandas as pd, numpy as np
 import shutil
-from tqdm import tqdm, notebook
 from time import sleep
 
 

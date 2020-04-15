@@ -6,10 +6,9 @@ import sys, os
 
 rp=str(sys.argv[1])
 ir=str(sys.argv[2])
-
+qrm=os.path.join(os.getcwd(),"QRmap.csv")
 ##Set default values for some arguments that may not change often
 if len(sys.argv)==3:
-    qrm=os.path.join(os.getcwd(),"QRmap.csv")
     tg=3
 elif len(sys.argv)==4:
     qrm=str(sys.argv[3])

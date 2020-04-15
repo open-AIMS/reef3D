@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 
-import argparse
 import cv2, os, datetime
 import exifread
 import pandas as pd, numpy as np

@@ -14,7 +14,7 @@ json5==0.9.4
 jsonschema==3.2.0
 kiwisolver>=1.1.0
 mistune==0.8.4
-numpy==1.18.2
+numpy>=1.18.2
 opencv-python==4.2.0.32
 pandas>=0.0.3
 pandocfilters==1.4.2

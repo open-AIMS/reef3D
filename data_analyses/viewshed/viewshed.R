@@ -85,4 +85,4 @@ vshd_wrapper=function(folder,npts,qsize,h){
 }
 
 ##Exectute viewshed analysis
-res=vshd_wrapper('E:\\3d_ltmp\\exports\\DEM\\OI\\21550S',5,0.05,0.05)
+res=vshd_wrapper('E:\\3d_ltmp\\exports\\DEM\\OI\\21550S',5,0.1,0.05)

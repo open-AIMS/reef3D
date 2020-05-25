@@ -65,9 +65,24 @@ vshd=function(dem.file,npts,qsize,h, tempfolder){
 }
 
 
-
+folder='E:\\3d_ltmp\\exports\\DEM\\OI\\21550S'
 vshd_wrapper=function(folder,npts,qsize,h){
-  list.files(folder, pattern = '*.tif')
-  
-  
+  require(stringr)
+  dems=list.files(folder, pattern = '*.tif',full.names = T)
+  results=data.frame(CAMP=character(),REEF_NAME=character(),SITE_NO=numeric(),TRANSECT_NO=numeric(),viewshed=numeric())
+  camp=str_match(folder, "DEM\\\\(.*?)\\\\")[2]
+  for (dem.file in dems){
+    filename=basename(tools::file_path_sans_ext(dem.file))
+    parts=strsplit(filename,"_")
+    rn=parts[[1]][1]
+    sitetran=as.character(parts[[1]][2])
+    sn=as.numeric(strsplit(sitetran, "\\D+")[[1]][-1])[1]
+    tn=as.numeric(strsplit(sitetran, "\\D+")[[1]][-1])[2]
+    vshd.m=vshd(dem.file,npts,qsize,h, tempfolder)
+    results=rbind(data.frame(CAMP=camp,REEF_NAME=rn,SITE_NO=sn,TRANSECT_NO=tn,viewshed=vshd.m),results)
+  }
+  return(results)
 }
+
+##Exectute viewshed analysis
+res=vshd_wrapper('E:\\3d_ltmp\\exports\\DEM\\OI\\21550S',5,0.05,0.05)

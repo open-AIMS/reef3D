@@ -1,0 +1,6 @@
+#README
+This function calculates the viewshed for randomly distrubuted points in a 3D model from a transect/plot.
+
+
+##SET UP
+install.packages("whitebox", repos="http://R-Forge.R-project.org")

@@ -6,22 +6,29 @@ library(sf)
 library(rgeos)
 
 dem_maker=function(f, outfolder){
+  require(readr)
+  require(sp)
+  require(tidyverse)
+  require(raster)
   
   # f<-"/your/path/irregular_points.xyz"
-  pts <- read.table(f, header=FALSE, col.names=c("x", "y", "z")) # change accordingly - use read.csv for a csv!
-  
+  pts <- readr::read_delim(f, delim = " ", col_names = F, col_types = cols(.default="d"))
+  pts<-pts[,c(1:3)]
+  names(pts)<-c("x","y","z")
+  pts<-pts%>%
+    drop_na()
   # create a SpatialPointsDataFrame
   coordinates(pts) = ~x+y 									   
   
   # create an empty raster object to the extent of the points
   rast <- raster(ext=extent(pts), resolution=c(0.0008023512, 0.0008023451))
-  crs(rast)<-CRS('+init=+proj=merc +lon_0=0 +lat_ts=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0')
-  
+  crs(rast)<-CRS('+init=EPSG:3395')
+
   # rasterize your irregular points 
   rasOut<-rasterize(pts, rast, pts$z, fun = mean) # we use a mean function here to regularly grid the irregular input points
   
   #write it out as a geotiff
-  fout="my_raster.tif"
+  fout=file.path(outfolder, paste0(basename(tools::file_path_sans_ext(f)),".tif"))
   writeRaster(rasOut, fout, format="GTiff")
 }
 
@@ -35,7 +42,8 @@ vshd=function(dem.file,npts,qsize,h, tempfolder){
   #tempfolder
   
   ##SET UP WORKSPACE
-  dem=raster(dem.file)
+  r=raster(dem.file)
+  crs(r)<-CRS('+init=EPSG:3395')
   lin <- rasterToContour(is.na(r))
   pol <- as(st_union(st_polygonize(st_as_sf(lin))), 'Spatial') # st_union to dissolve geometries
   pol<-gBuffer(pol,width=-0.2)
@@ -47,18 +55,21 @@ vshd=function(dem.file,npts,qsize,h, tempfolder){
     #generate Observer
     tp<-pts[p,]
     tp<- SpatialPointsDataFrame(tp, data.frame(ID=1:length(tp)))
-    writeOGR(tp, layer='obs',"E:\\3d_ltmp\\exports\\viewshed_temp",driver="ESRI Shapefile",overwrite_layer = T)
+    proj4string(tp)<-CRS('+init=EPSG:3395')
+    writeOGR(tp, layer='obs',file.path(tempfolder,"viewshed_temp"),driver="ESRI Shapefile",overwrite_layer = T)
     
     #Crop DEM to limit ViewShed
     crop.p<-gBuffer(tp, width=qsize,quadsegs=1, capStyle="SQUARE")
     dem=crop(r,extent(crop.p))
-    writeRaster(dem, "E:\\3d_ltmp\\exports\\viewshed_temp\\dem.tif",overwrite=T)
+    crs(dem)<-CRS('+init=EPSG:3395')
+    writeRaster(dem, file.path(tempfolder,"dem.tif"),overwrite=T)
     
     #Calculate Viewshed raster
-    whitebox::wbt_viewshed("E:\\3d_ltmp\\exports\\viewshed_temp\\dem.tif","E:\\3d_ltmp\\exports\\viewshed_temp\\obs.shp", "E:\\3d_ltmp\\exports\\viewshed_temp\\viewshed.tif", height = h, verbose_mode = FALSE)
+    whitebox::wbt_viewshed(file.path(tempfolder,"dem.tif"),file.path(tempfolder,"obs.shp"), file.path(tempfolder,"viewshed.tif"), height = h, verbose_mode = FALSE)
     
     #Calculate exposed proportion
-    v<-raster("E:\\3d_ltmp\\exports\\viewshed_temp\\viewshed.tif")
+    v<-raster(file.path(tempfolder,"viewshed.tif"))
+    crs(v)<-CRS('+init=EPSG:3395')
     vshd<-c(vshd,sum(v[]>0)*100/sum(v[]>=0))
   }
   return(median(vshd))
@@ -66,7 +77,7 @@ vshd=function(dem.file,npts,qsize,h, tempfolder){
 
 
 folder='E:\\3d_ltmp\\exports\\DEM\\OI\\21550S'
-vshd_wrapper=function(folder,npts,qsize,h){
+vshd_wrapper=function(folder,npts,qsize,h, tempfolder){
   require(stringr)
   dems=list.files(folder, pattern = '*.tif',full.names = T)
   results=data.frame(CAMP=character(),REEF_NAME=character(),SITE_NO=numeric(),TRANSECT_NO=numeric(),viewshed=numeric())
@@ -85,4 +96,5 @@ vshd_wrapper=function(folder,npts,qsize,h){
 }
 
 ##Exectute viewshed analysis
-res=vshd_wrapper('E:\\3d_ltmp\\exports\\DEM\\OI\\21550S',5,0.1,0.05)
+mytempfolder="/Volumes/3dstuff"
+res=vshd_wrapper('E:\\3d_ltmp\\exports\\DEM\\OI\\21550S',5,0.1,0.05, mytempfolder)

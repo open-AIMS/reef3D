@@ -82,5 +82,5 @@ alg_params={ 'ANALYSIS_TYPE' : 0, 'DEM' : r'E:/3d_ltmp/exports/DEM/HELIX_test.ti
 
 
 results['Viewshed'] = processing.run('visibility:Viewshed', alg_params,is_child_algorithm=True)
-filename = 'E:\\3d_ltmp\\exports\viewshed.log'
+filename = r'E:\3d_ltmp\exports\some.log'
 QgsLogger.logMessageToFile(filename)

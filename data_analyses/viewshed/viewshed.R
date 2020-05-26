@@ -55,7 +55,7 @@ vshd=function(dem.file,npts,qsize,h, tempfolder){
     #generate Observer
     tp<-pts[p,]
     tp<- SpatialPointsDataFrame(tp, data.frame(ID=1:length(tp)))
-    proj4string(tp)<-CRS('+init=EPSG:3395')
+    # proj4string(tp)<-CRS('+init=EPSG:3395')
     writeOGR(tp, layer='obs',file.path(tempfolder,"viewshed_temp"),driver="ESRI Shapefile",overwrite_layer = T)
     
     #Crop DEM to limit ViewShed

@@ -32,6 +32,10 @@ dem_maker=function(f, outfolder){
   writeRaster(rasOut, fout, format="GTiff")
 }
 
+CV <- function(v){
+  
+  (sd(v,na.rm=T)/mean(v,na.rm=T))*100
+}
 
 vshd=function(dem.file,npts,qsize,h, tempfolder){
   #Example:
@@ -56,7 +60,7 @@ vshd=function(dem.file,npts,qsize,h, tempfolder){
     tp<-pts[p,]
     tp<- SpatialPointsDataFrame(tp, data.frame(ID=1:length(tp)))
     # proj4string(tp)<-CRS('+init=EPSG:3395')
-    writeOGR(tp, layer='obs',file.path(tempfolder,"viewshed_temp"),driver="ESRI Shapefile",overwrite_layer = T)
+    writeOGR(tp, layer='obs',file.path(tempfolder),driver="ESRI Shapefile",overwrite_layer = T)
     
     #Crop DEM to limit ViewShed
     crop.p<-gBuffer(tp, width=qsize,quadsegs=1, capStyle="SQUARE")
@@ -72,7 +76,7 @@ vshd=function(dem.file,npts,qsize,h, tempfolder){
     crs(v)<-CRS('+init=EPSG:3395')
     vshd<-c(vshd,sum(v[]>0)*100/sum(v[]>=0))
   }
-  return(median(vshd))
+  return(c(median(vshd,na.rm=T), CV(vshd)))
 }
 
 
@@ -80,21 +84,26 @@ folder='E:\\3d_ltmp\\exports\\DEM\\OI\\21550S'
 vshd_wrapper=function(folder,npts,qsize,h, tempfolder){
   require(stringr)
   dems=list.files(folder, pattern = '*.tif',full.names = T)
-  results=data.frame(CAMP=character(),REEF_NAME=character(),SITE_NO=numeric(),TRANSECT_NO=numeric(),viewshed=numeric())
+  results=data.frame(CAMP=character(),REEF_NAME=character(),SITE_NO=numeric(),TRANSECT_NO=numeric(),
+                     viewshed=numeric(), viewshed.cv=numeric())
   camp=str_match(folder, "DEM\\\\(.*?)\\\\")[2]
+  sprintf("Processing %s campaing..", camp)
+  i=0
   for (dem.file in dems){
     filename=basename(tools::file_path_sans_ext(dem.file))
+    i=i+1
+    sprintf("Calculating viewshed for: %s (%s / %s)",filename,as.character(i),as.character(length(dems)))
     parts=strsplit(filename,"_")
     rn=parts[[1]][1]
     sitetran=as.character(parts[[1]][2])
     sn=as.numeric(strsplit(sitetran, "\\D+")[[1]][-1])[1]
     tn=as.numeric(strsplit(sitetran, "\\D+")[[1]][-1])[2]
     vshd.m=vshd(dem.file,npts,qsize,h, tempfolder)
-    results=rbind(data.frame(CAMP=camp,REEF_NAME=rn,SITE_NO=sn,TRANSECT_NO=tn,viewshed=vshd.m),results)
+    results=rbind(data.frame(CAMP=camp,REEF_NAME=rn,SITE_NO=sn,TRANSECT_NO=tn,viewshed=vshd.m[1],viewshed.cv=vshd.m[2]),results)
   }
   return(results)
 }
 
 ##Exectute viewshed analysis
-mytempfolder="/Volumes/3dstuff"
-res=vshd_wrapper('E:\\3d_ltmp\\exports\\DEM\\OI\\21550S',5,0.1,0.05, mytempfolder)
+mytempfolder="E:\\3d_ltmp/exports/viewshed_temp/"
+res=vshd_wrapper('E:\\3d_ltmp\\exports\\DEM\\OI\\21550S',3,0.1,0.05, mytempfolder)

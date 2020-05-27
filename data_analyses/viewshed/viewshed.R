@@ -87,12 +87,12 @@ vshd_wrapper=function(folder,npts,qsize,h, tempfolder){
   results=data.frame(CAMP=character(),REEF_NAME=character(),SITE_NO=numeric(),TRANSECT_NO=numeric(),
                      viewshed=numeric(), viewshed.cv=numeric())
   camp=str_match(folder, "DEM\\\\(.*?)\\\\")[2]
-  sprintf("Processing %s campaing..", camp)
+  print(sprintf("Processing field campaign: %s", camp))
   i=0
   for (dem.file in dems){
     filename=basename(tools::file_path_sans_ext(dem.file))
     i=i+1
-    sprintf("Calculating viewshed for: %s (%s / %s)",filename,as.character(i),as.character(length(dems)))
+    print(sprintf("Calculating viewshed for: %s (%s / %s)",filename,as.character(i),as.character(length(dems))))
     parts=strsplit(filename,"_")
     rn=parts[[1]][1]
     sitetran=as.character(parts[[1]][2])

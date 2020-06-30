@@ -1,0 +1,7 @@
+module load MATLAB/R2018a
+cd /export/home/l-p/mgonzale/Desktop/gits/reef3D/data_analyses
+
+
+matlab -nodisplay -nodesktop -nosplash -r "summary_transect '/mnt/isilon/exports/pointsXYZ/RAP/201920/OX/' '/mnt/isilon/exports/cameras/RAP/201920/OX/' '/export/home/l-p/mgonzale/Desktop/gits/reef3D/' '/mnt/isilon/exports/'"
+
+matlab -nodisplay -nodesktop -nosplash -r "summary_transect '/mnt/isilon/exports/pointsXYZ/RAP/201718/OI/' '/mnt/isilon/exports/cameras/RAP/201718/OI/' '/export/home/l-p/mgonzale/Desktop/gits/reef3D/' '/mnt/isilon/exports/'"

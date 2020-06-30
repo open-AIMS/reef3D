@@ -1,0 +1,86 @@
+import processing
+from qgis.PyQt.QtCore import QFileInfo
+from qgis.core import QgsProject
+from qgis.PyQt.QtCore import *
+
+outputs={}
+results={}
+rasterLayer = 'E:/3d_ltmp/exports/DEM/HELIX_test.tif'
+
+# Boundaries
+alg_params = {
+    'BAND': 1,
+    'EIGHT_CONNECTEDNESS': False,
+    'EXTRA': '',
+    'FIELD': 'DN',
+    'INPUT': rasterLayer,
+    'OUTPUT': QgsProcessing.TEMPORARY_OUTPUT
+}
+outputs['Boundaries'] = processing.run('gdal:polygonize', alg_params, is_child_algorithm=True)
+
+# Define Shapefile projection
+alg_params = {
+    'CRS': QgsCoordinateReferenceSystem('ESRI:54004'),
+    'INPUT': outputs['Boundaries']['OUTPUT']
+}
+outputs['DefineShapefileProjection'] = processing.run('qgis:definecurrentprojection', alg_params,is_child_algorithm=True)
+
+# Boundary
+alg_params = {
+    'BND_KEEP': False,
+    'POLYGONS': outputs['Boundaries']['OUTPUT'],
+    'DISSOLVED': QgsProcessing.TEMPORARY_OUTPUT
+}
+outputs['Boundary'] = processing.run('saga:polygondissolveallpolygons', alg_params, is_child_algorithm=True)
+
+# Scaled_sample_area
+alg_params = {
+    'ANCHORX': 0,
+    'ANCHORY': 0,
+    'ANGLE': 0,
+    'DX': 0,
+    'DY': 0,
+    'IN': outputs['Boundary']['DISSOLVED'],
+    'SCALEX': 0.8,
+    'SCALEY': 0.95,
+    'OUT': QgsProcessing.TEMPORARY_OUTPUT
+}
+outputs['Scaled_sample_area'] = processing.run('saga:transformvectorlayer', alg_params,is_child_algorithm=True)
+results['Sample_area'] = outputs['Scaled_sample_area']['OUT']
+
+# Observers
+alg_params = {
+    'INPUT': outputs['Scaled_sample_area']['OUT'],
+    'MIN_DISTANCE': 0.1,
+    'STRATEGY': 1,
+    'VALUE': 1,
+    'OUTPUT': r'E:\3d_ltmp\exports\observers\HELIXobs.shp'
+}
+outputs['Observers'] = processing.run('qgis:randompointsinsidepolygons', alg_params, is_child_algorithm=True)
+results['Observers'] = outputs['Observers']['OUTPUT']
+
+
+
+
+
+alg_params = {
+'DEM': rasterLayer,
+'OBSERVER_ID': '',
+'OBSERVER_POINTS': r'E:\3d_ltmp\exports\observers\HELIXobs.shp',
+'OBS_HEIGHT': 0.1,
+'OBS_HEIGHT_FIELD': '',
+'RADIUS': QgsExpression('0.1').evaluate(),
+'RADIUS_FIELD': '',
+'TARGET_HEIGHT': 0,
+'TARGET_HEIGHT_FIELD': '',
+'OUTPUT': r'E:/3d_ltmp/exports/observers/HELIXview.shp'}
+
+viewpoints = processing.run('visibility:create_viewpoints', alg_params,is_child_algorithm=True)
+pointLayer=r'E:/3d_ltmp/exports/observers/HELIXview.shp'
+
+alg_params={ 'ANALYSIS_TYPE' : 0, 'DEM' : r'E:/3d_ltmp/exports/DEM/HELIX_test.tif', 'OBSERVER_POINTS' : r'E:/3d_ltmp/exports/observers/HELIXview.shp', 'OPERATOR' : 0, 'OUTPUT' : 'TEMPORARY_OUTPUT', 'REFRACTION' : 0.13, 'USE_CURVATURE' : False }
+
+
+results['Viewshed'] = processing.run('visibility:Viewshed', alg_params,is_child_algorithm=True)
+filename = r'E:\3d_ltmp\exports\some.log'
+QgsLogger.logMessageToFile(filename)

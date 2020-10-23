@@ -1,9 +1,4 @@
-library(whitebox)
-library(raster)
-library(sp)
-library(rgdal)
-library(sf)
-library(rgeos)
+
 
 dem_maker=function(f, outfolder){
   require(readr)
@@ -45,13 +40,20 @@ vshd=function(dem.file,npts,qsize,h, tempfolder){
   # h=0.05
   #tempfolder
   
+  require(whiteboox)
+  require(raster)
+  require(sp)
+  require(rgdal)
+  require(sf)
+  require(rgeos)
+  
   ##SET UP WORKSPACE
   r=raster(dem.file)
   crs(r)<-CRS('+init=EPSG:3395')
   lin <- rasterToContour(is.na(r))
   pol <- as(st_union(st_polygonize(st_as_sf(lin))), 'Spatial') # st_union to dissolve geometries
   pol<-gBuffer(pol,width=-0.2)
-  pts <- spsample(pol[1,], npts, type = 'random')
+  pts <- spsample(pol[1,], npts, type = 'random') ##TODO: Create density of points or import your own observers
   vshd={}
   
   ##CALCULATE VIEWSHED FROM EACH POINT

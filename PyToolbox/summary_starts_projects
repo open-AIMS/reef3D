@@ -1,0 +1,7 @@
+from glob import glob
+from reef3D.PyToolbox import PSeval as pe
+sys.path.append('C:\\Users\\mgonzale\\Documents\\gits')
+
+projFolder='E:\\3d_ltmp\\projects'
+projList = [y for x in os.walk(projFolder) for y in glob(os.path.join(x[0], '*.psx'))]
+

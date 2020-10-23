@@ -1,4 +1,4 @@
-import PhotoScan
+import Metashape as ps
 import numpy as np
 
 
@@ -11,7 +11,7 @@ def scale_error(chunk):
         dist_source = scalebar.reference.distance
         if not dist_source:
             continue #skipping scalebars without source values
-        if type(scalebar.point0) == PhotoScan.Camera:
+        if type(scalebar.point0) == ps.Camera:
             if not (scalebar.point0.center and scalebar.point1.center):
                 continue #skipping scalebars with undefined ends
             dist_estimated = (scalebar.point0.center - scalebar.point1.center).norm() * chunk.transform.scale

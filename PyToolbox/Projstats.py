@@ -1,12 +1,29 @@
+#!/usr/bin/python
+##########################################################################
+#### Summary statistics from error checking from PS models           #####
+##########################################################################
+#Author: M. Gonzalez-Rivero
+#Date: October 2020
+# #Purpose: Given a folder containing models, the script will iterate throguh models to get basic statistics that help identifying the quality of reconstructions and produce a CSV 
+# file in the same folder.
+
+
+
 from glob import glob
 import os, sys, re
 import numpy as np
-sys.path.append('C:\\Users\\mgonzale\\Documents\\gits')
+
+if len(sys.arg)==2:
+	sys.path.append('~/gits')
+else:
+	sys.path.append(sys.argv[2])
+
 from reef3D.PyToolbox import PSeval as pe
 import Metashape as ps
 
 
-projFolder='F:\\3d_ltmp\\projects'
+projFolder=sys.arg[1]
+
 projList = [y for x in os.walk(projFolder) for y in glob(os.path.join(x[0], '*.psx'))]
 
 with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as csvFile:

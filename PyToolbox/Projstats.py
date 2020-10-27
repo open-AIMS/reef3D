@@ -26,7 +26,9 @@ projFolder=sys.argv[1]
 projList = [y for x in os.walk(projFolder) for y in glob(os.path.join(x[0], '*.psx'))]
 
 with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as csvFile:
-	fieldnames = ['YEAR','CAMPAIGN','REEFNAME', 'SITE', 'TRANSECT', 'NO_IMAGES','ALIGNED','pALIGNED','SCALED','NO_SCALEBARS','SCALE_ERROR','NO_MAKERS', 'MARKER_ERROR', 'REl_PATH']
+	fieldnames = ['YEAR','CAMPAIGN','REEFNAME', 'SITE', 'TRANSECT', 'NO_IMAGES',
+	'ALIGNED','pALIGNED','SCALED','NO_SCALEBARS','SCALE_ERROR',
+	'NO_MAKERS', 'MARKER_ERROR', 'REl_PATH', "EXPORTED"]
 	writer = csv.writer(csvFile, delimiter=',')
 	writer.writerow(fieldnames)
 	for proj in projList:
@@ -50,7 +52,7 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 			else:
 				serror="NULL"
 
-			if c.transform:
+			if c.transform.scale:
 				scaled="YES"
 			else:
 				scaled="NO"
@@ -58,18 +60,25 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 			nmarkers=len(c.markers)
 			nscalebars=len(c.scalebars)
 
-			if nscalebars <=1 or aligned==0:
+			if nscalebars ==0 or aligned==0:
 				serror="NULL"
 			else: 
+				c.updateTransform()
 				serror=np.mean(pe.scale_error(c)) # measurement error
 
 			if nmarkers >0 and aligned >0:
 				merror=np.mean(pe.markerProjError(c))
 			else:
 				merror="NULL"
-			[reefname, sitetran]=c.label.split('_')
+			if "_" in c.label:
+				[reefname, sitetran]=c.label.split('_')
+				exported="yes"
+			else:
+				sitetran=c.label
+				reefname=reefname=os.path.splitext(base)[0]
+				exported="maybe not"
 			[Site, Trans]=re.findall(r'\d+', sitetran)
 
-			csvData = [year,campaign,reefname,Site, Trans, noimgs,aligned,paligned,scaled,nscalebars,serror,nmarkers,merror, relPath]
+			csvData = [year,campaign,reefname,Site, Trans, noimgs,aligned,paligned,scaled,nscalebars,serror,nmarkers,merror, relPath, exported]
 			csvData=[str(f) for f in csvData]
 			writer.writerows([csvData])

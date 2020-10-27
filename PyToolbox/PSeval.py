@@ -20,7 +20,8 @@ def scale_error(chunk):
 				continue #skipping scalebars with undefined ends
 			dist_estimated = (scalebar.point0.position - scalebar.point1.position).norm() * chunk.transform.scale
 		dist_error = dist_estimated - dist_source 
-		e=np.r_[dist_error]
+	
+	e=np.r_[dist_error]
 	
 	return(e)
 

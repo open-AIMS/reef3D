@@ -35,7 +35,7 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 		base=os.path.basename(proj)
 		# reefname=os.path.splitext(base)[0]
 		relPath=proj.split("projects")[1]
-		meta=relPath.split("\\")
+		meta=relPath.split("/")
 		year=meta[2]
 		campaign=meta[3]
 		for c in doc.chunks:

@@ -12,7 +12,7 @@ from glob import glob
 import os, sys, re
 import numpy as np
 
-if len(sys.arg)==2:
+if len(sys.argv)==2:
 	sys.path.append('~/gits')
 else:
 	sys.path.append(sys.argv[2])

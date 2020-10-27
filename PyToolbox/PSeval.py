@@ -100,11 +100,11 @@ def Merror(doc,chunk):
                     
                     
 def markerProjError(chunk):
-    merror=[]
-    for marker in chunk.markers:
-        cerror=[]
-		
-		for cam in marker.projections.keys():# Every aligned camera with projections
+	merror=[]
+	for marker in chunk.markers:
+		cerror=[]
+		# Every aligned camera with projections
+		for cam in marker.projections.keys():
 			try:
 				projection = marker.projections[cam].coord #2D coordinates on the corresponding image of the marker projection (green/blue flag)
 				reprojection = cam.project(marker.position) #2D coordinates on the corresponding image of reprojected marker position
@@ -112,7 +112,7 @@ def markerProjError(chunk):
 				cerror=np.r_[cerror,error]
 			except:
 				pass
-        
-        merror=np.r_[merror,cerror]
+		
+		merror=np.r_[merror,cerror]
     
     return(merror)         

@@ -42,8 +42,7 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 		campaign=meta[3]
 		for c in doc.chunks:
 			noimgs=len(c.cameras) #total numbr of images per chunk
-			aligned=len(pe.checkalign(c))#number of images aligned
-			paligned=aligned/noimgs #proportion of images aligned
+			aligned=len(pe.checkalign(c))#number of images aligned			
 			# clength=chunk.orthomosaic.height*chunk.orthomosaic.resolution #length of recuntructed chunk
 			# cwidth=chunk.orthomosaic.width*chunk.orthomosaic.resolution #width of reconstructed chunk
 			nomarkers=len(c.markers)
@@ -51,6 +50,11 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 				serror=np.mean(pe.scale_error(c)) # measurement error
 			else:
 				serror="NULL"
+			
+			if noimgs==0:
+				paligned="NULL"
+			else:
+				paligned=aligned/noimgs #proportion of images aligned
 
 			if c.transform.scale:
 				scaled="YES"

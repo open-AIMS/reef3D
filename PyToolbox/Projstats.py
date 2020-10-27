@@ -79,7 +79,15 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 				sitetran=c.label
 				reefname=reefname=os.path.splitext(base)[0]
 				exported="maybe not"
-			[Site, Trans]=re.findall(r'\d+', sitetran)
+				
+			sitetran_id=re.findall(r'\d+', sitetran)
+			if "Site" in sitetran and len(sitetran_id)==2:
+				Site=sitetran_id[0]
+				Trans=sitetran_id[1]
+			else:
+				Site='NULL'
+				Trans='NULL'
+				exported='maybe not'
 
 			csvData = [year,campaign,reefname,Site, Trans, noimgs,aligned,paligned,scaled,nscalebars,serror,nmarkers,merror, relPath, exported]
 			csvData=[str(f) for f in csvData]

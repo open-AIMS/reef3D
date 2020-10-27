@@ -56,17 +56,17 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 				scaled="YES"
 			else:
 				scaled="NO"
-
+			
+			c.updateTransform()
 			nmarkers=len(c.markers)
 			nscalebars=len(c.scalebars)
 
 			if nscalebars ==0 or aligned==0:
 				serror="NULL"
 			else: 
-				c.updateTransform()
 				serror=np.mean(pe.scale_error(c)) # measurement error
-
-			if nmarkers >0 and aligned >0:
+			
+			if nmarkers >0 and aligned >0 and c.transform.scale:
 				merror=np.mean(pe.markerProjError(c))
 			else:
 				merror="NULL"

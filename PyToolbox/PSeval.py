@@ -6,7 +6,8 @@ def scale_error(chunk):
 	'''
 	Clculate scale error for each scale bar to produce a vector of errors
 	'''
-	
+	e=[]
+	dist_error=[]
 	for scalebar in chunk.scalebars:
 		dist_source = scalebar.reference.distance
 		if not dist_source:
@@ -20,8 +21,7 @@ def scale_error(chunk):
 				continue #skipping scalebars with undefined ends
 			dist_estimated = (scalebar.point0.position - scalebar.point1.position).norm() * chunk.transform.scale
 		dist_error = dist_estimated - dist_source 
-	
-	e=np.r_[dist_error]
+		e=np.r_[dist_error]
 	
 	return(e)
 

@@ -114,5 +114,5 @@ def markerProjError(chunk):
 				pass
 		
 		merror=np.r_[merror,cerror]
-    
-    return(merror)         
+	
+	return(merror)         

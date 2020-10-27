@@ -9,19 +9,22 @@ def scale_error(chunk):
 	e=[]
 	dist_error=[]
 	for scalebar in chunk.scalebars:
-		dist_source = scalebar.reference.distance
-		if not dist_source:
-			continue #skipping scalebars without source values
-		if type(scalebar.point0) == ps.Camera:
-			if not (scalebar.point0.center and scalebar.point1.center):
-				continue #skipping scalebars with undefined ends
-			dist_estimated = (scalebar.point0.center - scalebar.point1.center).norm() * chunk.transform.scale
-		else:
-			if not (scalebar.point0.position and scalebar.point1.position):
-				continue #skipping scalebars with undefined ends
-			dist_estimated = (scalebar.point0.position - scalebar.point1.position).norm() * chunk.transform.scale
-		dist_error = dist_estimated - dist_source 
-		e=np.r_[dist_error]
+		try:
+			dist_source = scalebar.reference.distance
+			if not dist_source:
+				continue #skipping scalebars without source values
+			if type(scalebar.point0) == ps.Camera:
+				if not (scalebar.point0.center and scalebar.point1.center):
+					continue #skipping scalebars with undefined ends
+				dist_estimated = (scalebar.point0.center - scalebar.point1.center).norm() * chunk.transform.scale
+			else:
+				if not (scalebar.point0.position and scalebar.point1.position):
+					continue #skipping scalebars with undefined ends
+				dist_estimated = (scalebar.point0.position - scalebar.point1.position).norm() * chunk.transform.scale
+			dist_error = dist_estimated - dist_source 
+			e=np.r_[dist_error]
+		except:
+			pass
 	
 	return(e)
 

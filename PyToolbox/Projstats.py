@@ -71,7 +71,9 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 			else:
 				merror="NULL"
 			if "_" in c.label:
-				[reefname, sitetran]=c.label.split('_')
+				chunkname=c.label.split('_')
+				reefname=chunkname[0]
+				sitetran=chunkname[1]
 				exported="yes"
 			else:
 				sitetran=c.label

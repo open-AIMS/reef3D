@@ -9,7 +9,7 @@
 
 
 from glob import glob
-import os, sys, re
+import os, sys, re, csv
 import numpy as np
 
 if len(sys.argv)==2:

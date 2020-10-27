@@ -4,9 +4,8 @@
 ##########################################################################
 #Author: M. Gonzalez-Rivero
 #Date: October 2020
-# #Purpose: Given a folder containing models, the script will iterate throguh models to get basic statistics that help identifying the quality of reconstructions and produce a CSV 
-# file in the same folder.
-
+# #Purpose: Given a folder containing models, the script will iterate throguh models to get basic statistics that help identifying the quality of reconstructions and output a CSV 
+# file in the same folder that contains the summary metrics across the chunks in each project.
 
 
 from glob import glob
@@ -22,7 +21,7 @@ from reef3D.PyToolbox import PSeval as pe
 import Metashape as ps
 
 
-projFolder=sys.arg[1]
+projFolder=sys.argv[1]
 
 projList = [y for x in os.walk(projFolder) for y in glob(os.path.join(x[0], '*.psx'))]
 

@@ -57,7 +57,7 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 			if noimgs==0:
 				paligned="NULL"
 			else:
-				paligned=aligned/noimgs #proportion of images aligned
+				paligned=no_aligned/noimgs #proportion of images aligned
 
 			if c.transform.scale:
 				scaled="YES"

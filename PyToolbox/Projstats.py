@@ -27,7 +27,7 @@ projList = [y for x in os.walk(projFolder) for y in glob(os.path.join(x[0], '*.p
 
 with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as csvFile:
 	fieldnames = ['YEAR','CAMPAIGN','REEFNAME', 'SITE', 'TRANSECT', 'NO_IMAGES',
-	'STATUS','DENSE_CLOUD','pALIGNED','SCALED','NO_SCALEBARS','SCALE_ERROR',
+	'STATUS','pALIGNED','SCALED','NO_SCALEBARS','SCALE_ERROR',
 	'NO_MAKERS', 'MARKER_ERROR', 'REl_PATH', "EXPORTED", "DISABLED"]
 	writer = csv.writer(csvFile, delimiter=',')
 	writer.writerow(fieldnames)
@@ -101,7 +101,7 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 				status=+1
 
 
-			csvData = [year,campaign,reefname,Site, Trans, noimgs,status,dc, paligned,scaled,nscalebars,serror,nmarkers,merror, relPath, exported]
+			csvData = [year,campaign,reefname,Site, Trans, noimgs,status, paligned,scaled,nscalebars,serror,nmarkers,merror, relPath, exported]
 			csvData=[str(f) for f in csvData]
 			writer.writerows([csvData])
 		doc.save()

@@ -34,6 +34,7 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 	for proj in projList:
 		ps.app.document.open(proj)
 		doc=ps.app.document
+		doc.read_only = False
 		base=os.path.basename(proj)
 		# reefname=os.path.splitext(base)[0]
 		relPath=proj.split("projects")[1]
@@ -99,4 +100,4 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 			csvData = [year,campaign,reefname,Site, Trans, noimgs,aligned,paligned,scaled,nscalebars,serror,nmarkers,merror, relPath, exported]
 			csvData=[str(f) for f in csvData]
 			writer.writerows([csvData])
-		ps.app.document.save()
+		doc.save()

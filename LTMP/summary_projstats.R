@@ -4,18 +4,21 @@ library(tidyverse)
 
 rm(list=ls())
 
-rap<-read.csv("Z:\\projects\\RAP\\201920\\project_summary.csv", stringsAsFactors = F)
+rap<-read.csv("Z:\\projects\\RAP\\project_summary.csv", stringsAsFactors = F)
+rm<-read.csv("Z:\\projects\\RM\\project_summary.csv", stringsAsFactors = F)
 
 rap.nscale<-rap %>% subset(SCALE_ERROR=="NULL")
 
-rap<-rap %>% mutate_if(is.character, list(~na_if(., "NULL")))%>%
-  mutate_at(vars(SCALE_ERROR, MARKER_ERROR), as.numeric)
+df<-rbind(rap,rm)
 
-hist(rap$pALIGNED)
-hist(rap$SCALE_ERROR)
-hist(rap$MARKER_ERROR)
+df<-df %>% mutate_if(is.character, list(~na_if(., "NULL")))%>%
+  mutate_at(vars(pALIGNED,SCALE_ERROR, MARKER_ERROR), as.numeric)
 
-rap.sum<-rap%>%
+hist(df$pALIGNED)
+hist(df$SCALE_ERROR)
+hist(df$MARKER_ERROR)
+
+df.sum<-df%>%
   group_by(YEAR,CAMPAIGN)%>%
   mutate(outlier=if_else(MARKER_ERROR>5,1,0))%>%
   summarise(pALIGNED=mean(pALIGNED, na.rm=T), 
@@ -24,6 +27,12 @@ rap.sum<-rap%>%
             NO_SCALED=sum(SCALED=="NO"),
             NO_ALIGNED=sum(ALIGNED==0),
             OUTLIERS=sum(outlier, na.rm=T),
-            total=)
-rap.sum
-            
+            total=length(REEFNAME))
+df.sum
+
+df.outliers<-df%>%
+  mutate(outlier=if_else(MARKER_ERROR>5,1,0))%>%
+  filter(outlier==1)%>% select(REl_PATH)
+
+write.csv(df, "C:\\Users/mgonzale/OneDrive - Australian Institute of Marine Science/projects/Appropriations/Task 003006/project_status.csv")
+write.csv(df.sum, "C:\\Users/mgonzale/OneDrive - Australian Institute of Marine Science/projects/Appropriations/Task 003006/project_status_summary.csv")

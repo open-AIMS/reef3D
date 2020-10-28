@@ -27,7 +27,7 @@ projList = [y for x in os.walk(projFolder) for y in glob(os.path.join(x[0], '*.p
 
 with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as csvFile:
 	fieldnames = ['YEAR','CAMPAIGN','REEFNAME', 'SITE', 'TRANSECT', 'NO_IMAGES',
-	'ALIGNED','pALIGNED','SCALED','NO_SCALEBARS','SCALE_ERROR',
+	'STATUS','DENSE_CLOUD','pALIGNED','SCALED','NO_SCALEBARS','SCALE_ERROR',
 	'NO_MAKERS', 'MARKER_ERROR', 'REl_PATH', "EXPORTED", "DISABLED"]
 	writer = csv.writer(csvFile, delimiter=',')
 	writer.writerow(fieldnames)
@@ -43,14 +43,16 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 		campaign=meta[3]
 		for c in doc.chunks:
 			noimgs=len(c.cameras) #total numbr of images per chunk
-			aligned=len(pe.checkalign(c))#number of images aligned			
+			no_aligned=len(pe.checkalign(c))#number of images aligned			
 			# clength=chunk.orthomosaic.height*chunk.orthomosaic.resolution #length of recuntructed chunk
 			# cwidth=chunk.orthomosaic.width*chunk.orthomosaic.resolution #width of reconstructed chunk
 			nomarkers=len(c.markers)
-			if aligned > 0:
+			if no_aligned > 0:
 				serror=np.mean(pe.scale_error(c)) # measurement error
+				status=1
 			else:
 				serror="NULL"
+				aligned=0
 			
 			if noimgs==0:
 				paligned="NULL"
@@ -66,12 +68,12 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 			nmarkers=len(c.markers)
 			nscalebars=len(c.scalebars)
 
-			if nscalebars ==0 or aligned==0 or not(c.transform.scale):
+			if nscalebars ==0 or no_aligned==0 or not(c.transform.scale):
 				serror="NULL"
 			else: 
 				serror=np.mean(pe.scale_error(c)) # measurement error
 			
-			if nmarkers >0 and aligned >0 and c.transform.scale:
+			if nmarkers >0 and no_aligned >0 and c.transform.scale:
 				merror=np.mean(pe.markerProjError(c))
 			else:
 				merror="NULL"
@@ -95,9 +97,11 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 				exported='maybe not'
 			
 			DISABLED=str(not(c.enabled))
-			
+			if c.dense_cloud is not None:
+				status=+1
 
-			csvData = [year,campaign,reefname,Site, Trans, noimgs,aligned,paligned,scaled,nscalebars,serror,nmarkers,merror, relPath, exported]
+
+			csvData = [year,campaign,reefname,Site, Trans, noimgs,status,dc, paligned,scaled,nscalebars,serror,nmarkers,merror, relPath, exported]
 			csvData=[str(f) for f in csvData]
 			writer.writerows([csvData])
 		doc.save()

@@ -99,5 +99,4 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 			csvData = [year,campaign,reefname,Site, Trans, noimgs,aligned,paligned,scaled,nscalebars,serror,nmarkers,merror, relPath, exported]
 			csvData=[str(f) for f in csvData]
 			writer.writerows([csvData])
-		
 		ps.app.document.save()

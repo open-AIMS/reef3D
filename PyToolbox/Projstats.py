@@ -98,7 +98,7 @@ with open(os.path.join(projFolder,"project_summary.csv"), "w", newline='', ) as 
 			
 			DISABLED=str(not(c.enabled))
 			if c.dense_cloud is not None:
-				status=+1
+				status+=1
 
 
 			csvData = [year,campaign,reefname,Site, Trans, noimgs,status, paligned,scaled,nscalebars,serror,nmarkers,merror, relPath, exported]

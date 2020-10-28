@@ -21,7 +21,8 @@ hist(df$MARKER_ERROR)
 df.sum<-df%>%
   group_by(YEAR,CAMPAIGN)%>%
   mutate(outlier=if_else(MARKER_ERROR>5,1,0))%>%
-  summarise(pALIGNED=mean(pALIGNED, na.rm=T), 
+  summarise(COMPLETED=sum(STATUS==2),
+    pALIGNED=mean(pALIGNED, na.rm=T), 
             SCALE_ERROR=median(SCALE_ERROR,na.rm=T),
             MARKER_ERROR=median(MARKER_ERROR,na.rm=T),
             NO_SCALED=sum(SCALED=="NO"),
